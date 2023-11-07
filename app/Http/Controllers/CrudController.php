@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class CrudController extends Controller
 {
@@ -27,10 +28,12 @@ class CrudController extends Controller
         // return $cliente;
     }
 
-    public function viewEdit($id)
+    public function viewEditProducto($idProducto)
     {
-        $adminProducto = Producto::where('id', $id)->get();
-        return json_encode($adminProducto);
+        $adminProducto = Producto::where('id', $idProducto)->get();
+        return response()->json(['status'=>Response::HTTP_OK,'message'=> 'Producto existente','Producto'=>$adminProducto],Response::HTTP_OK);
+        // return json_encode($adminProducto);
+        
     }
 
     public function save(Request $request)

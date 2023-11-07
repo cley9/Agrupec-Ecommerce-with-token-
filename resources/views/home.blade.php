@@ -132,10 +132,9 @@
         <h6 class="display-6 textTitleSlayProHome">¡No los dejes ir!</h6>
     </div>
 
-    <div class="container-fluid boxSlayProHomeView">
+    {{-- <div class="container-fluid boxSlayProHomeView">
         <div class="row" id="news-slider">
                     @foreach ($slayderProducto as $itemProducto)
-                        {{-- <div class="d-flex justify-content-center border  boxBodySlayMin"> --}}
                             <div class=" border-  boxBodySlayMin-">
                             <div class="row">
                                 <div class="col-6 boxImgSlayMin me-2- d-flex  align-items-center justify-content-center ">
@@ -178,13 +177,14 @@
                         </div>
                     @endforeach
         </div>
-    </div>
-
+    </div> --}}
+<div id="productoSlayderHome"></div>
 <div class="" id="beneficio"></div>
 <div class="" id="count"></div>
      <div id="promocion"></div>
      <div class="" id="promoListProducto"></div>
-    {{-- <h3 class="text-center text-red-400">this is cley</h3> --}}
+    {{-- <h3 class="text-center text-red-400">this is c
+        ley</h3> --}}
 
     <div class="d-flex justify-content-center align-items-center boxTextTitleStock">
         <div
@@ -192,7 +192,9 @@
             <small class="h3 ">Productos en Stock </small>
         </div>
     </div>
+    {{-- <div id="producto"></div> --}}
     <div class="container pt-4">
+        <div id="productoList"></div>
         <div
             class="row row-cols-2 row-cols-sm-3  row-cols-md-4 row-cols-lg-5 row-cols-xl-6 d-flex justify-content-center ">
             @foreach ($producto as $key)

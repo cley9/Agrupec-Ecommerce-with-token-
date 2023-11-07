@@ -106,9 +106,17 @@
             style="height:50px;">
             <small class="h4 ">Lista de Producto</small>
         </div>
+    <div id="producto"></div>
+</div>
+
+    {{-- <div class="container boxContainerProductoList">
+        <div class="title--producto-group-2 rounded-3 pt-2 d-flex align-items-center justify-content-center mb-4"
+            style="height:50px;">
+            <small class="h4 ">Lista de Producto</small>
+        </div>
         <div class="row  row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
             @foreach ($viewProducto as $itemPro)
-                <div class="pt-4 mb-4 ">
+                <div class="pt-4 mb-4">
                     <div class="card shadow box--produ--view">
                         <a href="{{ route('View.home.index', $id = $itemPro['id']) }}">
                             <img src="{{ asset('storage/img/Productos/' . $itemPro['imagen'] . '') }}"
@@ -146,6 +154,7 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
+    {{-- <div id="productoView"></div> --}}
     @include('User.modelAddProCart')
 @endsection

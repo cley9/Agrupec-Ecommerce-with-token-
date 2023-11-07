@@ -182,8 +182,13 @@
                                                 class="bi bi-person-fill me-lg-2"></i>Iniciar sesión</a>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <li>
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#loginUserModal">Usuario</a>
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#loginAdminModal">Administrador</a>
+                                                {{-- <a class="" data-bs-toggle="modal"
+                                                    href="#loginUserAA">Usuario</a> --}}
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginUserAA">
+                                                        Launch demo modal
+                                                      </button>
+                                                <a class="" data-bs-toggle="modal"
+                                                    href="#loginAdmin">Administrador</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -193,7 +198,6 @@
                     </div>
                 </div>
             </div>
-            
             {{--  ----------------------------- response app --}}
             <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -211,7 +215,7 @@
                     </div>
                 @elseif (session()->exists('email') && session()->get('rol') === '4')
                 @else
-                    <a href="" data-bs-toggle="modal" data-bs-target="#loginUserModal"><img
+                    <a data-bs-toggle="modal" href="#loginUserAA"><img
                             src="{{ asset('storage/img/icons/userLogin.png') }}" class="icon--loginMin"
                             alt=""></a>
                 @endif
@@ -251,9 +255,8 @@
             {{--  -----------------------------  --}}
         </div>
     </nav>
-    <div id="loginUser"></div>
-    <div id="loginAdmin"></div>
 
+<div id="loginUser"></div>
     @yield('header')
 
     
@@ -360,9 +363,8 @@
     <script src="https://unpkg.com/sweetalert2@10.15.0/dist/sweetalert2.all.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 
-    {{-- <script src="{{ asset('js/agru.js') }}"></script> --}}
-    <script src="{{ asset('js/addCart.js') }}"></script>
- 
+    <script src="{{ asset('js/agru.js') }}"></script>
 
 </body>
+
 </html>

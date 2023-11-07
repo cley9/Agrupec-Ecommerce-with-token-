@@ -83,7 +83,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -97,6 +98,7 @@ return [
     */
 
     'fallback_locale' => 'en',
+    // 'fallback_locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,6 +111,7 @@ return [
     |
     */
 
+    // 'faker_locale' => 'en_US',
     'faker_locale' => 'en_US',
 
     /*
@@ -197,6 +200,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // ----------libreria de   domPDF
         Barryvdh\DomPDF\ServiceProvider::class,
+        // token 
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
 
     ],

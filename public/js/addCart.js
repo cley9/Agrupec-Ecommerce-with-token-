@@ -5,9 +5,12 @@ function addProCart(id,cantidad,newPrecio,nombre,img){
         method:'GET'
         // body:DataTransfer(id,cantidad)
     });
-    viewModalProAddCart(nombre,newPrecio,cantidad,img);
+    // viewModalProAddCart(nombre,newPrecio,cantidad,img);
 }
-function viewModalProAddCart(nombre,newPrecio,cantidad,img) {
+// await viewModalProAddCart(cantidad, nameProduct, newPrecio, imgProduct);
+
+// function viewModalProAddCart(nombre,newPrecio,cantidad,img) {
+function viewModalProAddCart(cantidad,nombre,newPrecio,img) {
     let outName=document.getElementById("outNombre");
     const modal = document.querySelector(".modalViewCP");
     let outPayment=document.getElementById("outPrecio");

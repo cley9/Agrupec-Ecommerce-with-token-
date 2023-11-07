@@ -20,7 +20,6 @@ class ApiController extends Controller
     }else{
         return response()->json(['status' => 404, 'msg' => 'Usuario no existe']);
     }
-    
     // $cartArray=User::with(['productos'])->find($idPedido); // id user
     // $exitProductoUser=cart::where('userId',session()->get('userId'))->where('productoId','>',0)->exists();
     // return $cartArray;

@@ -1,6 +1,9 @@
 <?php
 
 // use App\Http\Controllers\user\PdfProductoController;
+
+use App\Http\Controllers\admin\ApiController;
+use App\Http\Controllers\ApiController as ControllersApiController;
 use Illuminate\Support\Facades\Route;
 // --------------
 use App\Http\Controllers\ViewController;
@@ -30,6 +33,8 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 // Route::get('/envioGmail', [mailController::class ,'a'] )->name('envio.index');
+// token csrf para consumo de api postman 
+Route::get('/token', [ControllersApiController::class,'viewToken'])->name('view.token.postman');
 Route::get('/api/promocionCoutDow', [ViewController::class, 'CountDown'])->name('home.promocion.local');
 Route::get('/cley', [ViewController::class, 'listCategory'])->name('user.cley.daaa');
 Route::get('/local', [ViewController::class, 'local'])->name('tienda.home.local');
@@ -40,6 +45,8 @@ Route::get('/Search', [ViewController::class, 'search'])->name('search.home.sear
 Route::get('/searchListCategory', [ViewController::class, 'searchListCategory'])->name('searchListCategory.home.search');
 Route::get('/Producto-view', [ViewController::class, 'Producto'])->name('viewProducto.home.list');
 Route::get('/Ayuda', [ViewController::class, 'viewHelp'])->name('help.home.index');
+// new api
+Route::get('/view/productoView', [ControllersApiController::class, 'productoView'])->name('productoView.api.producto');
 // Route::get('/Admin-login', [CrudController::class ,'loginUser'] )->name('loginUser.admin.main');
 // ----no vale pero observar
 Route::get('/envioGmail', [mailController::class, 'recuperarPassword'])->name('restablecer.user.password');
@@ -51,36 +58,46 @@ Route::get('login/google', [LoginController::class, 'loginGoogle'])->name('login
 Route::get('login/google/callback', [LoginController::class, 'callback']);
 //         /login/google/callback
 // Route::get('/Login-admin/{email}/{password}', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
+Route::post('/loginAdmin', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout.user.index');
 // Route::post('/Admin-logout',[LoginController::class, 'logout'] )->name('logout.user.index');
-Route::get('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
+// Route::get('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
+Route::post('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
 Route::get('/validarUser/{email}', [LoginController::class, 'validarUser'])->name('validar.user.index');
 // ASICGD
-Route::get('/loginLocalUser/{email}/{password}', [LoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
+// this is before api sin el post
+// Route::get('/loginLocalUser/{email}/{password}', [LoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
+// this is after api con el post
+Route::post('/loginLocalUser', [LoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
 
 Route::get('user', [LoginController::class, 'indexHome'])->name('loginUser.proceso.index');
 Route::get('/Nosotros', [ViewController::class, 'viewNosotros'])->name('nosotros.home.index');
 Route::get('/Contactenos', [ViewController::class, 'viewContacto'])->name('contactenos.home.index');
 Route::get('/View-page/{id}', [ViewController::class, 'viewProductoId'])->name('View.home.index');
 
-Route::middleware('VerificationUser')->group(function () {
+// recuperacion de cuenta
+Route::get('/restablecerGmail', [mailController::class ,'restablecerPasswordUser'] )->name('restablecerPassword.user.gmail');
 
-  Route::get('/User-pdfDownload', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
-  Route::get('/GetCart', [UserController::class, 'viewCartUser'])->name('viewCartUser.user.main');
-  Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
-  Route::get('/Delete/{id}', [UserController::class, 'deleteCart'])->name('deleteCart.user.main');
-  Route::get('/DeleteCart', [UserController::class, 'deleteTotalCart'])->name('deleteTotalCart.user.main');
-  Route::get('/User-Perfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
-  Route::get('/AddCart/{id}/{cantidad}', [UserController::class, 'userAddCart'])->name('addCart.user.main');
-  // perfil edit
-  Route::get('/editPerfil', [UserController::class, 'editPeerfil'])->name('editPerfil.user.main');
-  Route::get('/addCart_', function () {
+// Route::middleware('VerificationUser')->group(function () {
+//   // Route::middleware('VerificationUser')->group(function () {
+
+//   Route::get('/User-pdfDownload', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
+//   Route::get('/GetCart/{id}', [UserController::class, 'viewCartUser'])->name('viewCartUser.user.main');
+//   Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
+//   // Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
+//   Route::get('/Delete/{id}', [UserController::class, 'deleteCart'])->name('deleteCart.user.main');
+//   Route::get('/DeleteCart', [UserController::class, 'deleteTotalCart'])->name('deleteTotalCart.user.main');
+//   Route::get('/User-Perfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
+//   Route::get('/AddCart/{id}/{cantidad}', [UserController::class, 'userAddCart'])->name('addCart.user.main');
+//   // perfil edit
+//   Route::get('/editPerfil', [UserController::class, 'editPeerfil'])->name('editPerfil.user.main');
+//   Route::get('/addCart_', function () {
 
 
-    //
-    return  view('User.addCart');
-  });
-});
+//     //
+//     return  view('User.addCart');
+//   });
+// });
 
 Route::get('/test', function () {
   //

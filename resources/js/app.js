@@ -33,16 +33,28 @@ import  { createApp } from "vue";
 import promocion from '../components/promocion.vue'; 
 import promoListProduct from '../components/promocionListProducto.vue';
 import beneficio from '../components/beneficio.vue';
-// import countC from '../components/count.vue';
+import loginUser from '../components/loginUserModal.vue';
+import loginAdmin from '../components/loginAdminModal.vue';
+import producto from '../components/productoView.vue';
+import productoList from '../components/productoList.vue';
+import productoSlayderHome from '../components/productoSlayderHome.vue';
+// import cley from '../components/addCart.vue';
+// createApp(cley).mount('#cal');
+createApp(productoSlayderHome).mount('#productoSlayderHome');
+createApp(productoList).mount('#productoList');
+createApp(producto).mount('#producto');
+createApp(loginUser).mount('#loginUser');
+createApp(loginAdmin).mount('#loginAdmin');
 createApp(promocion).mount("#promocion");
 createApp(promoListProduct).mount("#promoListProducto");
 createApp(beneficio).mount('#beneficio');
-// createApp(countC).mount('#count');
-import './viewPassword';
-import './btn-up';
-import './addCartProduct';
-import './msj';
-import './logicAgrupec';
+
+import './metod.js';
+// import './viewPassword';
+// import './btn-up';
+// import './addCartProduct';
+// import './msj';
+// import './logicAgrupec';
 
 // import './todo';
 // {{-- <script src="{{ asset('js/btn-up.js') }}"></script> --}}

@@ -11,50 +11,135 @@ use App\Models\User;
 use Str;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpFoundation\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
+// use Illuminate\Support\Facades\Validator;
+
 
 // use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
-    function loginAdmin($email, $password)
+      //    function create--user
+      function createUser(Request $request)
+      {
+        //   $vali=
+          $request->validate([
+                'name'=> 'required|max:105',
+              'email'=> 'required|email|unique:users|max:105',
+               'password'=> 'required|confirmed|max:105',
+          ]);
+              $user = new User();
+              $user->name = $request->name;
+              $user->email = $request->email;
+              $user->password = Hash::make($request->password);
+              $user->rol = '0';
+              $user->avatar = 'storage/img/icons/userLogin.png';
+              $user->external_auth = 'local';
+              $user->save();
+               $token=JWTAuth::fromUser($user);
+               return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","token"=>$token,"user"=>$user],Response::HTTP_OK);
+            //    $token=JWTAuth::fromUser($userCreate);
+            // return response(["dfa"=>$token],Response::HTTP_BAD_GATEWAY);
+            // ->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","data"=>$user]);
+            // return response(["token"=>$token], Response::HTTP_OK)->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","data"=>$user]);
+            try {
+                // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","data"=>$user, $token]);
+                //code...
+            } catch (\Throwable $th) {
+                // throw $th;
+            }
+        //       // return $user;
+        //       // return view('home');
+        //       return redirect()->route('vista.index');
+        //   }
+        //   return 'no se pudo ';
+      }
+    function loginAdmin(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email|max:105',
+            'password'=> 'required|max:105',
+        ]);
+        $email=$request->email;
         $credencials = [
             'email' => $email,
-            'password' => $password
+            'password' => $request->password,
         ];
         $validate = User::where('email', $email)->where('rol', '4')->exists();
-        if (Auth::attempt($credencials) && $validate) {
+        if (($token=JWTAuth::attempt($credencials)) && $validate) {
+            $userAdmin=User::where('email',$email)->where('rol','4')->get();
             session(['email' => $email]);
             session(['rol' => '4']);
-            // return view('admin.home');
-            return response()->json(['status' => 'ok', 'code' => '200']);
+            return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario administrador valido","token"=>$token,"user"=>$userAdmin],Response::HTTP_OK);
         } else {
-            return response()->json(['status' => 'error', 'code' => '404']);
+            return response()->json(["status"=>Response::HTTP_UNAUTHORIZED,'message' => 'Usuario invalido o contraseña no valida'],Response::HTTP_UNAUTHORIZED);
         }
+        
+
+
     }
-
-    function loginLocalUser($email, $password)
-    {
-        $credencials = [
-            'email' => $email,
-            'password' => $password
-        ];
-
-        $validate = User::where('email', $email)->where('rol', '0')->exists();
-        if (Auth::attempt($credencials) && $validate) {
-            // session(['name'=>'Usuario']);
-            session(['email' => $email]);
-            session(['rol' => '0']);
-            $userId = User::where('email', session()->get('email'))->where('email', session()->get('email'))->get();
-            // session(['avatar' => $userId[0]->avatar]);
-            session(['avatar' => $img = 'storage/img/icons/userLogin.png']);
-            session(['userId' => $userId[0]->id]);
-            session(['name' => $userId[0]->name]);
-            return response()->json(['status' => 'ok', 'code' => '200', 'data' => $userId]);
-        } else {
-            return response()->json(['status' => 'error', 'code' => '404']);
-        }
+    // // this is peticion get, before
+    // function loginLocalUser($email, $password)
+    // {
+    //     $credencials = [
+    //         'email' => $email,
+    //         'password' => $password
+    //     ];
+    //     $validate = User::where('email', $email)->where('rol', '0')->exists();
+    //     if (Auth::attempt($credencials) && $validate) {
+    //         // session(['name'=>'Usuario']);
+    //         session(['email' => $email]);
+    //         session(['rol' => '0']);
+    //         $userId = User::where('email', session()->get('email'))->where('email', session()->get('email'))->get();
+    //         // session(['avatar' => $userId[0]->avatar]);
+    //         session(['avatar' => $img = 'storage/img/icons/userLogin.png']);
+    //         session(['userId' => $userId[0]->id]);
+    //         session(['name' => $userId[0]->name]);
+    //         return response()->json(['status' => 'ok', 'code' => '200', 'data' => $userId]);
+    //     } else {
+    //         return response()->json(['status' => 'error', 'code' => '404']);
+    //     }
+    // }
+    // this is peticion post, after
+    function loginLocalUser(Request $request){
+        // try {
+             $request->validate([
+                'email' => 'required|email|max:105',
+                'password'=> 'required|max:105',
+                // 'propiedad del api'=> ['required'],
+              ]);
+            $email=$request->email;
+            // $password=$request->password;
+            $credencials = [
+                'email' => $email,
+                'password' => $request->password
+            ];
+            $validate = User::where('email', $email)->where('rol', '0')->exists();
+            // if ($token=Auth::attempt($credencials) && $validate) {
+                if (($token=JWTAuth::attempt($credencials))&& $validate) {
+                    // if ($token=JWTAuth::attempt($credencials) && $validate) {
+                // session(['name'=>'Usuario']);
+                session(['email' => $email]);
+                session(['rol' => '0']);
+                $userId = User::where('email', session()->get('email'))->where('email', session()->get('email'))->get();
+                // session(['avatar' => $userId[0]->avatar]);
+                session(['avatar' => $img = 'storage/img/icons/userLogin.png']);
+                session(['userId' => $userId[0]->id]);
+                session(['name' => $userId[0]->name]);
+                // return response(["user"=> $userId,"status"=>Response::HTTP_OK]);
+               return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);
+            } else {
+                return response()->json(["status"=>Response::HTTP_UNAUTHORIZED,'message' => 'Usuario invalido o contraseña no valida'],Response::HTTP_UNAUTHORIZED);
+                // return response()->json(['status' => 'error', 'code' => '404', 'messange'=>'Usuario invalido o contraseña no valida']);
+            }
+        // } catch (\Throwable $th) {
+        //     // abort();
+        //     // return response()->json(['status' => 'error', 'code' => '500', 'messange'=>'Problemas con el servidor']);
+        // }
     }
 
     function loginGoogle()
@@ -119,24 +204,7 @@ class LoginController extends Controller
             return "false";
         }
     }
-    //    function create--user
-    function createUser(Request $request)
-    {
-        $user = new User();
-        if ($request->input('pass1') === $request->input('pass2')) {
-            $user->name = $request->input('nombre');
-            $user->email = $request->input('email');
-            $user->password = bcrypt($request->input('pass1'));
-            $user->rol = '0';
-            $user->avatar = 'storage/img/icons/userLogin.png';
-            $user->external_auth = 'local';
-            $user->save();
-            // return $user;
-            // return view('home');
-            return redirect()->route('vista.index');
-        }
-        return 'no se pudo ';
-    }
+  
     // user autentication
     // function listObjt(){
     //     return "cms";

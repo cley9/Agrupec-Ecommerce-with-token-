@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 // import react from '@vitejs/plugin-react';
+// se agrega para el plugin de  vue en vite 
 import vue from '@vitejs/plugin-vue';
 // para importar las imagenes
 import { fileURLToPath, URL } from "url";
 // tailwind css
+// this is for talwind.css
+// import WindiCSS from 'vite-plugin-windicss'
+// import { viteSingleFile } from 'vite-plugin-singlefile'
+// import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
 
 
@@ -24,6 +29,8 @@ export default defineConfig({
         }
         ),
         // react(),
+        // viteSingleFile(),
+        // autoprefixer(),
         vue(),
         tailwindcss(),
         // autoprefixer(),
@@ -66,3 +73,8 @@ export default defineConfig({
 //     },
 //   },
 // });
+
+
+
+// npm uninstall tailwindcss postcss autoprefixer
+// npm install tailwindcss postcss autoprefixer

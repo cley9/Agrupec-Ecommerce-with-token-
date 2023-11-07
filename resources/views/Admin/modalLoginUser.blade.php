@@ -1,14 +1,14 @@
-@include('User.modalRegistro')
-@include('User.moldalRecuperarCuenta')
-<div class="modal fade modal-destino boxContainerModalUser modalEfectGlass" id="loginUserInicio" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+{{-- @include('User.modalRegistro')
+@include('User.moldalRecuperarCuenta') --}}
+{{-- <div class="modal fade modal-destino boxContainerModalUser modalEfectGlass" id="loginUserInicio" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
     tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal--frm--userLog">
         <div class="modal-content ">
             <form class="shadow form--frm--userLog col-md-12 col-12 p-4 rounded-3" id="formLoginUser" action=""
-                method="POST">
-                @method('GET')
-                @csrf
-                <h2 class="fw-normal text-center titleFormLoginUser">Iniciar sesion</h2>
+            method="POST">
+            @method('GET')
+            @csrf
+            <h2 class="fw-normal text-center titleFormLoginUser">Iniciar sesion</h2>
                 <div class="mb-3">
                     <input type="email" class="form-control input--frm--userLog" id="emailLoginUser" name="email"
                         placeholder="Correo electronico " required />
@@ -40,4 +40,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}

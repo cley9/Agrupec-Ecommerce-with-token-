@@ -46,6 +46,7 @@ class ViewController extends Controller
         return view('Producto', compact('viewProducto', 'listCategory'));
         //  return $viewProducto;
     }
+    
     public function viewProductoId($id)
     {
         $productoId = Producto::where('id', $id)->get();

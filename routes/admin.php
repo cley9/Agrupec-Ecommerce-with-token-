@@ -11,19 +11,7 @@ use App\Http\Controllers\admin\PdfProductoController;
 use App\Http\Controllers\admin\FacturaController;
 use App\Http\Controllers\admin\InfocorpController;
 
-// Route::get('admin', function() {
-// //     return "hola admin";
-//     return view('admin.home');
-
-// });
-
-
-// Route::middleware('VerificationAdmin')->group(function() {
-
-
-// });
-Route::get('/Login-admin/{email}/{password}', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
-
+// Route::get('/Login-admin/{email}/{password}', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
 
 Route::middleware('VerificationAdmin')->group(function () {
   Route::get('/Admin', function () {
@@ -38,10 +26,12 @@ Route::middleware('VerificationAdmin')->group(function () {
   // this is infocorp
   Route::get('/Admin-infocorp', [InfocorpController::class, 'main'])->name('main.admin.infocorp');
   Route::get('/Admin-infocorpSearch/{num}', [InfocorpController::class, 'searchDni'])->name('search.admin.infocorp');
-// 
-Route::get('/Admin-Ventas', [AdminController::class, 'ventas'])->name('venta.admin.index');
-// api consumo list user 
-Route::get('/api/admin/listPedio/{id}', [ApiController::class, 'listPedido'])->name('listPedido.api.venta');
+  // 
+  Route::get('/Admin-Ventas', [AdminController::class, 'ventas'])->name('venta.admin.index');
+  // api consumo list user 
+  Route::get('/listPedido/{idUserPedido}', [ApiController::class, 'listPedido'])->name('listPedido.api.venta');
+Route::get('/previewProducto/{id}', [CrudController::class, 'viewEditProducto'])->name('viewEdit.admin.list');
+
   // --pdf
 
 
@@ -70,7 +60,6 @@ Route::get('/api/admin/listPedio/{id}', [ApiController::class, 'listPedido'])->n
   Route::get('/Admin-delete/{id}/{img}', [CrudController::class, 'delete'])->name('delete.admin.list');
   Route::patch('/Admin-update', [CrudController::class, 'update'])->name('update.admin.list');
   Route::get('/Admin-registro', [CrudController::class, 'save'])->name('save.admin.list');
-  Route::get('/Admin-preview/{id}', [CrudController::class, 'viewEdit'])->name('viewEdit.admin.list');
 });
 
 // Route::get('/admin', ['UserController'::class ,'view']);

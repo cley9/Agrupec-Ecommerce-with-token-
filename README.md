@@ -1,3 +1,27 @@
+## Los pasos para crear un proyecto con laravel + vue.js + vite.js son => 
+- [ 1 crear un proyecto laravel [laravel new nameProyect] ]
+- [ 2  crear dentro del proyecto el vue [npm install vue] ]
+- [ 3 instalar el pluguin de vite [npm install --save-dev @vitejs/plugin-vue], este pluguin se instala por poryecto ]
+- [ 4 configurar el vite.config.js, agregas el import del pluguin instalado ]
+        - **[ se agrega para el plugin de  vue en vite ] ]
+        - **[ import vue from '@vitejs/plugin-vue';] ]
+
+- [ 5 configurar el app.js de la ruta del resources/js, ahi agregaras el vue]
+        - **[ se configra para que vue funcione ]
+        - **[ import  { createApp } from "vue";]
+        - **[ import App from "../src/name.vue"; // nombre de componente.vue]
+        - **[ // selector del id app]
+        - **[ createApp(App).mount("#app");]
+- [ 5 ejecutar el proyecto ]
+
+- **[ nota: Ambos se necesita para funcionar el proyecto con [laravel + vue.js + vite], los puertos son [laravel =8080, vite:5017]]
+- **[ -- ejecutar laravel ]
+- **[ php artisan serve  // para ejecutar el desarrollo back-end ]
+
+- **[ -- ejecutar el vue.js components]
+- **[ npm run dev   // al ejecutar se ejecutr el puerto del vite como front-end, donde compilara el template de vue a codigo js  ]
+
+
 ## REQUSITOS PARA DEPLOYAR EL ECOMMERCE
 -- PHP >8.0  <8.1
 -- .env
@@ -46,7 +70,11 @@ php artisan make:mail EnvioInformacionNewProducto
 //----------------- Los pasos para crar un proyecto con laravel 9 + vue.js + vite.js son => 
 // 1 crear un proyecto laravel [laravel new nameProyect]
 // 2  instala vue dentro del proyecto el vue [npm install vue] 
-// 3 instalar el pluguin de vite [npm install --save-dev @vitejs/plugin-vue], este pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 o en cual quier versión]
+// 3 instalar el pluguin de vite [
+        // instalación de vite new 2023 instalar vue con vite = 
+                npm install vite @vitejs/plugin-vue --save-dev
+                npm install --save-dev @vitejs/plugin-vue], este
+pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 o en cual quier versión]
 // 4 configuras el vite.config.js, agregas el import del pluguin instalado 
         // se agrega para el plugin de  vue en vite 
         // import vue from '@vitejs/plugin-vue';
@@ -116,3 +144,87 @@ php artisan make:mail EnvioInformacionNewProducto
         // })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- nota de vue.js 3    -->
+<!-- interpolacion  -->  
+:src="`/storage/img/Productos/${item.imagen}`"
+:src="'/storage/img/SlayderPromocion/2.png'"
+bastick 
+@ decoradors 
+
+La directiva : se utiliza para enlazar dinámicamente los atributos de un elemento HTML a una propiedad de datos en el componente Vue. Algunos de los atributos HTML más comunes que se pueden enlazar con la directiva : son:
+
+href: Enlaza la URL de un enlace.
+src: Enlaza la URL de una imagen o un archivo de audio o video.
+alt: Enlaza el texto alternativo para una imagen.
+title: Enlaza el texto que se muestra cuando el cursor se coloca sobre un elemento.
+class: Enlaza una o varias clases CSS a un elemento.
+style: Enlaza una o varias propiedades CSS a un elemento.
+Aquí hay algunos ejemplos de cómo usar la directiva : para enlazar estos atributos:
+<!-- Enlace -->
+<a :href="url">Enlace</a>
+
+<!-- Imagen -->
+<img :src="imageSrc" :alt="imageAlt">
+
+<!-- Elemento con clase y estilo -->
+<div :class="className" :style="{ color: textColor, backgroundColor: bgColor }">Contenido</div>
+
+
+backticks  == teclado in spanish, pulsa la tecla=  alt + }} 
+backslash  == \
+
+<!-- apunte de js  -->
+localstorage
+ const meta= {"name": "cley","edad":23}
+            // localStorage.setItem('user', JSON.stringify(this.user));
+            localStorage.setItem('user', JSON.stringify(meta));
+
+
+            <!-- para octener el json  -->
+              // Si los datos del usuario ya están en localStorage, úsalos.
+      this.user = JSON.parse(localStorage.getItem('user'));
+      
+<!-- token csrf es para peticiones post, puth  -->
+  
+        <!-- documentar api con swuager -->
+
+        <!-- 419 === autentication 
+        422 === valores vacios en los parametros  -->
+
+<!-- camio de idioma -->
+        composer require laravel-lang/common --dev
+        php artisan lang:add es
+        php artisan lang:update
+    'locale' => 'es',
+    'fallback_locale' => 'es',
+    en la carpeta de lang tienes que crear una en español con el nombre es
+<!-- los tipos put para envio de los body y un parametro de id  -->
+
+
+<!-- en laravel 10 el routerservice el api ya biene preconfigurado -->
+
+<!-- adding el token  -->
+
+3 paso en el model user
+class User extends Authenticatable implements JWTSubject
+luego los metodos dentro del model user
+        // funciones de token
+        public function getJWTIdentifier(){
+                return $this->getKey();
+        }
+        public function getJWTCustomClaims(){
+                return [];
+        }

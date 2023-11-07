@@ -1,0 +1,126 @@
+<template>
+    <div class="row row-cols-2 row-cols-sm-3  row-cols-md-4 row-cols-lg-5 row-cols-xl-6 d-flex justify-content-center ">
+        <div class="col  mb-5 mb-lg-6 " v-for="itemProduct in productos" :key="itemProduct.id">
+            <div class="card box-love box-efect">
+                <a :href="`/View-page/${itemProduct.id}`" class="pt-3">
+                    <img :src="`/storage/img/Productos/${itemProduct.imagen}`" class=" card-img-top" width="200px"  alt="" draggable="false">
+                </a>
+                <div class="bg-warning- box--btn--addHomeP ">
+                    <div class="card-body">
+                        <div class="mb-2 d-flex  align-items-center  box--home--text">
+                            <h5 class="card-title text-dark h6 txtBoxTitle textBoxHeadTitle">{{ itemProduct.nombre }}
+                            </h5>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between  ">
+                            <span class="text-dark- txtBoxPreBefore textPrecioProBefore"><del>S/
+                                {{ itemProduct.precio }}.00
+                                </del></span>
+                            <span class="text-dark textPrecioProAfter">S/
+                                {{ itemProduct.newPrecio }}.00
+                            </span>
+                        </div>
+                        <div class=" align-items-center d-flex mb-2 ">
+                            <span class="h6 mb-0 text-muted fw-normal textCountProDis">
+                                <small class="">{{ itemProduct.cantidad }} disponibles</small>
+                            </span>
+                        </div>
+                        <hr class="arrow--box">
+                        <div v-if="userObj" class="overlay d-flex align-items-center-- justify-content-center">
+                            <a class="icon btnAddCardLove btnEfectClick" @click="addCartPro(itemProduct)"><i class="bi bi-heart"></i></a>
+                        </div>
+                        <div v-if="userObj" class="box--btn--addHome">
+                            <div class=" d-flex justify-content-end align-items-center mb-4 ">
+                                <a class="btn-sm text-dark btn--view-add btn-sm btnEfectClick btnBodyAddProHome"
+                                    id="addProCard" @click="addCartPro(itemProduct)">Agregar</a>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a
+                                    class="des btn rounded-circle  btn--addCard--count btnEfectClick fw-normal" @click="less(itemProduct)">-</a>
+                                <span id="numDate">{{ itemProduct.numero }}</span>
+                                <a class="start btn rounded-circle btn--addCard--count btnEfectClick" @click="plus(itemProduct)">+</a>
+                            </div>
+                        </div>
+                        <div v-if="!userObj" class="overlay d-flex align-items-center-- justify-content-center">
+                            <a onclick="msjInicieSesion();" class="icon"><i class="bi bi-heart"></i></a>
+                        </div>
+
+                        <div v-if="!userObj" class=" d-flex justify-content-center align-items-center">
+                            <a :href="`/View-page/${itemProduct.id}`"
+                                class="btn btn-sm  btn--view-add btnEfectClick">Ver Producto </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            productos: [],
+            userObj: [],
+        }
+    },
+    created() {
+        // Intenta obtener el valor de 'name' de la sesión
+        // this.userName = localStorage.getItem('name') || ''; // Cambia a sessionStorage si es necesario
+    },
+    mounted() {// cuando ya eta creado se auto ejecuta si esta dentro de aqui
+        this.producto();
+    },
+    //   name:'cartComponents',
+    components: {
+        // cart,
+    },
+    methods: {
+        async producto() {
+            const productList = await fetch("/view/productoView");
+            if (productList.ok) {
+                const productoJson = await productList.json();
+                this.productos = productoJson.data.data;
+                // Inicializa la propiedad 'numero' en cada objeto 'itemProduct'
+        this.productos.forEach(itemProduct => {
+            itemProduct.numero = 1;
+        });
+                console.log(productoJson.data.data);
+            }
+            this.userObj = JSON.parse(localStorage.getItem("userObj"));
+            if (this.userObj) {
+                console.log("esta lleno");
+            } else {
+                console.log("esta vacio");
+            }
+
+        },
+        less(itemProduct){
+             itemProduct.numero>1 ? console.log("mas +", itemProduct.numero-- ) : console.log("no se puede --"); 
+        },
+        plus(itemProduct){
+            itemProduct.numero< itemProduct.cantidad ? console.log("mas +", itemProduct.numero++ ) : console.log("no se puede ++"); 
+        },
+        async addCartPro(itemProduct){
+            console.log('------- >',itemProduct.id, itemProduct.numero, itemProduct.nombre, itemProduct.newPrecio, itemProduct.imagen);
+        await this.addProductCart(itemProduct.id, itemProduct.numero, itemProduct.nombre, itemProduct.newPrecio, itemProduct.imagen);
+        },
+        async addProductCart(idProducto, cantidad, nameProduct, newPrecio, imgProduct) {
+
+            const data = await fetch(`/api/user/${this.userObj.user[0].id}/addCart/${idProducto}/${cantidad}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.userObj.token}`,
+                },
+            });
+            const view = await data.json();
+            console.log(view);
+
+            await viewModalProAddCart(cantidad, nameProduct, newPrecio, imgProduct);
+        },
+
+    },
+}
+</script>
+
+<style></style>
