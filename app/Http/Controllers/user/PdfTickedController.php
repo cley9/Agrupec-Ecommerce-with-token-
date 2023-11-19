@@ -28,12 +28,13 @@ class PdfTickedController extends Controller
 
 
 
-    public function downloadPdf()
+    public function downloadPdf($idUser)
 
     {
 
         $date = Carbon::now();
-        $user = User::with(['productos'])->find(session()->get('userId')); // id user
+        // $user = User::with(['productos'])->find(session()->get('userId')); // id user
+        $user = User::with(['productos'])->find($idUser); // id user
         $ticket = $user->productos;
 
         $this->fpdf = new FPDF('P', 'mm', array(80, 240)); // Tamaño tickt 80mm x 150 mm (largo aprox)

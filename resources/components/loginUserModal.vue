@@ -23,10 +23,10 @@
                 </div>
             <div class="mb-3 text-center">
                 <a href="login/google" class="form-control- mb-3 googleBody- "><img
-                        src="storage/img/icons/logoGoogle.png" alt=""
+                        src="/storage/img/icons/logoGoogle.png" alt=""
                         class="logoSesion me-2"> </a>
                 <a href="#" class="form-control- mb-3 facebookBody- "><img
-                        src="storage/img/icons/logoFb.svg" width="30px"
+                        src="/storage/img/icons/logoFb.svg" width="30px"
                         class="logoSesion img-fluid me-2" alt=""></a>
             </div>
             <hr>
@@ -43,11 +43,14 @@
   </template>
   
   <script>
+//   import mark from '../js/metod.js';  // esto es para usar con 1 y no recomendable 
+  import { mark } from  '../js/methods.js';  // this is for use por monto de funciones
+  import {msjOkUser, msjError} from '../js/msj.js';
   export default {
   data() {
     return {
         passwordType:"password",
-        imgShowPassword:"storage/img/icons/eye-slash-fill.svg",
+        imgShowPassword:"/storage/img/icons/eye-slash-fill.svg",
         formData: {
             email: "",
             password: "",
@@ -62,7 +65,7 @@
   methods: {
     showPassword(){
         this.passwordType=="password"? this.passwordType="text": this.passwordType="password";
-        this.imgShowPassword=="storage/img/icons/eye-slash-fill.svg" ? this.imgShowPassword="/storage/img/icons/eye-fill.svg" :this.imgShowPassword="storage/img/icons/eye-slash-fill.svg";
+        this.imgShowPassword=="/storage/img/icons/eye-slash-fill.svg" ? this.imgShowPassword="/storage/img/icons/eye-fill.svg" :this.imgShowPassword="/storage/img/icons/eye-slash-fill.svg";
     },
     async envioUser() {
   
@@ -91,6 +94,7 @@
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
             console.log("si", validateUser.user[0]);
             msjOkUser();
+            // mark();
                 location.href = '/';
         } else {
             console.log("usuario no valido o contraseña incorrecta");
@@ -103,4 +107,4 @@
   </script>
   
   <style scoped>
-</style>
+</style>../js/methods.js

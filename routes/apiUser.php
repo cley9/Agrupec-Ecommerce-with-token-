@@ -13,9 +13,8 @@ Route::middleware('VerificationUser')->group(function () {
     Route::get('/{idUser}/addCart/{idProducto}/{cantidad}', [UserController::class, 'userAddCart'])->name('addCart.user.main');
       
     Route::get('/editPerfil', [UserController::class, 'editPeerfil'])->name('editPerfil.user.main');
-    Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
     // Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
-    Route::get('/User-Perfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
+    // Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
     // perfil edit
     Route::get('/addCart_', function () {
       return  view('User.addCart');

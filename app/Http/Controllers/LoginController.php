@@ -11,6 +11,7 @@ use App\Models\User;
 use Str;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
@@ -131,7 +132,11 @@ class LoginController extends Controller
                 session(['userId' => $userId[0]->id]);
                 session(['name' => $userId[0]->name]);
                 // return response(["user"=> $userId,"status"=>Response::HTTP_OK]);
-               return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);
+                // --cookie 
+                $cookie= cookie('cookie_token_agru',$token,60*24);
+
+               return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
+            //    return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);
             } else {
                 return response()->json(["status"=>Response::HTTP_UNAUTHORIZED,'message' => 'Usuario invalido o contraseña no valida'],Response::HTTP_UNAUTHORIZED);
                 // return response()->json(['status' => 'error', 'code' => '404', 'messange'=>'Usuario invalido o contraseña no valida']);
@@ -192,7 +197,12 @@ class LoginController extends Controller
         Auth::logout();
         session()->invalidate();
         session()->regenerateToken();
-        return redirect('/');
+        // new 
+        $cookie=Cookie::forget('cookie_token_agru');
+        //  Cookie::forget('cookie_token_agru');
+        // return redirect('/');
+        return redirect('/')->withCookie($cookie); // para vaciar el cookie o eliminar
+        // return response(["da"=>200, 200])->withCookie($cookie);
     }
     // validate user email
     function validarUser($emailExists)

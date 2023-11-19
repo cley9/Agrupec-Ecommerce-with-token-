@@ -164,10 +164,11 @@
                                                 <a class="mb-4" href="{{ route('perfil.user.main') }}"
                                                     class="">Mi Perfil</a>
                                             </li>
-                                            <li class="mb-3">
+                                            <div id="logout"></div>
+                                            {{-- <li class="mb-3">
                                                 <a class="mb-4" href="{{ route('logout.user.index') }}">Cerrar
                                                     Sesion </a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 @elseif (session()->exists('email') && session()->get('rol') === '4')
@@ -255,8 +256,7 @@
     <div id="loginAdmin"></div>
 
     @yield('header')
-
-    
+    {{-- <div id="modalAddProductoCart"></div> --}}
     <footer class="pt-4   footer--body">
         <div class="container text-muted mb-4">
             <div class="row ">
@@ -361,7 +361,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 
     {{-- <script src="{{ asset('js/agru.js') }}"></script> --}}
-    <script src="{{ asset('js/addCart.js') }}"></script>
  
 
 </body>

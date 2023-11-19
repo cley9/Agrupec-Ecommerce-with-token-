@@ -23,8 +23,11 @@ class UserController extends Controller
     }
     function cartUser()
     {
-        $cartArray = User::with(['productos'])->find(session()->get('userId')); // id user
-        $exitProductoUser = cart::where('userId', session()->get('userId'))->where('productoId', '>', 0)->exists();
+        // return "dfa";
+        $cartArray = User::with(['productos'])->find(5); // id user
+        // $cartArray = User::with(['productos'])->find(session()->get('userId')); // id user
+        $exitProductoUser = cart::where('userId', 5)->where('productoId', '>', 0)->exists();
+        // $exitProductoUser = cart::where('userId', session()->get('userId'))->where('productoId', '>', 0)->exists();
         return view('User.cart', compact(['cartArray', 'exitProductoUser']));
     }
     function viewCartUser($idUser)

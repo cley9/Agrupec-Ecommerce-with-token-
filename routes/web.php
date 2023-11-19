@@ -59,7 +59,7 @@ Route::get('login/google/callback', [LoginController::class, 'callback']);
 //         /login/google/callback
 // Route::get('/Login-admin/{email}/{password}', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
 Route::post('/loginAdmin', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
-Route::get('logout', [LoginController::class, 'logout'])->name('logout.user.index');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout.user.index');
 // Route::post('/Admin-logout',[LoginController::class, 'logout'] )->name('logout.user.index');
 // Route::get('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
 Route::post('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
@@ -78,10 +78,15 @@ Route::get('/View-page/{id}', [ViewController::class, 'viewProductoId'])->name('
 // recuperacion de cuenta
 Route::get('/restablecerGmail', [mailController::class ,'restablecerPasswordUser'] )->name('restablecerPassword.user.gmail');
 
+// solo para la web 
+  Route::middleware('VerificationUser')->group(function () {
+    Route::get('/User-Perfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
+    Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
+      Route::get('/User-pdfDownload/{idUser}', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
+  });
 // Route::middleware('VerificationUser')->group(function () {
 //   // Route::middleware('VerificationUser')->group(function () {
 
-//   Route::get('/User-pdfDownload', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
 //   Route::get('/GetCart/{id}', [UserController::class, 'viewCartUser'])->name('viewCartUser.user.main');
 //   Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
 //   // Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');

@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('header')
     {{-- app --}}
-    <nav class="navbar bg-light  d-block d-sm-block d-md-none">
+    <nav class="navbar bg-light-  d-block d-sm-block d-md-none containerSelectPro">
         <div class="container-fluid  navHeadDisingApp" style="">
             <small class="h6"> Seleccione Producto : </small>
             <form class=" overflow-auto boxSlayderApp" id="multi-filters" method="post">
@@ -19,6 +19,11 @@
         </form>
         </div>
     </nav>
+    {{-- <div class="containerSlectProducto center">
+        <div class="rowSelectProducto">
+            
+        </div>
+    </div> --}}
     {{-- <!------------------------------------------------------>start de la categoria  --}}
     <div class="container-fluid p-4  boxContainerProductoCheck">
         <div class="row">
@@ -100,61 +105,9 @@
             </div>
         </div>
     </div>
-    {{--    --}}
-    <div class="container boxContainerProductoList">
-        <div class="title--producto-group-2 rounded-3 pt-2 d-flex align-items-center justify-content-center mb-4"
-            style="height:50px;">
-            <small class="h4 ">Lista de Producto</small>
-        </div>
-    <div id="producto"></div>
-</div>
-
-    {{-- <div class="container boxContainerProductoList">
-        <div class="title--producto-group-2 rounded-3 pt-2 d-flex align-items-center justify-content-center mb-4"
-            style="height:50px;">
-            <small class="h4 ">Lista de Producto</small>
-        </div>
-        <div class="row  row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
-            @foreach ($viewProducto as $itemPro)
-                <div class="pt-4 mb-4">
-                    <div class="card shadow box--produ--view">
-                        <a href="{{ route('View.home.index', $id = $itemPro['id']) }}">
-                            <img src="{{ asset('storage/img/Productos/' . $itemPro['imagen'] . '') }}"
-                                class="img-fluid-a- card-img-top" height="210px" width="100px" alt="">
-                        </a>
-                        <div class="card-body justify-content-between align-items-center">
-                            <div class="d-flex  align-items-center ">
-                                <h5 class="card-title title--box--pro-view txtBoxTitle">{{ $itemPro['nombre'] }}</h5>
-                            </div>
-                            <div class="mb-0 d-flex justify-content-between  ">
-                                <span class="box--text--pre txtBoxPreBefore"><del>S/
-                                        {{ number_format($itemPro['precio'], 2, '.', ',') }}</del></span>
-                                <span class="box--text--pre">S/ {{ number_format($itemPro['precio'], 2, '.', ',') }}</span>
-                            </div>
-                            <div class=" align-items-center d-flex ">
-                                <span class="h6 mb-0 text-muted fw-normal">
-                                    <small class="box--text--pre">{{ $itemPro['cantidad'] }}: disponibles </small> </span>
-                            </div>
-                            <hr class="hrProduView hrProductSearch">
-                            <div class="text-center">
-                                @if (session()->exists('name') && session()->get('rol') === '0')
-                                    <a class="btn--addCard--countMaster- btn--view-add  btn-sm text-dark viewCP btnEfectClick"
-                                        id="addProCard{{ $itemPro['id'] }}"
-                                        onclick=" addProCart({{ $itemPro['id'] }}, 1, {{ $itemPro['newPrecio'] }},
-                                        '{{ $itemPro['nombre'] }}', '{{ $itemPro['imagen'] }}')">Agregar</a>
-                                @else
-                                    <a onclick="msjInicieSesion()" class="btn btn--view-add btn-sm btnEfectClick">Agregar
-                                    </a>
-                                @endif
-                                <a href="{{ route('View.home.index', $id = $itemPro['id']) }}"
-                                    class="btn btn--view-page btn-sm btnEfectClick btnViewPro">Ver </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div> --}}
-    {{-- <div id="productoView"></div> --}}
+    <div id="app">
+        <producto-page></producto-page>
+    </div>
+    {{-- <div id="productoPage"></div> --}}
     @include('User.modelAddProCart')
 @endsection

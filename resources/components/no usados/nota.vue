@@ -97,8 +97,24 @@ open modal
 
 
 
+<style>
+
 
 <!--  -->
+display: grid; 
+/* grid-template-columns:max-content max-content; esta propiedad no es conveniente para las comulan sino el auto , auto para que sea dos columnas del mismo tamaño */
+  /* .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+place-items: center; pra centrar los item de una columna
+text-align:center  es par centrar == equivalente a text-center de bootstraps 
+display: grid;
+    place-content: center;  /*pra centra los tesxtos sin uso del div */
 
 
+</style>
 

@@ -69,6 +69,7 @@ import './logicAgrupec';
 
 
 
+<div class="row  row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 bg-info"  v-for="item in productos" :key="item.id">
 
 <div class="card shadow box--produ--view">
                           <a :href="`/View-page/${item.id}`">

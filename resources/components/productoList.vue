@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div v-if="!userObj" class="overlay d-flex align-items-center-- justify-content-center">
-                            <a onclick="msjInicieSesion();" class="icon"><i class="bi bi-heart"></i></a>
+                            <a class="icon" @click="msjInicieSesion()"><i class="bi bi-heart"></i></a>
                         </div>
 
                         <div v-if="!userObj" class=" d-flex justify-content-center align-items-center">
@@ -53,9 +53,15 @@
             </div>
         </div>
     </div>
+    <addProductCartModal/>
 </template>
 
 <script>
+import addProductCartModal from './addProductCartModal.vue';
+import {viewModalProductAddCart} from '../js/addProductCart.js';
+import { msjInicieSesion} from '../js/msj.js';
+
+
 export default {
     data() {
         return {
@@ -72,6 +78,7 @@ export default {
     },
     //   name:'cartComponents',
     components: {
+        addProductCartModal,
         // cart,
     },
     methods: {
@@ -93,6 +100,9 @@ export default {
                 console.log("esta vacio");
             }
 
+        },
+        msjInicieSesion(){
+            msjInicieSesion();
         },
         less(itemProduct){
              itemProduct.numero>1 ? console.log("mas +", itemProduct.numero-- ) : console.log("no se puede --"); 
@@ -116,7 +126,7 @@ export default {
             const view = await data.json();
             console.log(view);
 
-            await viewModalProAddCart(cantidad, nameProduct, newPrecio, imgProduct);
+            await viewModalProductAddCart(cantidad, nameProduct, newPrecio, imgProduct);
         },
 
     },

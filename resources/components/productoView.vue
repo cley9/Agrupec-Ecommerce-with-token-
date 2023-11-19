@@ -1,5 +1,5 @@
 <template>
-    <div class="row  row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 ">
+    <div class="row  row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-6">
         <div class="pt-4 mb-4 " v-for="item in productos" :key="item.id">
             <div class="card shadow box--produ--view">
                 <a :href="`/View-page/${item.id}`">
@@ -37,8 +37,8 @@
 </template>
   
 <script>
-import cart from '../components/addCart.vue';
-import '../js/metod.js';
+import cart from './no usados/addCart.vue';
+import '../js/methods.js';
 // import MyComponent from '../components/data.vue';
 export default {
     data() {
@@ -52,19 +52,13 @@ export default {
     created() {
         // Intenta obtener el valor de 'name' de la sesión
         this.userName = localStorage.getItem('name') || ''; // Cambia a sessionStorage si es necesario
-        // this.userObj = localStorage.getItem("userObj");
-        // thi
     },
     mounted() {// cuando ya eta creado se auto ejecuta si esta dentro de aqui
-        // this.calculo();
         this.producto();
-        //   this.dataCley();
     },
     //   name:'cartComponents',
     components: {
-        // MyComponent,
         cart,
-
     },
     methods: {
         async producto() {
@@ -103,4 +97,4 @@ export default {
 }
 </script>
   
-<style></style>
+<style></style>../js/methods.js

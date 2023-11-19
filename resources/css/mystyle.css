@@ -12,6 +12,20 @@
 @import url('style-start.css');
 
 /* icons de la fleca de los items inferior svg */
+@media(width > 400px ){
+.containerSelectPro{
+  background: #12a44f;
+  display: none !important;
+}
+}
+@media(width < 400px ){
+  .containerSelectPro{
+  background: #11FFBD;
+  /* padding:10px; */
+  
+}
+
+}
 nav svg {
   height: 20px;
 }
@@ -97,6 +111,7 @@ table.table-hover tbody tr:hover {
 .boxCaruselMainHome{
   height: 330px !important;
   /* background: #19C27D; */
+  margin-bottom: 4px;
 }
   
 .imgCaruselMainHome{
@@ -296,6 +311,7 @@ justify-content: center !important; */
   /* style en carusel */
 .boxCaruselMainHome{
   height: 530px !important;
+  margin-bottom: 50px;
   /* background: #19C27D; */
 }
   

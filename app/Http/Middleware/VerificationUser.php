@@ -21,20 +21,21 @@ class VerificationUser
      */
     public function handle(Request $request, Closure $next)
     {
-        // con session el validador
-        // if (session()->exists('name') && session()->get('rol') === '0') {
-        //     // if (session()->exists('name') && session()->get('rol') === '0') {
-        //     return $next($request);
-        // } else {
-        //     // return redirect('no-autorizado');
-        //     return redirect('/');
-
-        //     # code...
-        // }
+        
         //  jwtAuth la validación
         try {
-            JWTAuth::parseToken()->authenticate();
-            return $next($request);
+            // tipos de authentication en el servidor
+            // if (Auth::user()->rol==='usuario'){     //for model 
+            // if (session()->exists('name') && session()->get('rol') === '0') {  // for session
+            // if($request->cookie('cookie_token_agru')){ // for cookie
+            // if ( (session()->exists('name') && session()->get('rol') === '0') ||  (JWTAuth::parseToken()->authenticate())) {
+            if ( ($request->cookie('cookie_token_agru')) ||  (JWTAuth::parseToken()->authenticate())) {
+            // if (JWTAuth::parseToken()->authenticate()) {   // for token 
+                return $next($request);
+            } else {
+                return redirect('/');     
+                // return abort(403);
+            }
         } catch (Exception $e) {
             if ($e instanceof TokenInvalidException) {
                 return response()->json(['status' => Response::HTTP_UNAUTHORIZED, 'message'=> 'token invalido'],Response::HTTP_UNAUTHORIZED);
@@ -42,14 +43,6 @@ class VerificationUser
             if ($e instanceof TokenExpiredException) {
                 return response()->json(['status' => Response::HTTP_UNAUTHORIZED, 'message'=> 'token expirado'],Response::HTTP_UNAUTHORIZED);
             }
-
-            // return response()->json(['status' => 'expired token', 'code' => '450']);
-        }   
-    //     if (Auth::user()->rol==='usuario') {
-    //         return $next($request);
-    //     } else {
-    //         return abort(403);
-    // }
-
+        }
     }
 }

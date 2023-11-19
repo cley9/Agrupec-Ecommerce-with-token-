@@ -228,3 +228,9 @@ luego los metodos dentro del model user
         public function getJWTCustomClaims(){
                 return [];
         }
+
+
+
+<!--  -->
+json.parse = convierte un json string o texto a obj
+json.stringify == json a un obj string

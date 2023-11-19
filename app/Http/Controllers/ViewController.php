@@ -50,6 +50,7 @@ class ViewController extends Controller
     public function viewProductoId($id)
     {
         $productoId = Producto::where('id', $id)->get();
+        // return view('viewProducto', json(["data"=> "hola"],200));
         return view('viewProducto', compact('productoId'));
         // return view('home',compact('productoId'));
 

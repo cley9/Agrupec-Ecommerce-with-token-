@@ -1,4 +1,4 @@
-<div class="modal fade card modal-medioPago" id="Mpayment" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade card- modal-medioPago" id="Mpayment" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
