@@ -24,10 +24,10 @@
                     </li>
                 </ul>
             </li>
-            <li class="nameBody- bg-info cartBox" v-if="userObj">
-                <a href="/Cart" class="cart" id="cartHover" title="Facebook" rel="nofollow">
+            <li class="nameBody- cartBox" id="previewCart" v-if="userObj">
+                <a href="/Cart" class="cart" id="cartHover" @mouseenter="previewProductModal()" title="Facebook" rel="nofollow">
                     <i class="fas fa-shopping-cart icomCart"></i>
-                    <span class="badge numCartPro" id="cartMenu">16</span>
+                    <span class="badge numCartPro" id="cartMenu">{{ countProductPreview }}</span>
                 </a>
             </li>
             <li class="nameBody- perfilBox" v-if="userObj">
@@ -48,22 +48,46 @@
 </template>
 
 <script>
+import { previewProductCartModal } from '../js/methods.js';
 export default {
     data() {
         return {
             userObj: '',
             userName: '',
+            countProductPreview:0,
+            previewData:'',
         }
     },
     mounted() {
         this.userObj = JSON.parse(localStorage.getItem('userObj'));
         // console.log('-- ',this.userObj);
         this.userObj ? this.userName = this.userObj.user[0].email : false;
+        this.countPreviewProduct();
     },
     methods: {
         logout() {
             const localStorage = window.localStorage;
             localStorage.removeItem('userObj');
+        },
+        async countPreviewProduct(){
+            const idUser=this.userObj.user[0].id;
+            // const data= await fetch(`api/user/5/getCart/`, {
+            const data= await fetch(`/api/user/${idUser}/getCart/`, {
+                method:'GET',
+                headers:{
+                    Authorization: `Bearer ${this.userObj.token}`,
+                }
+            });
+            this.previewData= await data.json();
+            // console.log('json --',this.previewData);
+            this.previewData.forEach( element => {
+                this.countProductPreview +=element.pivot.cantidad;
+                // console.log(element.pivot.cantidad);
+            });
+        },
+        async previewProductModal(){
+            // console.log("cantidad", this.countProductPreview);
+            previewProductCartModal(this.previewData);
         },
     }
 

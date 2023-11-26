@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col-8 mb-4 mb-md-2 col-md-4  p-0 p-md-4 ">
-                <img src="{{ 'storage/img/icons/red.svg' }}" class="card-img"alt="" height=" 200px">
+                <img src="{{ '/storage/img/icons/red.svg' }}" class="card-img imgNosotros" alt="" >
             </div>
         </div>
     </div>

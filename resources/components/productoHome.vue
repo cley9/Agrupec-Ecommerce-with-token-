@@ -102,10 +102,12 @@ export default {
             msjInicieSesion();
         },
         less(itemProduct) {
-            itemProduct.numero > 1 ? console.log("mas +", itemProduct.numero--) : console.log("no se puede --");
+            // itemProduct.numero > 1 ? console.log("mas +", itemProduct.numero--) : console.log("no se puede --");
+            itemProduct.numero > 1 ? itemProduct.numero-- : 0;
         },
         plus(itemProduct) {
-            itemProduct.numero < itemProduct.cantidad ? console.log("mas +", itemProduct.numero++) : console.log("no se puede ++");
+            // itemProduct.numero < itemProduct.cantidad ? console.log("mas +", itemProduct.numero++) : console.log("no se puede ++");
+            itemProduct.numero < itemProduct.cantidad ? itemProduct.numero++ : 0;
         },
         async addCartPro(itemProduct) {
             // console.log('------- >',itemProduct.id, itemProduct.numero, itemProduct.nombre, itemProduct.newPrecio, itemProduct.imagen);

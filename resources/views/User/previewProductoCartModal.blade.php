@@ -1,5 +1,4 @@
 <div class="modal fade" id="mViewListProCart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    {{-- <div class="modal-dialog modal-dialog-scrollable"> --}}
     <div class="modal-dialog modal-dialog-left modal-dialog-scrollable modal-sm">
         <div class="modal-content shadow">
             <div class="modal-header modal--header--listCart--color">
@@ -7,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-Preview-Cart-Body---">
-                <div id="mark">
+                <div id="previewProductCart">
 
                 </div>
             </div>

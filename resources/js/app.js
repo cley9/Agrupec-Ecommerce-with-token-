@@ -23,6 +23,7 @@ import layout from '../components/layout.vue';
 import navApp from '../components/navApp.vue';
 import filterPage from '../components/filterPage.vue';
 import btnHigh from '../components/btnHigh.vue';
+import perfilPage from '../components/perfilPage.vue';
 // after un solo createapp
 // const app=createApp(App);
 const app=createApp();
@@ -49,6 +50,7 @@ app.component('filterPage', filterPage);
 app.component('productoPage', productoPage);
 app.component('appProductCartModal',addProductCartModal);
 app.component('cartPage', cartPage);
+app.component('perfilPage', perfilPage);
 app.mount('#app'); // elemento especifico 
 
 // createApp(logoutUserLink).mount('#logout');

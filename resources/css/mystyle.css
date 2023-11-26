@@ -11,6 +11,9 @@
 @import url("style-text.css");
 @import url('style-start.css');
 
+.imgNosotros{
+  height:200px;
+}
 .searchMainBox{
   margin-top: 90px ;
   /* margin-right: 340px !important; */

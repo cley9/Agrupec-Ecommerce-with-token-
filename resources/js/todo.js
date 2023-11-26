@@ -780,6 +780,146 @@ function msgAgregado(){
     //   })
 
 // --------------------------
+// login user
+const fromLoginUser = document.getElementById('formLoginUser');
+fromLoginUser.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('emailLoginUser');
+    const password = document.getElementById('passwordLoginUserU');
+    fetch('/loginLocalUser/' + email.value + '/' + password.value + '').then(data => data.json()).
+        then(function (data) {
+            // console.log(data);
+            if (data.code == 200) {
+                msjOkUser();
+                location.href = '/';
+            } else {
+                msjError();
+            }
+        });
+
+});
+
+
+
+// login admin
+// const formLoginAdmin = document.getElementById('formLoginAdmin');
+// formLoginAdmin.addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     const emailAdmin = document.getElementById('emailLoginAdmin');
+//     const passwordAdmin = document.getElementById('passwordLoginAdmin');
+//     fetch('/Login-admin/' + emailAdmin.value + '/' + passwordAdmin.value + '').then(data => data.json()).
+//         then(function (data) {
+//             // console.log(data);
+//             if (data.code == 200) {
+//                 msjOk();
+//                 location.href = '/Admin';
+//             } else {
+//                 msjError();
+//                 // console.log('error');
+//             }
+//         });
+// });
+
+// msj de login
+function msjOkUser(){
+    Swal.fire({
+    // position:'center',
+    icon: 'success',
+    title: 'Bien venido ',
+    text: 'Gracias por usar nuestro servicio',
+    showConfirmButton: false,
+    timer: 3000
+    })
+    }
+
+function msjError() {
+    Swal.fire({
+      title: ' Error de inicio de sesion',
+      text: ' Vuelve a intentarlo ',
+      icon: 'error',
+      showConfirmButton:false,
+      timer: 3000
+      })
+  }
+
+
+  
+// ------------------- w3 para daltonico
+// temaBodyDark.addEventListener("click", () => {
+//     document.body.classList.toggle('dark');
+//     temaBodyDark.classList.toggle('active');
+// });
+const btnSwitch = document.querySelector('#switch');
+if (btnSwitch) {
+    
+    btnSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        btnSwitch.classList.toggle('active');
+        
+        // Guardamos el modo en localstorage.
+        if(document.body.classList.contains('dark')){
+            localStorage.setItem('dark-mode', 'true');
+        } else {
+            localStorage.setItem('dark-mode', 'false');
+        }
+    });
+    
+    // Obtenemos el modo actual.
+    if(localStorage.getItem('dark-mode') === 'true'){
+        document.body.classList.add('dark');
+        btnSwitch.classList.add('active');
+    } else {
+        document.body.classList.remove('dark');
+        btnSwitch.classList.remove('active');
+    }
+}
+
+
+
+
+function validar(){
+    var a=document.getElementById("name").value;
+    if (a === "") {
+      return false;
+    }else {
+  
+       Swal.fire({
+        icon: 'success',
+        title:  ' Su mensaje a sido enviado  ',
+  
+        text: 'Gracias por enviar !',
+        showConfirmButton: false,
+        timer: 3000
+  
+      })
+    }
+  
+  }
+  
+  
+  //
+  // document.querySelector('.input-icono').addEventListener('click', function() {
+  // this.querySelector('input').focus();
+  // });
+  
+  
+  
+  // para la busqueda sincrona
+  $(document).ready(function(){//documento estee listo
+  $('#id_search').keyup(function(e){///para la busqueda
+  e.preventDefault();
+  let data = $('#form').serializeArray(); //para obtener los valores de form en forma de arays
+  $.post({//ajax
+      url:'busqueda.php',
+      data:data,  //datos a enviar
+      success: function(response_){// respon puede ser cual quier nonmbre
+         $('#response').html(response_);//se le llama con $.si e guardara en la variable response_
+          //  $('#catalogo').html(response_catalogo);//se le llama con $.si e guardara en la variable response_
+      }
+  })
+  })
+  });
+  
 // --------------------------
 // --------------------------
 // --------------------------

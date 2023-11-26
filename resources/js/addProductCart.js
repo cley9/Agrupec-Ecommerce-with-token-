@@ -1,7 +1,7 @@
 export async function addProductCart(idProducto, cantidad, nameProduct, newPrecio, imgProduct) {
-  console.log("----------->",idProducto, cantidad, nameProduct, newPrecio, imgProduct);
+  // console.log("----------->",idProducto, cantidad, nameProduct, newPrecio, imgProduct);
         const userObj=JSON.parse(localStorage.getItem('userObj'));
-        console.log('---', userObj.user[0].id);
+        // console.log('---', userObj.user[0].id);
         // // const data = await fetch(`/api/user/${this.userObj.user[0].id}/addCart/${idProducto}/${cantidad}`, {
           const data = await fetch(`/api/user/${userObj.user[0].id}/addCart/${idProducto}/${cantidad}`, {
           method: 'GET',
@@ -17,7 +17,7 @@ export async function addProductCart(idProducto, cantidad, nameProduct, newPreci
       }
 
 export function viewModalProductAddCart(cantidad,nombre,newPrecio,img) {
-    console.log('-----------modal cart');
+    // console.log('-----------modal cart');
     let outName=document.getElementById("outNombre");
     const modal = document.querySelector(".modal--form--data");
     let outPayment=document.getElementById("outPrecio");

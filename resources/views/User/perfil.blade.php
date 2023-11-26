@@ -4,8 +4,8 @@
     <div class="container pt-4 mb-4- bg-danger- content--perfil--user ">
         <div class="row row-cols-12 row-cols-md-12 g-4 d-flex justify-content-center justify-content-lg-start">
 
-
-            <div class="col-lg-3 col-10  bg-info- ">
+<perfil-page></perfil-page>
+            {{-- <div class="col-lg-3 col-10  bg-info- ">
                 <div class="card h-80">
                     <div class="text-center pt-4">
                         <img src="{{ session()->get('avatar') }}" class="card-img-top icons--perfil--user " alt="...">
@@ -27,7 +27,7 @@
                         <a href="" class="btn btn--paymet--ir btnEfectClick col-12 ">Edit Perfil</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col p-4">
                 <form class="border p-3 row g-5- shadow rounded-3 d-flex justify-content-center formPerfil"

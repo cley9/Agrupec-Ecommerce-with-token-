@@ -31,7 +31,7 @@
   data() {
     return {
         passwordType:"password",
-        imgShowPassword:"storage/img/icons/eye-slash-fill.svg",
+        imgShowPassword:"/storage/img/icons/eye-slash-fill.svg",
         formData: {
             email: "",
             password: "",
@@ -46,7 +46,7 @@
   methods: {
     showPassword(){
         this.passwordType=="password"? this.passwordType="text": this.passwordType="password";
-        this.imgShowPassword=="storage/img/icons/eye-slash-fill.svg" ? this.imgShowPassword="/storage/img/icons/eye-fill.svg" :this.imgShowPassword="storage/img/icons/eye-slash-fill.svg";
+        this.imgShowPassword=="/storage/img/icons/eye-slash-fill.svg" ? this.imgShowPassword="/storage/img/icons/eye-fill.svg" :this.imgShowPassword="/storage/img/icons/eye-slash-fill.svg";
     },
     async envioAdmin() {
   
