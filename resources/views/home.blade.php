@@ -105,30 +105,25 @@
 
         </div>
     </div>
-    <div id="app">
         <producto-tendencia></producto-tendencia>
         <div class="container mb-4 mb-md-2 pt-4 boxSimbolSlayProHome">
             <h6 class="display-6 textTitleSlayProHome">¡No los dejes ir!</h6>
         </div>
-        <producto-slayder-home></producto-slayder-home>
+        <producto-slayder-home :slayder-producto-home="{{ json_encode($slayderProducto) }}"></producto-slayder-home>
         <beneficio></beneficio>
-        <promocion></promocion>
         <producto-baner></producto-baner>
         <hora></hora>
         <producto-categoria></producto-categoria>
-
-        {{-- <div class="" id="promoListProducto"></div> --}}
-        {{-- <h3 class="text-center text-red-400">this is c ley</h3> --}}
+        {{-- <h3 class="text-center text-red-400">this is</h3> --}}
         <div class="d-flex justify-content-center align-items-center boxTextTitleStock">
             <div
                 class=" col-md-10 col-10 d-flex justify-content-center align-items-center  pt-2 rounded-3 title--producto-group">
                 <small class="h3 ">Productos en Stock </small>
             </div>
         </div>
-        {{-- <div id="producto"></div> --}}
         <div class="container pt-4">
-            <producto-list></producto-list>
-            {{-- <div id="productoList"></div> --}}
+            <producto-home :productos="{{ json_encode($producto) }}"></producto-home>
+            {{-- <producto-list></producto-list> --}}
             {{-- <div class="row row-cols-2 row-cols-sm-3  row-cols-md-4 row-cols-lg-5 row-cols-xl-6 d-flex justify-content-center ">
                 @foreach ($producto as $key)
                     <div class="col  mb-5 mb-lg-6 ">
@@ -219,11 +214,5 @@
                 @endforeach
             </div> --}}
         </div>
-    </div>
-    
-
     {{ $producto->links() }}
-    
-    {{-- @include('User.modelAddProCart') --}}
-
 @endsection

@@ -37,7 +37,6 @@
 </template>
   
 <script>
-import cart from './no usados/addCart.vue';
 import '../js/methods.js';
 // import MyComponent from '../components/data.vue';
 export default {
@@ -58,7 +57,7 @@ export default {
     },
     //   name:'cartComponents',
     components: {
-        cart,
+        // cart,
     },
     methods: {
         async producto() {
@@ -97,4 +96,4 @@ export default {
 }
 </script>
   
-<style></style>../js/methods.js
+<style></style>

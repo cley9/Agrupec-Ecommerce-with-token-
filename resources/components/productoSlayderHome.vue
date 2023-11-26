@@ -26,7 +26,8 @@
         disableOnInteraction: false,
       }"
       :modules="modules" class="mySwiper">
-            <swiper-slide v-for="itemPro in productos" :key="itemPro.id" class="bg-info-">
+            <!-- <swiper-slide v-for="itemPro in productos" :key="itemPro.id" class="bg-info-"> -->
+            <swiper-slide v-for="itemPro in slayderProductoHome.data" :key="itemPro.id" class="bg-info-">
                 <a :href="`/View-page/${itemPro.id}`" class="HeadBoxSlay">
                     <img :src="`/storage/img/Productos/${itemPro.imagen}`" class=" imgHeadBoxSlay" alt="" draggable="false">
                 </a>
@@ -75,6 +76,12 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 export default {
+    props:{
+        slayderProductoHome:{
+            type:Object,
+            required:true,
+        }
+    },
     components: {
         Swiper,
         SwiperSlide,
@@ -99,6 +106,7 @@ export default {
     mounted() {
         // this.getStartNum();
         this.producto();
+        // console.log("--- = ", this.slayderProductoHome.data);
     },
     methods: {
         async producto() {
@@ -112,7 +120,7 @@ export default {
                 // this.productos.forEach(itemProduct => {
                 //     itemProduct.numero = 1;
                 // });
-                console.log(productoJson.data.data);
+                // console.log(productoJson.data.data);
             }
             // this.userObj = JSON.parse(localStorage.getItem("userObj"));
         },

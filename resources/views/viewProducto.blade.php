@@ -1,10 +1,7 @@
 @extends('layout.layout')
 
 @section('header')
-<div id="app">
-    
-    <view-page :producto="{{ json_encode($productoId) }}"></view-page>
-</div>
+<view-page :producto="{{ json_encode($productoId) }}"></view-page>
 
 @include('User.modalPaymentCart')
 

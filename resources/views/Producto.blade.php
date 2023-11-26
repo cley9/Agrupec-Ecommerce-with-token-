@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('header')
     {{-- app --}}
-    <nav class="navbar bg-light-  d-block d-sm-block d-md-none containerSelectPro">
+    {{-- <nav class="navbar bg-light-  d-block d-sm-block d-md-none containerSelectPro">
         <div class="container-fluid  navHeadDisingApp" style="">
             <small class="h6"> Seleccione Producto : </small>
             <form class=" overflow-auto boxSlayderApp" id="multi-filters" method="post">
@@ -18,14 +18,15 @@
         </div>
         </form>
         </div>
-    </nav>
+    </nav> --}}
     {{-- <div class="containerSlectProducto center">
         <div class="rowSelectProducto">
             
         </div>
     </div> --}}
-    {{-- <!------------------------------------------------------>start de la categoria  --}}
-    <div class="container-fluid p-4  boxContainerProductoCheck">
+    {{-- <producto-page></producto-page> --}}
+<filter-page :list-category="{{ json_encode($listCategory) }}"></filter-page>
+    {{-- <div class="container-fluid p-4  boxContainerProductoCheck">
         <div class="row">
             <div class="col-1 col-md-4 col-lg-3  d-none d-sm-none d-md-block ">
                 <form class="boxSlayderWep" id="multi-filters" method="post">
@@ -60,11 +61,9 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    {{-- <!-----------------------------------------------------------------------------------  -->end de la categoria  --}}
-
-    <div class="container-fluid mb-4">
+    </div> --}}
+{{-- slayer --}}
+    {{-- <div class="container-fluid mb-4">
         <div class="row">
             <div class="col-md-12">
                 <div id="news-slider" class="owl-carousel slayProViewMore">
@@ -104,10 +103,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="app">
-        <producto-page></producto-page>
-    </div>
-    {{-- <div id="productoPage"></div> --}}
+    </div> --}}
+    
+    <producto-page></producto-page>
     @include('User.modelAddProCart')
 @endsection

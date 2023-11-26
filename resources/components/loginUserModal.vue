@@ -44,8 +44,7 @@
   
   <script>
 //   import mark from '../js/metod.js';  // esto es para usar con 1 y no recomendable 
-  import { mark } from  '../js/methods.js';  // this is for use por monto de funciones
-  import {msjOkUser, msjError} from '../js/msj.js';
+  import {msjOkUser, msjError} from '../js/msj.js';// this is for use por monto de funciones
   export default {
   data() {
     return {

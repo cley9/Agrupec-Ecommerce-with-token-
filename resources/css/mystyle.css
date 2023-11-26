@@ -11,6 +11,173 @@
 @import url("style-text.css");
 @import url('style-start.css');
 
+.searchMainBox{
+  margin-top: 90px ;
+  /* margin-right: 340px !important; */
+  /* margin-bottom:400px !important; */
+}
+.filterProductItem{
+  background: #11FFBD !important;
+  height:360px;
+  /* gap: 80px; */
+  /* gap: 10px; */
+}
+
+/* filterProducto page */
+.textPrecioSize{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 17px;
+  /* text-transform: uppercase; */
+}
+.shadowFilterPage {
+  /* box-sizing: border-box; */
+  box-shadow: 2px 5px 12px 1px #e7eeee;
+  border-radius: 6px;
+  height: 384;
+  /* Añadido para una transición suave en ambos sentidos */
+  transition: transform 0.2s ease-in-out;
+}
+
+.shadowFilterPage:hover {
+  border-radius: 6px;
+  /* box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; */
+  /* box-shadow: 12px 12px 12px 12px #198754; */
+  box-shadow: 5px 10px 12px #e0e7e7;
+  transform: scale(1.04);
+}
+
+/* .filterProductItem{
+  background: goldenrod !important;
+  gap: 30px;
+} */
+.productoFilterBox {
+  padding: 10px;
+  /* background: orange; */
+}
+
+.imgfilterPage {
+  padding: 0px;
+  width: 100%;
+  /* background: hotpink !important; */
+  margin-bottom: 12px;
+}
+.titleFilterPageBody{
+  /* background: #11FFBD; */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  padding: 6px;
+  min-height: 50px;
+  max-height: 50px;
+  margin-bottom:16px;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.precioFilterPageBody{
+  /* background: red; */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:14px;
+}
+.titleFilterPageBody{
+  font-size: 18px;
+}
+.cantidadfilterPageBody {
+  color: #6C757D;
+  font-size: 16px;
+  margin-bottom: 0px;
+  font-size:16px;
+  /* background: orange; */
+}
+
+@media(width >1810px) {}
+
+@media(1520px<= width <=1810px) {
+  .rowFilterPage {
+      /* background: rgb(181, 214, 116) !important; */
+      display:grid;
+      grid-template-columns: repeat(5, 1fr) !important;
+      grid-auto-columns: auto;
+
+  }
+}
+@media(1380px<= width <1520px) {
+  .rowFilterPage {
+      /* background: rgb(157, 161, 149) !important; */
+      display:grid;
+      grid-template-columns: repeat(4, 1fr) !important;
+      grid-auto-columns: auto;
+
+  }
+}
+@media(1140px<= width <1380px) {
+  .rowFilterPage {
+      /* background: rgb(91, 99, 77) !important; */
+      display:grid;
+      grid-template-columns: repeat(3, 1fr) !important;
+      grid-auto-columns: auto;
+
+  }
+}
+@media(836px<= width <1140px) {
+  .rowFilterPage {
+      /* background: rgb(162, 255, 0) !important; */
+      display:grid;
+      grid-template-columns: repeat(2, 1fr) !important;
+      grid-auto-columns: auto;
+
+  }
+}
+@media(640px<= width <836px) {
+  .rowFilterPage {
+      /* background: rgb(162, 255, 0) !important; */
+      display:grid;
+      grid-template-columns: repeat(1, 1fr) !important;
+      grid-auto-columns: auto;
+
+  }
+}
+@media(40px<= width <640px) {
+  .rowProductoFiltro {
+    width: 100% !important;
+    /* background: #11FFBD !important; */
+    display: grid;
+    grid-template-columns: auto auto;
+    place-content: center !important;
+    gap: 10px !important;
+    padding: 10px 2px !important;
+  }
+  /*  */
+  .productoBody {
+    /* background: rgb(240, 41, 23) !important; */
+    padding: 26px 10px !important;
+    width:100% !important;
+    grid-column: span 2;
+    /* max-width:102rem; */
+    /* min-width: 102rem; * /
+    /* width:380%; */
+}
+  .rowFilterPage {
+      /* background: rgb(162, 255, 0) !important; */
+      display:grid;
+      grid-template-columns: repeat(2, 1fr) !important;
+      grid-auto-columns: auto;
+      padding:2px !important;
+      gap:38px 6px !important;
+  }
+  .productoFiltroBox{
+    /* padding:2px !important; */
+    /* background: #00f2fe !important; */
+    /* display: grid; */
+    /* grid-template-columns: 2 span; */
+    grid-column: span 2;
+  }
+}
+
+/*  */
 /* icons de la fleca de los items inferior svg */
 @media(width > 400px ){
 .containerSelectPro{

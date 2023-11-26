@@ -133,7 +133,7 @@ class LoginController extends Controller
                 session(['name' => $userId[0]->name]);
                 // return response(["user"=> $userId,"status"=>Response::HTTP_OK]);
                 // --cookie 
-                $cookie= cookie('cookie_token_agru',$token,60*24);
+                $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
 
                return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
             //    return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);

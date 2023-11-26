@@ -28,12 +28,9 @@
   </template>
   
   <script>
-  import cart from './no usados/addCart.vue';
   import {viewModalProductAddCart} from '../js/addProductCart';
   import addProductCartModal from './addProductCartModal.vue';
   import { msjInicieSesion} from '../js/msj.js';
-
-  import '../js/methods.js';
   // import MyComponent from '../components/data.vue';
   export default {
     data() {
@@ -54,7 +51,6 @@
     //   name:'cartComponents',
     components: {
       addProductCartModal,
-      cart,
     },
     methods: {
       async producto() {
@@ -62,7 +58,7 @@
         if (productList.ok) {
           const productoJson = await productList.json();
           this.productos = productoJson.data.data;
-          console.log(productoJson.data.data);
+          // console.log(productoJson.data.data);
         }
         this.userObj = JSON.parse(localStorage.getItem("userObj"));
         if (this.userObj) {

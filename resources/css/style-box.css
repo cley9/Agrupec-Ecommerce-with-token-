@@ -389,20 +389,6 @@ align-items: flex-end; */
   box-shadow: 0 0 2px #6ABEA5;
 }
 
-
-/* listCategoryFilter */
-.listCategoryFilterClickHead {
-  height: 400px;
-  /* background: #05bbff; */
-  /* margin-right: 90px; */
-
-}
-
-.listCategoryFilterClickBodyMain {
-  /* background: #19C27D; */
-  /* margin-right: 390px; */
-}
-
 .listCategoryFilterClickBody {
   height: 360px;
 }

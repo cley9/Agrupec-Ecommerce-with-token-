@@ -1,18 +1,3 @@
-$(document).ready(function(){
-  $('.boxEfectBtnHome').click(function(){
-    $('body, html').animate({
-      scrollTop: '0px'
-    },300 );
-  });
-
-  $(window).scroll(function(){
-    if ($(this).scrollTop() > 240){
-      $('.boxEfectBtnHome').slideDown(300);
-    } else {
-      $('.boxEfectBtnHome').slideUp(300);
-    }
-  });
-});
 
 function validar(){
   var a=document.getElementById("name").value;
