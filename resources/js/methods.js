@@ -2,9 +2,9 @@
 export function validateUser(){/// es necesario envolver a la hora de usarlo en vue dentro del {}
     const  userObj = JSON.parse(localStorage.getItem("userObj"));
     if (userObj) {
-      console.log("esta lleno");
+      // console.log("esta lleno");
     } else {
-      console.log("esta vacio");
+      // console.log("esta vacio");
     }
     return userObj;
 }

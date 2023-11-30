@@ -23,10 +23,10 @@
                 </div>
             <div class="mb-3 text-center">
                 <a href="login/google" class="form-control- mb-3 googleBody- "><img
-                        src="/storage/img/icons/logoGoogle.png" alt=""
+                        :src="`/storage/img/icons/logoGoogle.png`" alt=""
                         class="logoSesion me-2"> </a>
                 <a href="#" class="form-control- mb-3 facebookBody- "><img
-                        src="/storage/img/icons/logoFb.svg" width="30px"
+                        :src="`/storage/img/icons/logoFb.svg`" width="30px"
                         class="logoSesion img-fluid me-2" alt=""></a>
             </div>
             <hr>
@@ -74,7 +74,7 @@
         };
         const token = await fetch('/token');
         const tokenMain = await token.json();
-        console.log(tokenMain.token);
+        // console.log(tokenMain.token);
         const response = await fetch('/loginLocalUser', {
             method: 'POST',
             headers: {
@@ -84,19 +84,19 @@
             body: JSON.stringify(data)
         });
         const validateUser = await response.json();
-        console.log(validateUser.status);
+        // console.log(validateUser.status);
         if (validateUser.status == 200) {
             const userObj=validateUser;
             // const userObj=validateUser.user[0];
             userObj.userValidate="true";
           localStorage.setItem("userObj", JSON.stringify(userObj));
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
-            console.log("si", validateUser.user[0]);
+            // console.log("si", validateUser.user[0]);
             msjOkUser();
             // mark();
                 location.href = '/';
         } else {
-            console.log("usuario no valido o contraseña incorrecta");
+            // console.log("usuario no valido o contraseña incorrecta");
             msjError();
         }
     },

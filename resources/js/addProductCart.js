@@ -11,7 +11,7 @@ export async function addProductCart(idProducto, cantidad, nameProduct, newPreci
           },
         });
         const view = await data.json();
-        console.log(view);
+        // console.log(view);
         await viewModalProductAddCart(cantidad, nameProduct, newPrecio, imgProduct);
      
       }

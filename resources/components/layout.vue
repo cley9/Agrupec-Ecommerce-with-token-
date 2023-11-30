@@ -54,6 +54,7 @@ export default {
         return {
             userObj: '',
             userName: '',
+            // userToken:'',
             countProductPreview:0,
             previewData:'',
         }
@@ -62,7 +63,9 @@ export default {
         this.userObj = JSON.parse(localStorage.getItem('userObj'));
         // console.log('-- ',this.userObj);
         this.userObj ? this.userName = this.userObj.user[0].email : false;
-        this.countPreviewProduct();
+        // this.userObj ? this.userToken = this.userObj : false;
+        this.userObj ? this.countPreviewProduct() : false;
+        // console.log("-- t ",this.userObj);
     },
     methods: {
         logout() {
@@ -70,11 +73,10 @@ export default {
             localStorage.removeItem('userObj');
         },
         async countPreviewProduct(){
-            const idUser=this.userObj.user[0].id;
-            // const data= await fetch(`api/user/5/getCart/`, {
-            const data= await fetch(`/api/user/${idUser}/getCart/`, {
+            const data= await fetch(`/api/user/${this.userObj.user[0].id}/getCart/`, {
                 method:'GET',
                 headers:{
+                    // Authorization: `Bearer ${this.userToken.token}`,
                     Authorization: `Bearer ${this.userObj.token}`,
                 }
             });

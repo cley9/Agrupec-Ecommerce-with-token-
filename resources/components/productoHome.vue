@@ -1,9 +1,9 @@
 <template>
     <div class="row row-cols-2 row-cols-sm-3  row-cols-md-4 row-cols-lg-5 row-cols-xl-6 d-flex justify-content-center ">
-        <div class="col  mb-5 mb-lg-6 " v-for="itemProduct in productoHome" :key="itemProduct.id">
-            <div class="card box-love box-efect">
+        <div class="col  mb-5 mb-lg-6" v-for="itemProduct in productoHome" :key="itemProduct.id">
+            <div class="card box-love box-efect productoHomeBox">
                 <a :href="`/View-page/${itemProduct.id}`" class="pt-3">
-                    <img :src="`/storage/img/Productos/${itemProduct.imagen}`" class=" card-img-top" width="200px" alt=""
+                    <img :src="`/storage/img/Productos/${itemProduct.imagen}`" class=" card-img-top imgProductoHome" width="200px" alt=""
                         draggable="false">
                 </a>
                 <div class="bg-warning- box--btn--addHomeP ">
@@ -93,9 +93,9 @@ export default {
             // console.log(this.productos.data);
             this.userObj = JSON.parse(localStorage.getItem("userObj"));
             if (this.userObj) {
-                console.log("esta lleno");
+                // console.log("esta lleno");
             } else {
-                console.log("esta vacio");
+                // console.log("esta vacio");
             }
         },
         msjInicieSesion() {
@@ -123,7 +123,7 @@ export default {
                 },
             });
             const view = await data.json();
-            console.log(view);
+            // console.log(view);
 
             await viewModalProductAddCart(cantidad, nameProduct, newPrecio, imgProduct);
         },
@@ -131,4 +131,20 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.productoHomeBox{
+/* background:rebeccapurple; */
+/* mins-height: 440px; */
+}
+.imgProductoHome{
+    min-height: 191px;
+    max-height: 191px;
+    /* height: 10%; */
+    /* width:90% !important; */
+    /* object-fit: cover; */
+    /* para que se ajuste correctamente la imagen */
+    object-fit: scale-down; 
+    
+    
+}
+</style>

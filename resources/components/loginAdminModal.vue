@@ -27,6 +27,7 @@
   </template>
   
   <script>
+    import {msjOkUser, msjError} from '../js/msj.js';
   export default {
   data() {
     return {
@@ -56,7 +57,7 @@
         };
         const token = await fetch('/token');
         const tokenMain = await token.json();
-        console.log(tokenMain.token);
+        // console.log(tokenMain.token);
         const response = await fetch('/loginAdmin', {
             method: 'POST',
             headers: {
@@ -66,18 +67,18 @@
             body: JSON.stringify(data)
         });
         const validateUser = await response.json();
-        console.log(validateUser.status);
+        // console.log(validateUser.status);
         if (validateUser.status == 200) {
             const userObj=validateUser;
             // const userObj=validateUser.user[0];
             userObj.userValidate="true";
           localStorage.setItem("AdminObj", JSON.stringify(userObj));
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
-            console.log("si", validateUser.user[0]);
+            // console.log("si", validateUser.user[0]);
             msjOkUser();
                 location.href = '/';
         } else {
-            console.log("usuario no valido o contraseña incorrecta");
+            // console.log("usuario no valido o contraseña incorrecta");
             msjError();
         }
     },

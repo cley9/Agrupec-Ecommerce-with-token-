@@ -37,7 +37,7 @@
 </template>
   
 <script>
-import '../js/methods.js';
+import '../../js/methods.js';
 // import MyComponent from '../components/data.vue';
 export default {
     data() {

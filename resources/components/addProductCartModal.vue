@@ -23,8 +23,7 @@
             </div>
             <div class="btn--optionCard ">
                 <a class="modal__close btnEfectClick-">Seguir comprando</a>
-                <a class="modal__viewPro btnEfectClick" @click="cartWebSite()">Ir a mi carrito</a>
-                <!-- <a href="/Cart" class="modal__viewPro btnEfectClick" @click="cartWebSite()">Ir a mi carrito</a> -->
+                <a href="/Cart" class="modal__viewPro btnEfectClick" @click="cartWebSite()">Ir a mi carrito</a>
             </div>
         </div>
     </section>
@@ -43,37 +42,7 @@ export default {
     },
     methods: {
         cartWebSite() {
-            console.log("hola");
-            const token = JSON.parse(localStorage.getItem('userObj'));
-            console.log('----- ga token ', token);
-            console.log('... ', token.token);
 
-            fetch('/Cart', {
-                method: "GET",
-                headers: {
-                    authorization: `Bearer ${token.token}`, // Corrige aquí añadiendo el espacio después de "Bearer"
-                }
-            })
-                .then(response => {
-                    // Verifica si la respuesta no es nula
-                    if (!response) {
-                        console.error('La respuesta de la solicitud fetch es nula');
-                        return;
-                    }
-
-                    // Verifica si la respuesta fue exitosa (código 2xx)
-                    if (response.ok) {
-                        // Redirecciona al usuario al carrito después de la solicitud exitosa
-                        window.location.href = '/Cart';
-                    } else {
-                        // Maneja errores aquí si es necesario
-                        console.error('Error en la solicitud fetch:', response.status, response.statusText);
-                    }
-                })
-                .catch(error => {
-                    // Maneja errores de red u otros aquí
-                    console.error('Error en la solicitud fetch:', error);
-                });
         },
     }
 }

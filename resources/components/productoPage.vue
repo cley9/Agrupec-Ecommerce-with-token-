@@ -62,9 +62,9 @@
         }
         this.userObj = JSON.parse(localStorage.getItem("userObj"));
         if (this.userObj) {
-          console.log("esta lleno");
+          // console.log("esta lleno");
         } else {
-          console.log("esta vacio");
+          // console.log("esta vacio");
         }
   
       },
@@ -72,7 +72,7 @@
         msjInicieSesion();
       },
       async addProductCart(idProducto, cantidad, nameProduct, newPrecio, imgProduct) {
-  console.log("----------->",idProducto, cantidad, nameProduct, newPrecio, imgProduct);
+  // console.log("----------->",idProducto, cantidad, nameProduct, newPrecio, imgProduct);
         const data = await fetch(`/api/user/${this.userObj.user[0].id}/addCart/${idProducto}/${cantidad}`, {
           method: 'GET',
           headers: {

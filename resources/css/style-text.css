@@ -6,8 +6,8 @@
 
 .textHead{
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-
+    /* font-size: 18px; */
+    font-size: 16px;
 }
 .txtBoxTitle{
     font-family: 'Roboto', sans-serif;
