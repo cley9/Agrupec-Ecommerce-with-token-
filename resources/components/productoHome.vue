@@ -14,10 +14,10 @@
                         </div>
                         <div class="mb-2 d-flex justify-content-between  ">
                             <span class="text-dark- txtBoxPreBefore textPrecioProBefore"><del>S/
-                                    {{ itemProduct.precio }}.00
+                                    {{ itemProduct.precio }}
                                 </del></span>
                             <span class="text-dark textPrecioProAfter">S/
-                                {{ itemProduct.newPrecio }}.00
+                                {{ itemProduct.newPrecio }}
                             </span>
                         </div>
                         <div class=" align-items-center d-flex mb-2 ">

@@ -21,8 +21,10 @@ return new class extends Migration
             
             // $table->morphs('tokenable');
             $table->string('nombre');
-            $table->double('precio',50,2);
-            $table->double('newPrecio',50,2);
+            // $table->double('precio',50,2);
+            // $table->double('newPrecio',50,2);
+            $table->decimal('precio',8,2);
+            $table->decimal('newPrecio',8,2);
             $table->string('description');
             $table->string('peso');
             $table->integer('cantidad');

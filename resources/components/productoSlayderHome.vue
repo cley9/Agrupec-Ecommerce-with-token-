@@ -43,10 +43,10 @@
                         </h6>
                     <div class="precioTextBody">
                         <span class="txtBoxPreBefore precioProBeforeTextLong"><del>S/
-                            {{ itemPro.precio }}.00
+                            {{ itemPro.precio }}
                             </del></span>
                         <span class="precioProAfterTextLong">S/
-                        {{ itemPro.newPrecio }}.00
+                        {{ itemPro.newPrecio }}
                         </span>
                     </div>
                         
