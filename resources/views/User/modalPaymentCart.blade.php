@@ -15,32 +15,35 @@
                 </div>
                 <div class="col  text-center mb-4">
                     <a href="https://play.google.com/store/apps/details?id=pe.interbank.bie" target="_blank"> <img
-                            src="{{ asset('storage/img/medio de pago/lukita.png') }}" alt="" width="70px;"></a>
+                            src="{{ asset('/storage/img/medio de pago/lukita.png') }}" class="imgPayment"
+                            alt=""></a>
                     <a href="https://play.google.com/store/apps/details?id=pe.com.interbank.mpay.customer&hl=es_PE&gl=US"
-                        target="_blank"> <img src="{{ asset('storage/img/medio de pago/tunki.png') }}" alt=""
-                            width="70px;"></a>
+                        target="_blank"> <img src="{{ asset('/storage/img/medio de pago/tunki.png') }}"
+                            class="imgPayment" alt=""></a>
                     <a href="https://www.bbva.pe/personas/servicios-digitales/lukita.html" target="_blank"> <img
-                            src="{{ asset('storage/img/medio de pago/pling.jpg') }}" alt="" width="70px;"></a>
+                            src="{{ asset('/storage/img/medio de pago/pling.jpg') }}" class="imgPayment"
+                            alt=""></a>
 
                     <a href="https://play.google.com/store/apps/details?id=com.bcp.innovacxion.yapeapp&hl=es_PE&gl=US"
-                        target="_blank"> <img src="{{ asset('storage/img/medio de pago/yape.jpg') }}" alt=""
-                            width="70px;"></a>
+                        target="_blank"> <img src="{{ asset('/storage/img/medio de pago/yape.jpg') }}"
+                            class="imgPayment" alt=""></a>
                 </div>
                 <div class="mb-1">
                     <p class=""> <small class="text-center">Tarjetas de crédito y débito</small></p>
                 </div>
                 <div class="col  text-center mb-3">
                     <a href="https://www.bbva.pe/personas/servicios-digitales/banca-por-internet.html" class="me-4"
-                        target="_blank"> <img src="{{ asset('storage/img/medio de pago/bbva.png') }}" alt=""
-                            width="130px;"></a>
+                        target="_blank"> <img src="{{ asset('/storage/img/medio de pago/bbva.png') }}"
+                            class="imgPaymentDow" alt=""></a>
                     <a href="https://bcpzonasegurabeta.viabcp.com/#/iniciar-sesion" class="me-4" target="_blank"><img
-                            src="{{ asset('storage/img/medio de pago/bcp.png') }}" alt="" width="120px;"></a>
+                            src="{{ asset('/storage/img/medio de pago/bcp.png') }}" class="imgPaymentDowbc"
+                            alt=""></a>
                     <a href="https://bancaporinternet.interbank.pe/" class="me-4" target="_blank "> <img
-                            src="{{ asset('storage/img/medio de pago/interbank.png') }}" alt=""
-                            width="130px;"></a>
-                    <a href="https://www.paypal.com/pe/home"
-                        class="me-4 " style="text-decoration:none" target="_blank"> <img
-                            src="{{ asset('storage/img/medio de pago/paypal.png') }}" alt="" width="130px;"></a>
+                            src="{{ asset('/storage/img/medio de pago/interbank.png') }}" class="imgPaymentDow"
+                            alt=""></a>
+                    <a href="https://www.paypal.com/pe/home" class="me-4 " style="text-decoration:none"
+                        target="_blank"> <img src="{{ asset('/storage/img/medio de pago/paypal.png') }}"
+                            class="imgPaymentDow" alt=""></a>
                 </div>
             </div>
         </div>

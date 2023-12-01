@@ -266,3 +266,15 @@ width: 3rem;
     color: white;
     padding: 2px;
   }
+
+
+  /* img of payment in modal */
+  .imgPayment{
+    width:70px;
+  }
+  .imgPaymentDow{
+    width:130px;
+  }
+  .imgPaymentDowbc{
+    width:120px;
+  }
