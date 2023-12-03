@@ -90,14 +90,14 @@
         if (validateUser.status == 200) {
             const userObj=validateUser;
             // const userObj=validateUser.user[0];
-            console.log("data ",userObj);
+            // console.log("data ",userObj);
             userObj.userValidate="true";
           localStorage.setItem("userObj", JSON.stringify(userObj));
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
             // console.log("si", validateUser.user[0]);
             msjOkUser();
             // mark();
-                // location.href = '/';
+                location.href = '/';
         } else {
             // console.log("usuario no valido o contraseña incorrecta");
             msjError();
