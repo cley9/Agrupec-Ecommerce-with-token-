@@ -31,15 +31,17 @@
             </div>
             <hr>
             <div class="mb-4 text-center">
-                <a class="text-primary" data-bs-target="#registrarse" data-bs-toggle="modal"
+                <a class="text-primary linkModal nameTitle" data-bs-target="#registrarse" data-bs-toggle="modal"
                     data-bs-dismiss="modal">¿Eres nuevo?,Registrate Aqui.</a>
-                <a class="text-primary" data-bs-target="#recuperarCuenta" data-bs-toggle="modal"
+                <a class="text-primary linkModal nameTitle" data-bs-target="#recuperarCuenta" data-bs-toggle="modal"
                     data-bs-dismiss="modal">¿Olvidaste tu contraseña?</a>
             </div>
         </form>
     </div>
   </div>
   </div>
+  <registro-user></registro-user>
+  <recuperacion-cuenta></recuperacion-cuenta>
   </template>
   
   <script>
@@ -88,13 +90,14 @@
         if (validateUser.status == 200) {
             const userObj=validateUser;
             // const userObj=validateUser.user[0];
+            console.log("data ",userObj);
             userObj.userValidate="true";
           localStorage.setItem("userObj", JSON.stringify(userObj));
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
             // console.log("si", validateUser.user[0]);
             msjOkUser();
             // mark();
-                location.href = '/';
+                // location.href = '/';
         } else {
             // console.log("usuario no valido o contraseña incorrecta");
             msjError();
@@ -105,5 +108,17 @@
   }
   </script>
   
-  <style scoped>
-</style>../js/methods.js
+<style scoped>
+  .linkModal{
+    cursor: pointer;
+  }
+  .nameTitle {
+  text-decoration: none !important;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size .3s;
+  padding: 8px;
+}
+</style>

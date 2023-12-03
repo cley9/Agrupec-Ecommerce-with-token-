@@ -128,7 +128,7 @@ class LoginController extends Controller
                 session(['rol' => '0']);
                 $userId = User::where('email', session()->get('email'))->where('email', session()->get('email'))->get();
                 // session(['avatar' => $userId[0]->avatar]);
-                session(['avatar' => $img = 'storage/img/icons/userLogin.png']);
+                session(['avatar' => $img = '/storage/img/icons/userLogin.png']);
                 session(['userId' => $userId[0]->id]);
                 session(['name' => $userId[0]->name]);
                 // return response(["user"=> $userId,"status"=>Response::HTTP_OK]);
@@ -157,30 +157,53 @@ class LoginController extends Controller
         try {
             $google_user = Socialite::driver('google')->user();
             $user = User::where('email', $google_user->email)->first(); //entrega un true o false
-            session(['name' => $google_user->name]);
-            session(['avatar' => $google_user->avatar]);
-            session(['email' => $google_user->email]);
-            session(['rol' => '0']);
-            // session(['rol'=>'0']);
             if ($user) {
-                Auth::login($user);
-                $userId = User::where('name', session()->get('name'))->where('email', session()->get('email'))->get();
-                session(['userId' => $userId[0]->id]); // [0] this para quitar el [ {json }] y solo vea { json} para poder acceder
-
-                return redirect()->route('vista.index');
-            } else {
-                $new_user = User::create([
-                    'name' => $google_user->name,
+                // Auth::login($user);
+                // $userId = User::where('name', session()->get('name'))->where('email', session()->get('email'))->get();
+                // session(['userId' => $userId[0]->id]); // [0] this para quitar el [ {json }] y solo vea { json} para poder acceder
+                $userId = User::where('email', $google_user->email)->where('email', $google_user->email)->get();
+                $credencials = [
                     'email' => $google_user->email,
-                    'rol' => '0',
-                    'avatar' => $google_user->avatar,
-                    'external_id' => $google_user->id,
-                    'external_auth' => 'google',
-                ]);
-                Auth::login($new_user);
-                $userId = User::where('external_id', $google_user->id)->where('email', session()->get('email'))->get();
-                session(['userId' => $userId[0]->id]); // [0] this para quitar el [ {json }] y solo vea { json} para poder acceder
-                return redirect()->route('vista.index');
+                    'password' => $google_user->email
+                ];
+                $token=JWTAuth::attempt($credencials);
+                $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
+
+                return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
+            
+                // return redirect()->route('vista.index');
+            } else {
+                $new_user = new User();
+                $new_user->name = $google_user->name;
+                $new_user->email = $google_user->email;
+                $new_user->password = Hash::make($google_user->email); // pendiente de cambio por el token de google 
+                $new_user->rol = '0';
+                $new_user->avatar = $google_user->avatar;
+                $new_user->external_auth = 'google';
+                $new_user->save();
+                 $token=JWTAuth::fromUser($new_user);
+                $userId = User::where('email', $google_user->email)->where('email', $google_user->email)->get();
+                $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
+
+                // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
+                return redirect()->route('vista.index')->withoutCookie($cookie)->with(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId]);
+                
+
+                // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","token"=>$token,"user"=>$new_user],Response::HTTP_OK);
+                //  $token=JWTAuth::attempt($credencials);
+                // version with session
+                // $new_user = User::create([
+                //     'name' => $google_user->name,
+                //     'email' => $google_user->email,
+                //     'rol' => '0',
+                //     'avatar' => $google_user->avatar,
+                //     'external_id' => $google_user->id,
+                //     'external_auth' => 'google',
+                // ]);
+                // Auth::login($new_user);
+                // $userId = User::where('external_id', $google_user->id)->where('email', session()->get('email'))->get();
+                // session(['userId' => $userId[0]->id]); // [0] this para quitar el [ {json }] y solo vea { json} para poder acceder
+                // return redirect()->route('vista.index');
             }
         } catch (\Throwable $th) {
             abort(404);

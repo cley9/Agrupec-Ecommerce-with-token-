@@ -3,6 +3,26 @@
 // }, 1500);
 
 // ---befored
+export function msjCreateUser(){
+  Swal.fire({
+  // position:'center',
+  icon: 'success',
+  title: 'Usuario creado',
+  text: 'Tu usuario sea creado, gracias por usar nuestro servicio',
+  showConfirmButton: false,
+  timer: 3000
+  })
+  }
+  export function msjCreateUserError(){
+    Swal.fire({
+    // position:'center',
+    icon: 'error',
+    title: 'El usuario no se a creado',
+    text: 'Vuelve a intentarlo',
+    showConfirmButton: false,
+    timer: 3000
+    })
+    }
 export function msjOk(){
     Swal.fire({
     // position:'center',

@@ -38,6 +38,8 @@
         <a href="https://api.whatsapp.com/send?phone={{ config('constants.numContactWhats') }}&text=Buenas tardes, quisiera informe sobre los producto"
             class="rounded-circle btn  iconWhatp" target="_blank"><i class="bi bi-whatsapp"></i></a>
     </div>
+    {{-- @include('User.modalRegistro')
+@include('User.moldalRecuperarCuenta') --}}
         <login-user></login-user>
         <login-admin></login-admin>
         <layout></layout>

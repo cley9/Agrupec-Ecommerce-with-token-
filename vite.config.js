@@ -19,7 +19,7 @@ import tailwindcss from 'tailwindcss'
 export default defineConfig({
     base: '/public/',
     plugins: [
-        laravel(
+        laravel( 
         //     [
         //     'resources/css/app.css',
         //     'resources/js/app.js',
