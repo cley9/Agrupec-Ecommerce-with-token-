@@ -26,6 +26,14 @@
     {{-- tailwind --}}
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     {{-- ads end --}}
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K2MJEP5HDR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-K2MJEP5HDR');
+</script>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js', 'public/css/mystyle.css']) --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ config('constants.nameProyect') }}</title>
