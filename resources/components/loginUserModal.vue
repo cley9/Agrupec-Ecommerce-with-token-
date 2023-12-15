@@ -57,13 +57,24 @@
             password: "",
         },
         objToken:[],
+        message:'',
         // get:"",
     }
   },
-  // mounted:{
-  
-  // },
-  methods: {
+  mounted(){
+      this.validathionGoogle();
+    },
+    methods: {
+        validathionGoogle(){
+            
+            if (window.Laravel.data && window.Laravel.data.status == 200) {
+                // console.log("new data", window.Laravel.data);
+            // console.log("ok");
+            msjOkUser();
+            localStorage.setItem("userObj",JSON.stringify(window.Laravel.data));
+        }
+        
+    },
     showPassword(){
         this.passwordType=="password"? this.passwordType="text": this.passwordType="password";
         this.imgShowPassword=="/storage/img/icons/eye-slash-fill.svg" ? this.imgShowPassword="/storage/img/icons/eye-fill.svg" :this.imgShowPassword="/storage/img/icons/eye-slash-fill.svg";

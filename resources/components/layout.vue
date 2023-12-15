@@ -31,12 +31,12 @@
                 </a>
             </li>
             <li class="nameBody- perfilBox" v-if="userObj">
-                <img :src="'/storage/img/icons/userLogin.png'" class=" icons--login--user" alt="">
+                <img :src="`${avatar}`" class=" icons--login--user" alt="">
                 <ul class="subMenuPerfil">
                     <li class="textPerfil">
                         <h5>Usuario</h5>
                     </li>
-                    <img :src="'/storage/img/icons/userLogin.png'" alt="" class="textPerfil perfil--body--img">
+                    <img :src="`${avatar}`" alt="" class="textPerfil perfil--body--img">
                     <li class="nameText">{{ userName }}</li>
                     <li class="miPerfilText textPerfil"> <a href="/User-Perfil" class="nameTitle">Mi Perfil</a></li>
                     <li class="logoutLinkText textPerfil"><a href="/logout" class="nameTitle" @click="logout()">Cerrar Sesion </a></li>
@@ -57,11 +57,14 @@ export default {
             // userToken:'',
             countProductPreview:0,
             previewData:'',
+            avatar:'',
         }
     },
     mounted() {
         this.userObj = JSON.parse(localStorage.getItem('userObj'));
-        // console.log('-- ',this.userObj);
+        if (this.userObj) {
+            this.avatar=this.userObj.user[0].avatar;
+        }
         this.userObj ? this.userName = this.userObj.user[0].email : false;
         // this.userObj ? this.userToken = this.userObj : false;
         this.userObj ? this.countPreviewProduct() : false;

@@ -215,4 +215,6 @@
             </div> --}}
         </div>
     {{ $producto->links() }}
+
+   
 @endsection

@@ -38,7 +38,7 @@ class LoginController extends Controller
               $user->email = $request->email;
               $user->password = Hash::make($request->password);
               $user->rol = '0';
-              $user->avatar = 'storage/img/icons/userLogin.png';
+              $user->avatar = '/storage/img/icons/userLogin.png';
               $user->external_auth = 'local';
               $user->save();
                $token=JWTAuth::fromUser($user);
@@ -169,8 +169,11 @@ class LoginController extends Controller
                 $token=JWTAuth::attempt($credencials);
                 $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
 
-                return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
-            
+                // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
+                // return response()->route('vista.index')->withoutCookie($cookie)->with(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);
+                return redirect()->route('vista.index')->withoutCookie($cookie)->
+                with(["data"=>["status" => Response::HTTP_OK, "message" => "Usuario valido", "token" => $token, "user" => $userId]]);
+
                 // return redirect()->route('vista.index');
             } else {
                 $new_user = new User();
@@ -186,7 +189,8 @@ class LoginController extends Controller
                 $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
 
                 // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
-                return redirect()->route('vista.index')->withoutCookie($cookie)->with(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId]);
+                return redirect()->route('vista.index')->withoutCookie($cookie)->
+                with(["data"=>["status" => Response::HTTP_OK, "message" => "Usuario valido", "token" => $token, "user" => $userId]]);
                 
 
                 // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","token"=>$token,"user"=>$new_user],Response::HTTP_OK);
@@ -237,20 +241,4 @@ class LoginController extends Controller
             return "false";
         }
     }
-  
-    // user autentication
-    // function listObjt(){
-    //     return "cms";
-    // while(){
-
-    // }
-    // }
-    //   'rol'=>$request->input('userR')
-    // 'name'=>$request->input('nombre'),
-
-    // function envio(){
-    //     foreach (['cleyutp@gmail.com'] as $key) {
-    //         Mail::to($key)->send(new )
-    //     }
-    // }
 }

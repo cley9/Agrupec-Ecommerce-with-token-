@@ -119,6 +119,9 @@
         {{--  main login --}}
         @yield('header')
     </div>
+    <script>
+        window.Laravel = @json(["data"=>session("data")]);
+    </script>
     {{-- <div id="modalAddProductoCart"></div> --}}
     <footer class="pt-4   footer--body">
         <div class="container text-muted mb-4">
