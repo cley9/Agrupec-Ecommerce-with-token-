@@ -2,7 +2,7 @@
       <div class="col-lg-3 col-10  bg-info- ">
                 <div class="card h-80">
                     <div class="text-center pt-4">
-                        <img :src="`/storage/img/icons/userLogin.png`" class="card-img-top icons--perfil--user " alt="...">
+                        <img :src="`${userObjData.avatar}`" class="card-img-top icons--perfil--user " alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title fw-normal h3">{{ userObjData.name }}</h5>
