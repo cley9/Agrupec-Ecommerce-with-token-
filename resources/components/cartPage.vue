@@ -97,7 +97,7 @@
                     <div class="col">
                         <div class="mb-3 d-flex justify-content-between aling-items-center ">
                             <span class="text-dark h5 fw-normal">Total</span>
-                            <small class="text-dark h5 fw-normal">S/ {{ total }}</small>
+                            <small class="text-dark h5 fw-normal">S/ {{ precioTotal }}</small>
                         </div>
                         <div class="container">
                             <div class="row d-flex justify-content-center">
@@ -139,12 +139,12 @@ import { deleteItemProduct, deleteAllProduct } from '../js/addProductCart.js';
 import { validateUser } from '../js/methods.js';
 export default {
     props: {
-        listProduct: {
-            type: Object,
-            // type:Array,
-            // type:String,
-            required: true,
-        }
+        // listProduct: {
+        //     type: Object,
+        //     // type:Array,
+        //     // type:String,
+        //     required: true,
+        // }
     },
     data() {
         return {
@@ -155,30 +155,46 @@ export default {
             precioTotal: 0,
             total: 0,
             idUser: 0,
+            listCartData: [],
         }
     },
     mounted() {
-        this.userObj = validateUser();
-        // console.log("-- ", this.listProduct);
-        let i = 0;
-        this.listProduct.forEach(itemProduct => {
-            this.cantidad += itemProduct.pivot.cantidad;
-            this.precioTotal += itemProduct.newPrecio * itemProduct.pivot.cantidad;
-        });
-        // var numero = 46545;
-        // Formatear como monto en soles
-        var montoFormateado = this.precioTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-        // montoFormateado = montoFormateado.slice(0, -3) + '.00'; // Agregar '.00'
-        montoFormateado = montoFormateado.slice(0, -3) + '.00'; // Eliminar los ceros decimales si no hay centavos
-        this.total = montoFormateado;
-        // console.log(montoFormateado); // Salida: 46,545.00
-        this.listProduct.length > 0 ? this.existProduct = true : this.existProduct = false;
-        // 1023, 43683
-        const userObj = JSON.parse(localStorage.getItem('userObj'));
-        this.idUser = userObj.user[0].id;
-        // console.log('--user ', this.idUser);
+        this.listProductCart();
     },
     methods: {
+        async listProductCart() {
+            const listData = JSON.parse(localStorage.getItem('userObj'));
+            // console.log("--",this.idUser,"--", listData.user[0], 'token ',listData.token);
+            const dataCart = await fetch(`/api/user/${listData.user[0].id}/getCart/`, {
+                method: "Get",
+                headers: {
+                    Authorization: `Bearer ${listData.token}`,
+                }
+            });
+            if (dataCart.ok) {
+                const cartJsonData = await dataCart.json();
+                this.listProduct = cartJsonData.listProduct.productos;
+                this.existProduct = cartJsonData.existProduct;
+                this.idUser = listData.user[0].id;
+                this.listProduct.forEach(itemProduct => {
+                    this.cantidad += itemProduct.pivot.cantidad;
+                    this.precioTotal += itemProduct.newPrecio * itemProduct.pivot.cantidad;
+                });
+                // console.log('data json == ', dataCart);
+                // console.log(cartJsonData.existProduct, "--", cartJsonData.listProduct);
+                // console.log("iss",cartJsonData.listProduct.productos);
+                //  this.listProduct.length > 0 ? this.existProduct = true : this.existProduct = false;
+                // 1023, 43683
+                // this.userObj = validateUser();
+                // // var numero = 46545;
+                // // Formatear como monto en soles
+                // var montoFormateado = this.precioTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                // // montoFormateado = montoFormateado.slice(0, -3) + '.00'; // Agregar '.00'
+                // montoFormateado = montoFormateado.slice(0, -3) + '.00'; // Eliminar los ceros decimales si no hay centavos
+                // this.total = montoFormateado;
+                // // console.log(montoFormateado); // Salida: 46,545.00
+            }
+        },
         deleteItemProduct(idProduct) {
             deleteItemProduct(idProduct);
         },
@@ -189,7 +205,9 @@ export default {
 }
 </script>
 
-<style scoped>.imgItemPage {
+<style scoped>
+.imgItemPage {
     /* width:90px;
     height: 120px; */
-}</style>
+}
+</style>

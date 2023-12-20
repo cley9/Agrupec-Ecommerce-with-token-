@@ -1009,20 +1009,22 @@ align-items: flex-end; */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background: #05bbff !important; */
   /* background: #19C27D; */
-  margin-top: 18rem;
+  /* margin-top: 18rem; */
 
   
 }
 .btnCerrarSesion{
   background-color: #19C27D;
   color: white;
-  padding: 16px 4rem !important;
+  padding: 12px 10px !important;
   /* width: 30rem; */
   float: left;
   box-shadow: 0px 10px 20px -10px #19C27D;
   border-radius: 8px;
   text-transform: uppercase;
+  /* font-size: 14px !important; */
 }
 
 

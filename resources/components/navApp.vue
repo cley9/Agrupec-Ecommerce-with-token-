@@ -43,7 +43,7 @@
                             </li>
                             <li class="nav-item navItem boxBtnCerrarSession" v-if="userObj">
                                 <a href="/logout" @click="logout()"
-                                    class="nav-link active icons--style--raya textNavColor btnEfectClick btnPaymetView- btnCerrarSesion "
+                                    class="nav-link active icons--style--raya textNavColor btnEfectClick btnPaymetView- btnCerrarSesion"
                                     aria-current="page">Cerrar Sesion</a>
                             </li>
                         </ul>

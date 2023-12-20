@@ -83,8 +83,9 @@ export default {
                     Authorization: `Bearer ${this.userObj.token}`,
                 }
             });
-            this.previewData= await data.json();
-            // console.log('json --',this.previewData);
+            const layoutData= await data.json();
+            this.previewData=layoutData.listProduct.productos;
+            // console.log('json --',layoutData.listProduct.productos);
             this.previewData.forEach( element => {
                 this.countProductPreview +=element.pivot.cantidad;
                 // console.log(element.pivot.cantidad);

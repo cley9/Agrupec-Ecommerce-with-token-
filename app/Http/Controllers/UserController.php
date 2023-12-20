@@ -23,21 +23,13 @@ class UserController extends Controller
     }
     function cartUser()
     {
-        // return "dfa";
-        $cartArray = User::with(['productos'])->find(5); // id user
-        // $cartArray = User::with(['productos'])->find(session()->get('userId')); // id user
-        $exitProductoUser = cart::where('userId', 5)->where('productoId', '>', 0)->exists();
-        // $exitProductoUser = cart::where('userId', session()->get('userId'))->where('productoId', '>', 0)->exists();
-        return view('User.cart', compact(['cartArray', 'exitProductoUser']));
+        return view('User.cart');
     }
-    function viewCartUser($idUser)
-    { //asicrono
-        // $cartArray=User::with(['productos'])->find(session()->get('userId')); // id user
+    function viewListCartUser($idUser)
+    { 
         $cartArray = User::with(['productos'])->find($idUser); // id user
-        return  $cartArray->productos;
-        // return $idUser;
-        // $exitProductoUser=cart::where('userId',session()->get('userId'))->where('productoId','>',0)->exists();
-        // return view('User.cart',compact(['cartArray','exitProductoUser']));
+        $exitProductoUser = cart::where('userId',$idUser)->where('productoId', '>', 0)->exists();
+        return response()->json(["status"=>200,"msg"=>'ok',"listProduct"=>$cartArray, "existProduct"=>$exitProductoUser]);
     }
     function userAddCart($idUser, $idProducto, $cantidad)
     {
