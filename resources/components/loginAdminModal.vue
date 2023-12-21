@@ -76,7 +76,7 @@
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
             // console.log("si", validateUser.user[0]);
             msjOkUser();
-                location.href = '/';
+                location.href = '/api/admin/Admin';
         } else {
             // console.log("usuario no valido o contraseña incorrecta");
             msjError();

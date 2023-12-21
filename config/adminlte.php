@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/Admin', // la ruda de nuestra web de admin
+    'dashboard_url' => '/api/admin/Admin', // la ruda de nuestra web de admin
     // 'dashboard_url' => 'Admin-list', // la ruda de nuestra web de admin
     'logout_url' => 'Admin-logout',
     'login_url' => 'login',
@@ -252,29 +252,29 @@ return [
         ['header' => 'Productos y mas'],
         [
             'text' => 'Productos',
-            'url'  => 'Admin-list',
+            'url'  => '/api/admin/Admin-list',
             'icon' => 'bi bi-images',
         ],
         [
             'text' => 'Catalogo',
-            'url'  => '/Admin-Catalogo',
+            'url'  => '/api/admin/Admin-Catalogo',
             'icon' => 'bi bi-file-medical-fill',
         ],
         [
             'text' => 'Ventas',
-            'url'  => '/Admin-Ventas',
+            'url'  => '/api/admin/Admin-Ventas',
             'icon' => 'bi bi-file-medical-fill',
         ],
         // --- nav items de generar factura
         [
             'text' => 'Generar factura',
-            'url'  => '/Admin-factura',
+            'url'  => '/api/admin/Admin-factura',
             // 'icon' => 'fas fa-fw fa-lock',
             'icon' => 'bi bi-file-earmark-pdf-fill',
         ],
         [
             'text' => 'Infocorp',
-            'url'  => '/Admin-infocorp',
+            'url'  => '/api/admin/Admin-infocorp',
             'icon' => 'bi bi-person-rolodex',
         ],
         // --

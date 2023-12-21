@@ -32,49 +32,34 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/envioGmail', [mailController::class ,'a'] )->name('envio.index');
 // token csrf para consumo de api postman 
+Route::get('/', [ViewController::class, 'view'])->name('vista.index');
 Route::get('/token', [ControllersApiController::class,'viewToken'])->name('view.token.postman');
 Route::get('/api/promocionCoutDow', [ViewController::class, 'CountDown'])->name('home.promocion.local');
 Route::get('/cley', [ViewController::class, 'listCategory'])->name('user.cley.daaa');
 Route::get('/local', [ViewController::class, 'local'])->name('tienda.home.local');
 Route::get('/slay', [ViewController::class, 'viewSlayderMain'])->name('slayderMain.index');
 Route::get('/inserSlayderMain', [ViewController::class, 'inserSlayderMain'])->name('slayderMain.index');
-Route::get('/', [ViewController::class, 'view'])->name('vista.index');
 Route::get('/Search', [ViewController::class, 'search'])->name('search.home.search');
 Route::get('/searchListCategory', [ViewController::class, 'searchListCategory'])->name('searchListCategory.home.search');
 Route::get('/Producto-view', [ViewController::class, 'Producto'])->name('viewProducto.home.list');
 Route::get('/Ayuda', [ViewController::class, 'viewHelp'])->name('help.home.index');
 // new api
 Route::get('/view/productoView', [ControllersApiController::class, 'productoView'])->name('productoView.api.producto');
-// Route::get('/Admin-login', [CrudController::class ,'loginUser'] )->name('loginUser.admin.main');
-// ----no vale pero observar
 Route::get('/envioGmail', [mailController::class, 'recuperarPassword'])->name('restablecer.user.password');
 Route::get('/restablecerGmailView', [mailController::class, 'restablecerPasswordView'])->name('restablecerPasswordView.user.Gmail');
-// Route::get('/restablecerGmail', [mailController::class ,'restablecerPasswordUser'] )->name('restablecerPassword.user.gmail');
-// Route::get('/Admin-login', [LoginController::class ,'loginUser'] )->name('loginUser.admin.main');
-// google
 Route::get('login/google', [LoginController::class, 'loginGoogle'])->name('login.user.index');
 Route::get('login/google/callback', [LoginController::class, 'callback']);
-//         /login/google/callback
-// Route::get('/Login-admin/{email}/{password}', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
+Route::post('/createUserAdmin', [LoginController::class, 'createUserAdmin'])->name('create.admin.main');
 Route::post('/loginAdmin', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.user.index');
-// Route::post('/Admin-logout',[LoginController::class, 'logout'] )->name('logout.user.index');
-// Route::get('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
 Route::post('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
 Route::get('/validarUser/{email}', [LoginController::class, 'validarUser'])->name('validar.user.index');
-// ASICGD
-// this is before api sin el post
-// Route::get('/loginLocalUser/{email}/{password}', [LoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
-// this is after api con el post
 Route::post('/loginLocalUser', [LoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
-
 Route::get('user', [LoginController::class, 'indexHome'])->name('loginUser.proceso.index');
 Route::get('/Nosotros', [ViewController::class, 'viewNosotros'])->name('nosotros.home.index');
 Route::get('/Contactenos', [ViewController::class, 'viewContacto'])->name('contactenos.home.index');
 Route::get('/View-page/{id}', [ViewController::class, 'viewProductoId'])->name('View.home.index');
-
 // recuperacion de cuenta
 Route::get('/restablecerGmail', [mailController::class ,'restablecerPasswordUser'] )->name('restablecerPassword.user.gmail');
 

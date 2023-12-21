@@ -27,8 +27,15 @@ class VerificationAdmin
         //     return redirect('/');
         // }
         try {
-            JWTAuth::parseToken()->authenticate();
-            return $next($request);
+            // return $request->cookie('cookie_token_agru') ;
+            if ( ($request->cookie('cookie_token_agru')) ||  (JWTAuth::parseToken()->authenticate())) {
+                // if (JWTAuth::parseToken()->authenticate()) {   // for token 
+                    return $next($request);
+                } else {
+                    return redirect('/');     
+                    // return abort(403);
+                }
+                return 000;
         } catch (Exception $e) {
             if ($e instanceof TokenInvalidException) {
                 return response()->json(['status' => Response::HTTP_UNAUTHORIZED, 'message'=> 'token invalido'],Response::HTTP_UNAUTHORIZED);
