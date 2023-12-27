@@ -1,23 +1,13 @@
 @extends('adminlte::page')
-
 @section('title', 'Dashboard')
 @section('content_header')
-    <br>
 @stop
 @section('content')
     @include('Admin.modalRegisterProducto')
-
-    {{-- <style>
-        nav svg {
-            height: 20px;
-        }
-    </style> --}}
-
     <div class="d-flex justify-content-end">
         <a href="{{ route('download.admin.pdf') }}" class="btn btn-success btn-sm">Export to PDF</a>
-
     </div>
-    <div class="container ">
+    <div class="container mb-5 ">
         <div class="row d-flex justify-content-end ">
             <div class="mb-3 col-4 ">
                 <form action="" id="searchProducto" class="frm--search--home-- ">
@@ -78,7 +68,6 @@
                                         alt="">
                                 </td>
                                 <td>
-
                                     <a onclick="msgUpdate({{ $key['id'] }})" class="mb-md-0 mb-2 btn btn-warning"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"> <i
                                             class="bi bi-pencil"></i></a>
@@ -88,18 +77,10 @@
                             </tr>
                         @endforeach
                     </tbody>
-
                 </table>
                 {{ $cliente->links() }}
             </div>
         </div>
     </div>
-
-
     @include('Admin.modalUpdateProducto')
-    {{--  my js create for me  --}}
-    <script src="{{ asset('js/dataPictur.js') }}"></script>
-    {{-- <script src="{{ asset('js/msj.js') }}"></script> --}}
-
-
 @endsection

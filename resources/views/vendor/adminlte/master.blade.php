@@ -2,19 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-
     {{-- Base Meta Tags --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- --------cley --}}
+    {{-- -------- cdn's for agrupec --}}
     <link type="text/css" rel="shortcut icon" href="{{ asset('storage/img/icons/logo_ferreteria.svg') }}" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    {{--  --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- Custom Meta Tags --}}
     @yield('meta_tags')
@@ -24,18 +22,14 @@
         @yield('title', config('adminlte.title', 'AdminLTE 3'))
         @yield('title_postfix', config('adminlte.title_postfix', ''))
     </title>
-
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')
-
     {{-- Base Stylesheets --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-
         {{-- Configured Stylesheets --}}
         @include('adminlte::plugins', ['type' => 'css'])
-
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -81,10 +75,8 @@
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
-
     {{-- Body Content --}}
     @yield('body')
-
     {{-- Base Scripts --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -98,7 +90,6 @@
     @else
         <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
     @endif
-
     {{-- Livewire Script --}}
     @if (config('adminlte.livewire'))
         @if (app()->version() >= 7)
@@ -107,14 +98,13 @@
             <livewire:scripts />
         @endif
     @endif
-
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/productoSearchAdmin.js') }}"></script>
-    <script src="{{ asset('js/msj.js') }}"></script>
-
-    {{-- <script src="{{ asset('js/factLogic.js') }}"></script> --}}
+    <script src="{{ asset('js/admin/productoSearchAdmin.js') }}"></script>
+    {{-- <script src="{{ asset('js/msj.js') }}"></script> --}}
+    {{-- <script type="module" src="{{ asset('js/admin/methodsReview.js') }}"></script> --}}
+    <script src="{{ asset('js/admin/methods.js') }}"></script>
 
 </body>
 

@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// --
 use Illuminate\Support\Facades\DB;
 use App\Models\Producto;
 // -----fecha
 use Carbon\Carbon;
-
 // --------------- storage y img
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -20,12 +19,8 @@ class CrudController extends Controller
 
     public function list()
     {
-        // $cliente=Producto::all();
         $cliente = Producto::paginate(8);
-
         return view('Admin.lista', compact('cliente'));
-        //  return view('Admin.lista');
-        // return $cliente;
     }
 
     public function viewEditProducto($idProducto)
@@ -33,7 +28,6 @@ class CrudController extends Controller
         $adminProducto = Producto::where('id', $idProducto)->get();
         return response()->json(['status'=>Response::HTTP_OK,'message'=> 'Producto existente','Producto'=>$adminProducto],Response::HTTP_OK);
         // return json_encode($adminProducto);
-        
     }
 
     public function save(Request $request)

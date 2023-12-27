@@ -8,19 +8,14 @@ use Illuminate\Support\Facades\Http;
 
 class InfocorpController extends Controller
 {
-    //
-    function main(){
+    function main()
+    {
         return view('Admin.Infocorp.infocorp');
-
     }
-
-    // function SearchInfocorp(){
-    //     return view('Admin.Infocorp.infocorp');
-    // }
-
-    function searchDni($infocorp){
-        $url='https://api.apis.net.pe/v1/dni?numero='.$infocorp.'';
-  $getRequet=Http::get($url);
+    function searchDni($infocorp)
+    {
+        $url = 'https://api.apis.net.pe/v1/dni?numero=' . $infocorp . '';
+        $getRequet = Http::get($url);
         return $getRequet;
     }
 }

@@ -3,8 +3,7 @@
         max-width: 700px;
     }
 </style>
-
-<div class="text-center">
+<div class="text-center pt-5">
     <button type="button" id="btnRegistroPro" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modelAgregar"
         data-bs-whatever="@fat" data-bs-backdrop="static" data-bs-keyboard="false">Agregar Producto</button>
 </div>

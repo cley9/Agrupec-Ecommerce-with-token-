@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Producto;
 use App\Models\User;    
 use Illuminate\Http\Request;
 
@@ -20,8 +21,9 @@ class ApiController extends Controller
     }else{
         return response()->json(['status' => 404, 'msg' => 'Usuario no existe']);
     }
-    // $cartArray=User::with(['productos'])->find($idPedido); // id user
-    // $exitProductoUser=cart::where('userId',session()->get('userId'))->where('productoId','>',0)->exists();
-    // return $cartArray;
  }   
+ function previewProduct($idProduct){
+    $product=Producto::where('id','=',$idProduct)->get();
+    return response()->json(['status'=>200,'msg'=>'ok','data'=>$product],200);
+ }
 }

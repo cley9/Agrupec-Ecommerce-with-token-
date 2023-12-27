@@ -25,6 +25,3 @@
         </tbody>
     </table>
 @stop
-@section('js')
-    <script src="{{ asset('js/factLogic.js') }}"></script>
-@stop

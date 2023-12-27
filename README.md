@@ -234,3 +234,8 @@ luego los metodos dentro del model user
 <!--  -->
 json.parse = convierte un json string o texto a obj
 json.stringify == json a un obj string
+
+<!-- in the version 1.89,0 the factLogic.js as methods.js -->
+delete file
+- the dataPicture.js the admin
+- agru.js minificado

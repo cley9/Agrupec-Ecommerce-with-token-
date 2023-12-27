@@ -23,8 +23,7 @@
                     <h5 class="modal-title " id="exampleModalLabel">Verificacion de infocorp </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="">
+                <div class="modal-body mb-5">
                         <div class="row row-cols-md-2">
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Consulta:</label>
@@ -39,7 +38,6 @@
                                         class="bi bi-search"></i>INFOCORP</span>
                             </div>
                         </div>
-                    </form>
                     <form method="post" action="{{ route('save.admin.list') }}" id="formSave"
                         enctype="multipart/form-data">
                         @csrf
