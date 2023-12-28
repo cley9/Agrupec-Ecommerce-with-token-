@@ -59,6 +59,7 @@
                                 <label for="message-text" class="col-form-label">Foto del Producto Principal</label>
                             </div>
                             <img class="mb-3" src="" height="150" width="320" id="edPreviewImg"
+                                onerror="this.src='/storage/img/icons/arrastra-y-suelta.png'"
                                 alt="Imagen prevista..." />
                             <div class="mb-3">
                                 <input type="file" class="form-control" onchange="previewFile()" id="archivo"

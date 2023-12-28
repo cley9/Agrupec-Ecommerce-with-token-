@@ -184,7 +184,7 @@ Aquí hay algunos ejemplos de cómo usar la directiva : para enlazar estos atrib
 
 
 backticks  == teclado in spanish, pulsa la tecla=  alt + }} 
-backslash  == \
+backslash   \
 
 <!-- apunte de js  -->
 localstorage
@@ -213,11 +213,21 @@ localstorage
     en la carpeta de lang tienes que crear una en español con el nombre es
 <!-- los tipos put para envio de los body y un parametro de id  -->
 
+new vue 
+before components
+createApp(logoutUserLink).mount('#logout');
+
+after 
+// after un solo createapp
+// const app=createApp(App);
+const app=createApp();
+// Registrar los componentes globalmente
+// app.components('name_componponente', elModulo);
+// app.component('pruebaGrid', pruebaGrid);
+app.mount('#app'); // elemento especifico 
 
 <!-- en laravel 10 el routerservice el api ya biene preconfigurado -->
-
 <!-- adding el token  -->
-
 3 paso en el model user
 class User extends Authenticatable implements JWTSubject
 luego los metodos dentro del model user
@@ -228,14 +238,11 @@ luego los metodos dentro del model user
         public function getJWTCustomClaims(){
                 return [];
         }
-
-
-
 <!--  -->
 json.parse = convierte un json string o texto a obj
 json.stringify == json a un obj string
 
-<!-- in the version 1.89,0 the factLogic.js as methods.js -->
+in the version 1.89,0 the factLogic.js as methods.js 
 delete file
-- the dataPicture.js the admin
+- the dataPicture.js the admin and change to todo.js
 - agru.js minificado

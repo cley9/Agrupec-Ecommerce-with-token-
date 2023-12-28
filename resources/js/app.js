@@ -7,7 +7,6 @@ import promoListProduct from '../components/promocionListProducto.vue';
 import beneficio from '../components/beneficio.vue';
 import loginUser from '../components/loginUserModal.vue';
 import loginAdmin from '../components/loginAdminModal.vue';
-// import producto from '../components/productoView.vue';
 import productoHome from '../components/productoHome.vue';
 import productoList from '../components/productoList.vue';
 import productoSlayderHome from '../components/productoSlayderHome.vue';
@@ -26,12 +25,8 @@ import btnHigh from '../components/btnHigh.vue';
 import perfilPage from '../components/perfilPage.vue';
 import registroUser from '../components/registroUserModal.vue';
 import recuperacionCuenta from '../components/recuperacionCuentaModal.vue';
-// after un solo createapp
 // const app=createApp(App);
 const app=createApp();
-// Registrar los componentes globalmente
-// app.components('name_componponente', elModulo);
-// app.component('pruebaGrid', pruebaGrid);
 app.component('btnHigh',btnHigh);
 app.component('layout',layout);
 app.component('navApp', navApp);
@@ -56,6 +51,3 @@ app.component('perfilPage', perfilPage);
 app.component('registroUser',registroUser);
 app.component('recuperacionCuenta',recuperacionCuenta);
 app.mount('#app'); // elemento especifico 
-
-// createApp(logoutUserLink).mount('#logout');
-import './methods.js';

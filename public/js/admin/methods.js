@@ -31,11 +31,12 @@ function viewListFactura() {
     }
   }).then(dataFact => dataFact.json()).
     then(function (dataFact) {
-      console.log(dataFact.listFVenta.length);
+      // console.log(dataFact.listFVenta.length);
       const listVentas = document.getElementById("listFact");
-      listVentas.innerHTML = ``;
-      dataFact.listFVenta.forEach(item => {
-        listVentas.innerHTML +=
+      if(listVentas){
+        listVentas.innerHTML = ``;
+        dataFact.listFVenta.forEach(item => {
+          listVentas.innerHTML +=
           `<tr>` +
           `<td>A000${item.id}</td>` +
           `<td>${item.nombreUser}</td>` +
@@ -44,7 +45,8 @@ function viewListFactura() {
           // `<td>${item.precio*item.cantidad}</td>`+
           `<td><a href="" class="btn btn-danger"><i class="bi bi-file-earmark-pdf-fill"></i></a></td>` +
           `<tr>`;
-      });
+        });
+      }
     })
 }
 viewListFactura();
@@ -117,19 +119,18 @@ if (productoItem !== null) {
   });
 }
 // localStorage.clear(); /// para eliminar todo el local storage
-// console.log(producto);
 let time = new Date();
 let day = time.getDate();
 let month = time.getMonth() + 1;
 let year = time.getFullYear();
 const fechaa = document.getElementById("ffecha");
-fechaa.value = `${day}/${month}/${year}`;
-btnFacturaV.addEventListener("click", () => {
-  // console.log(`${day}/${month}/${year}`);
+if(fechaa){
+  fechaa.value = `${day}/${month}/${year}`;
+  btnFacturaV.addEventListener("click", () => {
+    // console.log(`${day}/${month}/${year}`);
   fetch("/api/admin/Admin-facturaList", {
     method: "GET",
     headers: {
-      // Authorization:`Bearer ${getStorage()}`,
       Authorization: `Bearer ${getAdminObj()}`,
     }
   }).then(SerieCorrel => SerieCorrel.json()).then((serie) => {
@@ -144,15 +145,12 @@ btnFacturaV.addEventListener("click", () => {
       fserie.value = 'A0001';
       console.log("vacio");
     }
-    // console.log(serie.listFVenta);
-    // serie.listFVenta.forEach(item => {
-    //   console.log(item.id);
-    // });
-  });
-  // console.log(ffecha.value);
-})
+    });
+  })
+}
 // --------------insert a base de dato  
 const dataFactura = document.getElementById('formFactAgregar');
+if(dataFactura){
 dataFactura.addEventListener("submit", (e) => {
   const fCreate = document.getElementById('formFactAgregar');
   e.preventDefault();
@@ -188,6 +186,7 @@ dataFactura.addEventListener("submit", (e) => {
     }
   });
 });
+}
 // this is new addid admin
 function msgUpdate(idProdu) {
   fetch('/api/admin/previewProduct/' + idProdu + '', {
@@ -260,34 +259,60 @@ if (catalogo) {
     }
   });
 }
-
-// 
 // admin producto
-function productDelete(id,nomProducto,img){
+function productDelete(id, nomProducto, img) {
   // console.log(id+' ----- '+nomProducto+' ----- '+img);
   swal.fire({
-      title: "&iquest;Estas seguro de eliminar ?",
-      text: "El produto " + nomProducto + "",
-      imageUrl: "/storage/img/Productos/" + img + " ",
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: "Custom image",
-      allowOutsideClick: false,
-      showCancelButton: true,
-      confirmButtonColor: "#45B39D",
-      cancelButtonColor: "#EC7063",
-      confirmButtonText: "Confirmar",
+    title: "&iquest;Estas seguro de eliminar ?",
+    text: "El produto " + nomProducto + "",
+    imageUrl: "/storage/img/Productos/" + img + " ",
+    imageWidth: 200,
+    imageHeight: 200,
+    imageAlt: "Custom image",
+    allowOutsideClick: false,
+    showCancelButton: true,
+    confirmButtonColor: "#45B39D",
+    cancelButtonColor: "#EC7063",
+    confirmButtonText: "Confirmar",
   }).then((result) => {
-  if (result.value) {
-    var url="/Admin-delete/"+id+"/"+img+"";
-    window.location.href=url;
-  Swal.fire({
-      icon: "success",
-      title: "Eliminado ",
-      text: "Producto eliminado correctamente",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-      }
-    });
+    if (result.value) {
+      var url = "/api/admin/Admin-delete/" + id + "/" + img + "";
+      window.location.href = url;
+      Swal.fire({
+        icon: "success",
+        title: "Eliminado ",
+        text: "Producto eliminado correctamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  });
+}
+// admin catalogo
+function catalogoDelete(id, nomProducto, img) {
+  swal.fire({
+    title: "&iquest;Estas seguro de eliminar ?",
+    text: "El produto " + nomProducto + "",
+    imageUrl: "/storage/img/SlayderMain/" + img + " ",
+    imageWidth: 200,
+    imageHeight: 200,
+    imageAlt: "Custom image",
+    allowOutsideClick: false,
+    showCancelButton: true,
+    confirmButtonColor: "#45B39D",
+    cancelButtonColor: "#EC7063",
+    confirmButtonText: "Confirmar",
+  }).then((result) => {
+    if (result.value) {
+      var url = "/api/admin/Admin-deleteCatalogo/" + id + "/" + img + "";
+      window.location.href = url;
+      Swal.fire({
+        icon: "success",
+        title: "Eliminado ",
+        text: "Producto eliminado correctamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  });
 }

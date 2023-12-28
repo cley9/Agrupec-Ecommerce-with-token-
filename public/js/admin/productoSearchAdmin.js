@@ -9,15 +9,10 @@ if (searchProductoPA) {
     searchProductoPA.addEventListener('keyup', function (e) {
         e.preventDefault();
         const fProductoLista = document.getElementById('fProductoLista').value;
-        //     console.log(e.target.fProductoLista.name);
-        // fBtnSearchLista.preventDefault();
-        // console.log(fProductoLista);
         if (fProductoLista.length >= 1) {
-            // console.log(fProductoLista.length);
             console.log("new ------- ", getStorage());
             fetch('/api/admin/Admin-search/' + fProductoLista + '').then(search => search.json()).
                 then(function (search) {
-                    // console.log(search);
                     let content = document.getElementById("dataProducto");
                     content.innerHTML = ``;
                     search.forEach(item => {

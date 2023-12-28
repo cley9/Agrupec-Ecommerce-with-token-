@@ -1,14 +1,9 @@
 @extends('adminlte::page')
-
 @section('title', 'Dashboard')
-
 @section('content_header')
-
     <h1>Historial de pedidos</h1>
 @stop
-
 @section('content')
-
 <div class="container"><br>
     <div class="row">
         <div class="col-md-12">
@@ -23,7 +18,6 @@
                 </thead>
                 <tbody>
                     @foreach ($listUser as $itemUser)
-                        
                     <tr>
                         <th>{{ $itemUser['id'] }}</th>
                         <th>{{ $itemUser['name'] }}</th>
@@ -35,23 +29,9 @@
                     </tr>
                     @endforeach
                 </tbody>
-                
             </table>
         </div>
     </div>
 </div>
-                    <script>
-                        // listPedidoUser.addEventListener("click",(e)=>{
-                        //     console.log(2222);
-
-                        // })
-        //                 document.addEventListener("DOMContentLoaded", function() {
-        //     const listPedidoUser = document.getElementById("listPedidoUser");
-        //     listPedidoUser.addEventListener("click", (e) => {
-        //         console.log(2222);
-        //     });
-        // });
-                    </script>
-
     @include('Admin.modalListPedido')
 @endsection

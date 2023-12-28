@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-// nota los roles de 4 son admin
+        // nota los roles 4 son admin
         $userAdmin = new User();
         $userAdmin->name = 'cley';
         $userAdmin->email = 'cley@gmail.com';
@@ -23,38 +23,5 @@ class UserSeeder extends Seeder
         $userAdmin->avatar = '/storage/img/icons/person-circle.svg';
         $userAdmin->password = bcrypt('2303');
         $userAdmin->save();
-        //
-        // $userAdmin = new User();
-        // $userAdmin->name = 'carlos';
-        // $userAdmin->email = 'carlos@gmail.com';
-        // $userAdmin->rol = '4';
-        // $userAdmin->avatar = 'storage/img/icons/person-circle.svg';
-        // $userAdmin->password = bcrypt('123456');
-        // $userAdmin->save();
-        // //
-        // $userAdmin = new User();
-        // $userAdmin->name = 'miguel';
-        // $userAdmin->email = 'miguel@gmail.com';
-        // $userAdmin->rol = '4';
-        // $userAdmin->avatar = 'storage/img/icons/person-circle.svg';
-        // $userAdmin->password = bcrypt('123456');
-        // $userAdmin->save();
-        // //
-
-        // $userLocal = new User();
-        // $userLocal->name = 'junior';
-        // $userLocal->email = 'junior@gmail.com';
-        // $userLocal->rol = '0';
-        // $userAdmin->avatar = 'storage/img/icons/userLogin.png';
-        // $userLocal->password = bcrypt('123456');
-        // $userLocal->save();
-        // //
-        // $userLocal = new User();
-        // $userLocal->name = 'mark';
-        // $userLocal->email = 'mark@gmail.com';
-        // $userLocal->rol = '0';
-        // $userAdmin->avatar = 'storage/img/icons/userLogin.png';
-        // $userLocal->password = bcrypt('123456');
-        // $userLocal->save();
     }
 }

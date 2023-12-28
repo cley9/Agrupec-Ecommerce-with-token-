@@ -50,7 +50,6 @@ class AdminController extends Controller
     function viewSlayderMain()
     {
         $viewSlayderMain = SlayderMain::all();
-        // return $viewSlayderMain;
         return view('Admin.catalogoSlayder', compact('viewSlayderMain'));
     }
     function deleteSlayderMain($id, $img)
@@ -58,7 +57,6 @@ class AdminController extends Controller
         Storage::disk('local')->delete('public/img/SlayderMain/' . $img . ''); //Cuando se usa el controlador public o local Puede eliminar la foto del perfil anterior como este., elimina el archivo
         $slayder = SlayderMain::find($id);
         $slayder->delete();
-        // return $slayder;
         return redirect()->route('list.admin.catalogo');
         // return view('Admin.catalogoSlayder');
     }

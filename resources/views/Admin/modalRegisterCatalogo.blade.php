@@ -3,8 +3,8 @@
         max-width: 700px;
     }
 </style>
-<div class="text-center">
-    <button type="button" id="btnRegistroCatalogo" class="btn btn-success" data-bs-toggle="modal"
+<div class="text-center pt-5">
+    <button type="button" id="btnRegistroCatalogo" class="btn btn-success " data-bs-toggle="modal"
         data-bs-target="#modelAgregarCatalogo" data-bs-whatever="@fat" data-bs-backdrop="static"
         data-bs-keyboard="false">Agregar Catalogo</button>
 </div>
@@ -38,7 +38,8 @@
                             </div>
                             <div class="d-flex justify-content-center">
                                 <img class="mb-3 card-img-top" src="" height="150" width="320"
-                                    id="edPreviewImg" alt="Imagen prevista..." />
+                                    onerror="this.src='/storage/img/icons/arrastra-y-suelta.png'" id="edPreviewImg"
+                                    alt="Imagen prevista..." />
                             </div>
                             <div class="mb-3">
                                 <input type="file" class="form-control" onchange="previewFile()" id="archivo"

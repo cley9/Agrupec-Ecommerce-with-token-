@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 @section('title', 'Dashboard')
 @section('content_header')
-    <br>
 @stop
 @section('content')
     @include('Admin.modalRegisterCatalogo')
@@ -46,6 +45,4 @@
 
 
     @include('Admin.modelUpdateCatalogo')
-    {{--  my js create for me  --}}
-    <script src="{{ asset('js/dataPictur.js') }}"></script>
 @endsection

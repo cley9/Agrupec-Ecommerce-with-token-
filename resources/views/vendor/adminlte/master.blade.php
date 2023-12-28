@@ -102,8 +102,6 @@
     @yield('adminlte_js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/admin/productoSearchAdmin.js') }}"></script>
-    {{-- <script src="{{ asset('js/msj.js') }}"></script> --}}
-    {{-- <script type="module" src="{{ asset('js/admin/methodsReview.js') }}"></script> --}}
     <script src="{{ asset('js/admin/methods.js') }}"></script>
 
 </body>
