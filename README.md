@@ -1,27 +1,3 @@
-## Los pasos para crear un proyecto con laravel + vue.js + vite.js son => 
-- [ 1 crear un proyecto laravel [laravel new nameProyect] ]
-- [ 2  crear dentro del proyecto el vue [npm install vue] ]
-- [ 3 instalar el pluguin de vite [npm install --save-dev @vitejs/plugin-vue], este pluguin se instala por poryecto ]
-- [ 4 configurar el vite.config.js, agregas el import del pluguin instalado ]
-        - **[ se agrega para el plugin de  vue en vite ] ]
-        - **[ import vue from '@vitejs/plugin-vue';] ]
-
-- [ 5 configurar el app.js de la ruta del resources/js, ahi agregaras el vue]
-        - **[ se configra para que vue funcione ]
-        - **[ import  { createApp } from "vue";]
-        - **[ import App from "../src/name.vue"; // nombre de componente.vue]
-        - **[ // selector del id app]
-        - **[ createApp(App).mount("#app");]
-- [ 5 ejecutar el proyecto ]
-
-- **[ nota: Ambos se necesita para funcionar el proyecto con [laravel + vue.js + vite], los puertos son [laravel =8080, vite:5017]]
-- **[ -- ejecutar laravel ]
-- **[ php artisan serve  // para ejecutar el desarrollo back-end ]
-
-- **[ -- ejecutar el vue.js components]
-- **[ npm run dev   // al ejecutar se ejecutr el puerto del vite como front-end, donde compilara el template de vue a codigo js  ]
-
-
 ## REQUSITOS PARA DEPLOYAR EL ECOMMERCE
 - PHP >8.0  <8.1
 - .env
@@ -58,26 +34,27 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```env
 php artisan make:mail EnvioInformacionNewProducto
 ```
-###  Los pasos para crar un proyecto con laravel 9 + vue.js + vite.js son => 
+###  Los pasos para crar un proyecto con laravel 9 + vue.js + vite.js
+-
 ```env
-// 1 crear un proyecto laravel [laravel new nameProyect]
-// 2  instala vue dentro del proyecto el vue [npm install vue] 
-// 3 instalar el pluguin de vite [
+- 1 crear un proyecto laravel [laravel new nameProyect]
+- 2  instala vue dentro del proyecto el vue [npm install vue] 
+- 3 instalar el pluguin de vite [
         // instalación de vite new 2023 instalar vue con vite = 
                 npm install vite @vitejs/plugin-vue --save-dev
                 npm install --save-dev @vitejs/plugin-vue], este
 pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 o en cual quier versión]
-// 4 configuras el vite.config.js, agregas el import del pluguin instalado 
+- 4 configuras el vite.config.js, agregas el import del pluguin instalado 
         // se agrega para el plugin de  vue en vite 
         // import vue from '@vitejs/plugin-vue';
 
-// 5 configurar el app.js de la ruta del resources/js, ahi agregaras el vue
+- 5 configurar el app.js de la ruta del resources/js, ahi agregaras el vue
         // se configra para que vue funcione 
         // import  { createApp } from "vue";
         // import App from "../src/name.vue"; // nombre de componente.vue
         // // selector del id app
         // createApp(App).mount("#app");
-// 6 tienes que modificar el archivo vite.config.js, agregar el vue(); para que note  de error al ejecutar el vue
+- 6 tienes que modificar el archivo vite.config.js, agregar el vue(); para que note  de error al ejecutar el vue
         // export default defineConfig({
         //         plugins: [
         //             laravel({
@@ -86,14 +63,11 @@ pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 
         //             }),
         //             // se agrega el vue para que funcion el vue plugin's 
         //             vue(),
-// 7 ejecutar el proyecto 
+- 7 ejecutar el proyecto 
+ nota: Ambos se necesita para funcionar el proyecto con [laravel + vue.js + vite], los puertos son [laravel =8080, vite:5017]
+ ejecutar laravel => php artisan serve  //for desarrollo back-end 
+ ejecutar el vue.js components => npm run dev   // Se ejecutara el puerto del vite como front-end, donde compilara el template de vue a codigo js  
 
-// nota: Ambos se necesita para funcionar el proyecto con [laravel + vue.js + vite]
-// -- ejecutar laravel 
-// php artisan serve  // para ejecutar el desarrollo back-end 
-
-// -- ejecutar el vue.js components
-// npm run dev   // al ejecutar se ejecutr el puerto del vite como front-end, donde compilara el template de vue a codigo js  
 ```
 ## instalación de talwind css en laravel 10 + vite + vue.js 
 ```env
