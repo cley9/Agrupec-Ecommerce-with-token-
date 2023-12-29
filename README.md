@@ -1,16 +1,18 @@
-## REQUSITOS PARA DEPLOYAR EL ECOMMERCE
-- PHP >8.0  <8.1
+## REQUISITOS PARA DEPLOYAR EL ECOMMERCE
+- PHP >8.0  <8.2
 - .env
-- composer install
-- elimina la ruta storage, para que no presente error 
-- after 
+```env 
+this is aplic if is version the that used webpack for change to vite.js 
 - modificar el punto .env en los mix por vite
 - MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
 - MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 - VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
 - VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
-## uso de vite en laravel 9
--- para compilar y levantar el js y css en producción es necesario poner un npm run build, para conpilar los archivos de css y js
+```
+- composer install
+- elimina la ruta storage, para que no presente error 
+## Uso de vite en laravel 9
+Para compilar y levantar el js y css en producción es necesario poner un npm run build, para conpilar los archivos de css y js
 
 ## PENDIENTE
 - migrar la version de laravel 9 a 10 
@@ -31,11 +33,10 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```
 
 - 2 paso  crear el archivo email
-```env
+```php
 php artisan make:mail EnvioInformacionNewProducto
 ```
 ###  Los pasos para crar un proyecto con laravel 9 + vue.js + vite.js
--
 ```env
 - 1 crear un proyecto laravel [laravel new nameProyect]
 - 2  instala vue dentro del proyecto el vue [npm install vue] 
@@ -132,7 +133,7 @@ Aquí hay algunos ejemplos de cómo usar la directiva : para enlazar estos atrib
 
 <!-- Elemento con clase y estilo -->
 <div :class="className" :style="{ color: textColor, backgroundColor: bgColor }">Contenido</div>
-
+v-if= computed that momori cache, change
 
 backticks  == teclado in spanish, pulsa la tecla=  alt + }} 
 backslash   \
@@ -148,12 +149,9 @@ localstorage
       this.user = JSON.parse(localStorage.getItem('user'));
       
 <!-- token csrf es para peticiones post, puth  -->
-  
         <!-- documentar api con swuager -->
-
         <!-- 419 === autentication 
         422 === valores vacios en los parametros  -->
-
 <!-- camio de idioma -->
         composer require laravel-lang/common --dev
         php artisan lang:add es
@@ -177,8 +175,8 @@ const app=createApp();
 app.mount('#app'); // elemento especifico 
 
 <!-- en laravel 10 el routerservice el api ya biene preconfigurado -->
-<!-- adding el token  -->
-3 paso en el model user
+ adding el token
+- 3 paso en el model user
 class User extends Authenticatable implements JWTSubject
 luego los metodos dentro del model user
         // funciones de token
@@ -196,5 +194,3 @@ in the version 1.89,0 the factLogic.js as methods.js
 delete file
 - the dataPicture.js the admin and change to todo.js
 - agru.js minificado
-
-#### v-if= computed that momori cache, change
