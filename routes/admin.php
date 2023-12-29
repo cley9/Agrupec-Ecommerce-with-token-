@@ -14,9 +14,6 @@ Route::middleware('VerificationAdmin')->group(function () {
   Route::get('/Admin', function () {
     return view('Admin.home');
   });
-    //     Route::get('/Admin-delete/{id}', function(){
-    //       return view('Admin.catalogoSlayder');
-    // });
   // buscador de productos
   Route::get('/Admin-search/{search}', [AdminController::class, 'searchProductoLista'])->name('search.admin.producto');
   Route::get('/Admin-Ventas', [AdminController::class, 'ventas'])->name('venta.admin.index');

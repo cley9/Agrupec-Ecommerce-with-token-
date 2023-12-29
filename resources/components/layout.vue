@@ -1,7 +1,9 @@
 <template>
     <nav class="navHeadMain">
         <div class="navTitle">
-          <a href="/">  <h3 class="navTitleText">Agrupec</h3></a>
+            <a href="/">
+                <h3 class="navTitleText">Agrupec</h3>
+            </a>
         </div>
         <ul class="navBody">
             <li class="nameBody">
@@ -16,16 +18,32 @@
             <li class="nameBody">
                 <a href="/Ayuda" class="textHead nameTitle">Atención</a>
             </li>
-            <li class="nameBody" v-if="!userObj">
+            <li class="nameBody" v-if="!validationUser">
                 <a href="#" class="textHead nameTitle">Iniciar Sesión</a>
                 <ul class="subMenu">
-                    <li class="bas"><a href="#" class="textHead" data-bs-toggle="modal" data-bs-target="#loginUserModal">Usuario</a></li>
-                    <li class="bas"><a href="#" class="textHead" data-bs-toggle="modal" data-bs-target="#loginAdminModal">Administrador</a>
+                    <li class="bas"><a href="#" class="textHead" data-bs-toggle="modal"
+                            data-bs-target="#loginUserModal">Usuario</a></li>
+                    <li class="bas"><a href="#" class="textHead" data-bs-toggle="modal"
+                            data-bs-target="#loginAdminModal">Administrador</a>
                     </li>
                 </ul>
             </li>
+            <li class="nameBody" v-if="adminObj">
+                <a href="/admin" class="textHead nameTitle">Administrador</a>
+                <ul class="subMenuPerfil">
+                    <li class="textPerfil">
+                        <h5>Administrador</h5>
+                    </li>
+                    <img :src="`${avatar}`" alt="" class="textPerfil perfil--body--img">
+                    <li class="nameText">{{ userName }}</li>
+                    <li class="logoutLinkText textPerfil"><a href="/logout" class="nameTitle" @click="logout()">Cerrar
+                            Sesion </a></li>
+                </ul>
+
+            </li>
             <li class="nameBody- cartBox" id="previewCart" v-if="userObj">
-                <a href="/Cart" class="cart" id="cartHover" @mouseenter="previewProductModal()" title="Facebook" rel="nofollow">
+                <a href="/Cart" class="cart" id="cartHover" @mouseenter="previewProductModal()" title="Facebook"
+                    rel="nofollow">
                     <i class="fas fa-shopping-cart icomCart"></i>
                     <span class="badge numCartPro" id="cartMenu">{{ countProductPreview }}</span>
                 </a>
@@ -39,7 +57,8 @@
                     <img :src="`${avatar}`" alt="" class="textPerfil perfil--body--img">
                     <li class="nameText">{{ userName }}</li>
                     <li class="miPerfilText textPerfil"> <a href="/User-Perfil" class="nameTitle">Mi Perfil</a></li>
-                    <li class="logoutLinkText textPerfil"><a href="/logout" class="nameTitle" @click="logout()">Cerrar Sesion </a></li>
+                    <li class="logoutLinkText textPerfil"><a href="/logout" class="nameTitle" @click="logout()">Cerrar
+                            Sesion </a></li>
                 </ul>
             </li>
         </ul>
@@ -52,49 +71,58 @@ import { previewProductCartModal } from '../js/methods.js';
 export default {
     data() {
         return {
-            userObj: '',
+            userObj: false,
             userName: '',
             // userToken:'',
-            countProductPreview:0,
-            previewData:'',
-            avatar:'',
+            countProductPreview: 0,
+            previewData: '',
+            avatar: '',
+            adminObj: false,
+            validationUser: false,
         }
     },
     mounted() {
         this.userObj = JSON.parse(localStorage.getItem('userObj'));
         if (this.userObj) {
-            this.avatar=this.userObj.user[0].avatar;
+            this.avatar = this.userObj.user[0].avatar;
+        }
+        this.adminObj = JSON.parse(localStorage.getItem('adminObj'));
+        if (this.userObj || this.adminObj) {
+            // console.log("new ",this.userObj, this.adminObj);
+            this.validationUser = true;
+            this.avatar = this.adminObj.user[0].avatar;
         }
         this.userObj ? this.userName = this.userObj.user[0].email : false;
         // this.userObj ? this.userToken = this.userObj : false;
         this.userObj ? this.countPreviewProduct() : false;
-        // console.log("-- t ",this.userObj);
     },
     methods: {
         logout() {
             const localStorage = window.localStorage;
             localStorage.removeItem('userObj');
+            localStorage.removeItem('adminObj');
         },
-        async countPreviewProduct(){
-            const data= await fetch(`/api/user/${this.userObj.user[0].id}/getCart/`, {
-                method:'GET',
-                headers:{
-                    // Authorization: `Bearer ${this.userToken.token}`,
+        async countPreviewProduct() {
+            const data = await fetch(`/api/user/${this.userObj.user[0].id}/getCart/`, {
+                method: 'GET',
+                headers: {
                     Authorization: `Bearer ${this.userObj.token}`,
                 }
             });
-            const layoutData= await data.json();
-            this.previewData=layoutData.listProduct.productos;
+            const layoutData = await data.json();
+            this.previewData = layoutData.listProduct.productos;
             // console.log('json --',layoutData.listProduct.productos);
-            this.previewData.forEach( element => {
-                this.countProductPreview +=element.pivot.cantidad;
+            this.previewData.forEach(element => {
+                this.countProductPreview += element.pivot.cantidad;
                 // console.log(element.pivot.cantidad);
             });
         },
-        async previewProductModal(){
+        async previewProductModal() {
             // console.log("cantidad", this.countProductPreview);
             previewProductCartModal(this.previewData);
         },
+    },
+    computed: { // los compust son para que solo se ejecute cuando solo hay un cambio en la memoria, funciona con if
     }
 
 }
@@ -109,9 +137,11 @@ export default {
 a {
     color: black;
 }
+
 .navTitleText {
     color: #198754 !important;
 }
+
 .nameTitle {
     text-decoration: none !important;
     background-image: linear-gradient(currentColor, currentColor);
@@ -121,6 +151,7 @@ a {
     transition: background-size .3s;
     padding: 8px;
 }
+
 .nameTitle:hover,
 .nameTitle:focus {
     background-size: 100% 2px;

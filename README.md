@@ -58,11 +58,6 @@ MAIL_FROM_NAME="${APP_NAME}"
 2 paso  crear el archivo email
 php artisan make:mail EnvioInformacionNewProducto
 
-
-<!--  -->
-
-
-
 // -------------------------------------------end
 // obs queda pendiente ver el modal en vue, no muestra en laravel 
 
@@ -142,19 +137,6 @@ pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 
         //     WindiCSS(),
         //   ],
         // })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- nota de vue.js 3    -->
@@ -246,3 +228,5 @@ in the version 1.89,0 the factLogic.js as methods.js
 delete file
 - the dataPicture.js the admin and change to todo.js
 - agru.js minificado
+
+# v-if= computed that momori cache, change

@@ -17,8 +17,26 @@
     height: 704px;
 }
 .containerModalAddCatalogo{
-    height: 520px;
+    height: 620px;
+    width: 100% !important;
+    /* background:salmon !important; */
 }
+/* @media(width <=500px){
+    .containerModalAddCatalogo{
+        height: 620px;
+        width: 100% !important;
+        background:rgb(82, 83, 196) !important;
+    }
+} */
+/*  new color update product admin*/
+.mainUpdateProductModal{
+    /* max-width: 940px; */
+    width: 100% !important;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    /* background: slateblue !important; */
+} 
 .containerModalUpdateCatalogo{
     height: 520px;
 }

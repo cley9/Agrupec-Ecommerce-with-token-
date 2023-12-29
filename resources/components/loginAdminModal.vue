@@ -72,11 +72,11 @@
             const userObj=validateUser;
             // const userObj=validateUser.user[0];
             userObj.userValidate="true";
-          localStorage.setItem("AdminObj", JSON.stringify(userObj));
+          localStorage.setItem("adminObj", JSON.stringify(userObj));
             // localStorage.setItem("userObj", JSON.stringify(validateUser.user[0]));
             // console.log("si", validateUser.user[0]);
             msjOkUser();
-                location.href = '/api/admin/Admin';
+                location.href = '/admin';
         } else {
             // console.log("usuario no valido o contraseña incorrecta");
             msjError();
