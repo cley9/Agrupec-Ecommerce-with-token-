@@ -1,5 +1,5 @@
 function getAdminObj() {
-  const get = JSON.parse(localStorage.getItem("AdminObj"));
+  const get = JSON.parse(localStorage.getItem("adminObj"));
   return get.token;
 }
 let fBtnSearchA = document.getElementById("fBtnSearch");
@@ -259,7 +259,6 @@ if (catalogo) {
     }
   });
 }
-// admin producto
 function productDelete(id, nomProducto, img) {
   // console.log(id+' ----- '+nomProducto+' ----- '+img);
   swal.fire({
@@ -288,7 +287,6 @@ function productDelete(id, nomProducto, img) {
     }
   });
 }
-// admin catalogo
 function catalogoDelete(id, nomProducto, img) {
   swal.fire({
     title: "&iquest;Estas seguro de eliminar ?",

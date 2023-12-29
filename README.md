@@ -23,28 +23,27 @@
 
 
 ## REQUSITOS PARA DEPLOYAR EL ECOMMERCE
--- PHP >8.0  <8.1
--- .env
--- composer install
--- elimina la ruta storage, para que no presente error 
-
-#
--- modificar el punto .env en los mix por vite
-# MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-# MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
--- VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
--- VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+- PHP >8.0  <8.1
+- .env
+- composer install
+- elimina la ruta storage, para que no presente error 
+- after 
+- modificar el punto .env en los mix por vite
+- MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+- MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+- VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+- VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ## uso de vite en laravel 9
 -- para compilar y levantar el js y css en producción es necesario poner un npm run build, para conpilar los archivos de css y js
 
 ## PENDIENTE
--- migrar la version de laravel 9 a 10 
--- migrar las dependencias
+- migrar la version de laravel 9 a 10 
+- migrar las dependencias
 
 ## Configuración para gmail en laravel forma 2
 
-1 paso configurar el .env los mail
-
+- 1 paso configurar el .env los mail
+```env
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
@@ -53,16 +52,14 @@ MAIL_PASSWORD=umbghixdjauavciw
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="cleyutp@gmail.com"
 MAIL_FROM_NAME="${APP_NAME}"
+```
 
-
-2 paso  crear el archivo email
+- 2 paso  crear el archivo email
+```env
 php artisan make:mail EnvioInformacionNewProducto
-
-// -------------------------------------------end
-// obs queda pendiente ver el modal en vue, no muestra en laravel 
-
-// 
-//----------------- Los pasos para crar un proyecto con laravel 9 + vue.js + vite.js son => 
+```
+###  Los pasos para crar un proyecto con laravel 9 + vue.js + vite.js son => 
+```env
 // 1 crear un proyecto laravel [laravel new nameProyect]
 // 2  instala vue dentro del proyecto el vue [npm install vue] 
 // 3 instalar el pluguin de vite [
@@ -97,6 +94,7 @@ pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 
 
 // -- ejecutar el vue.js components
 // npm run dev   // al ejecutar se ejecutr el puerto del vite como front-end, donde compilara el template de vue a codigo js  
+```
 
 
 

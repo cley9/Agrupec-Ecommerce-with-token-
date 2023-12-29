@@ -1,7 +1,7 @@
 // import {getStorage} from './methodsReview.js';
 // console.log("win--",getStorage());
 function getStorage() {
-    const get = JSON.parse(localStorage.getItem("AdminObj"));
+    const get = JSON.parse(localStorage.getItem("adminObj"));
     return get.token;
 }
 const searchProductoPA = document.getElementById('searchProducto');
@@ -72,7 +72,7 @@ function listPedidoUser(iduser) {
                 <div class="row col d-flex align-items-center">
                     <div class="col-4 col-md-2">
                         <a href="/View-page/${item.id}">
-                            <img src="storage/img/Productos/${item.imagen}" class="card-img-top"
+                            <img src="/storage/img/Productos/${item.imagen}" class="card-img-top"
                                 width="90px" height="120px" />
                         </a>
                     </div>
