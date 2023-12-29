@@ -48,7 +48,7 @@ MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=clyutp@gmail.com
-MAIL_PASSWORD=umbghixdjauavciw
+MAIL_PASSWORD=*****
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="cleyutp@gmail.com"
 MAIL_FROM_NAME="${APP_NAME}"
@@ -95,10 +95,8 @@ pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 
 // -- ejecutar el vue.js components
 // npm run dev   // al ejecutar se ejecutr el puerto del vite como front-end, donde compilara el template de vue a codigo js  
 ```
-
-
-
-// ------------ instalación de talwind css en laravel 10 + vite + vue.js ---------------
+## instalación de talwind css en laravel 10 + vite + vue.js 
+```env
 // [nota: en laravel 10 ya viene preinstalado el tailwind, pero en versiones anteriores no]
 // 1 pasa
 // npm install -D tailwindcss postcss autoprefixer
@@ -135,15 +133,14 @@ pluguin se instalar por poryecto [ nota: vite tienes que instalar en laravel 10 
         //     WindiCSS(),
         //   ],
         // })
-
-
-<!-- nota de vue.js 3    -->
+```
+### nota de vue.js 3 
+```env
 <!-- interpolacion  -->  
 :src="`/storage/img/Productos/${item.imagen}`"
 :src="'/storage/img/SlayderPromocion/2.png'"
 bastick 
 @ decoradors 
-
 La directiva : se utiliza para enlazar dinámicamente los atributos de un elemento HTML a una propiedad de datos en el componente Vue. Algunos de los atributos HTML más comunes que se pueden enlazar con la directiva : son:
 
 href: Enlaza la URL de un enlace.
@@ -165,13 +162,12 @@ Aquí hay algunos ejemplos de cómo usar la directiva : para enlazar estos atrib
 
 backticks  == teclado in spanish, pulsa la tecla=  alt + }} 
 backslash   \
-
+```
 <!-- apunte de js  -->
 localstorage
  const meta= {"name": "cley","edad":23}
             // localStorage.setItem('user', JSON.stringify(this.user));
             localStorage.setItem('user', JSON.stringify(meta));
-
 
             <!-- para octener el json  -->
               // Si los datos del usuario ya están en localStorage, úsalos.
@@ -227,4 +223,4 @@ delete file
 - the dataPicture.js the admin and change to todo.js
 - agru.js minificado
 
-# v-if= computed that momori cache, change
+#### v-if= computed that momori cache, change
