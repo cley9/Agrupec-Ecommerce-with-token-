@@ -15,10 +15,6 @@ return new class extends Migration
     {
         Schema::create('tbl_producto', function (Blueprint $table) {
             $table->id('id');
-            // $table->id('idProducto');
-
-            // $table->timestamps();
-            
             // $table->morphs('tokenable');
             $table->string('nombre');
             // $table->double('precio',50,2);

@@ -29,26 +29,85 @@
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     {{-- ads end --}}
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K2MJEP5HDR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-K2MJEP5HDR');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2MJEP5HDR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-K2MJEP5HDR');
+    </script>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js', 'public/css/mystyle.css']) --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ config('constants.nameProyect') }}</title>
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Agrupec",
+        "url": "https://agrupec.com/",
+        "logo": "https://agrupec.com/storage/img/ProductoPromocion/5.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+51927974275",  // Ajusta el número de teléfono aquí
+            "contactType": "customer support"
+        },
+        "sameAs": [
+            "https://www.facebook.com/agrupec",
+            "https://twitter.com/agrupec",
+            "https://www.instagram.com/agrupec/"
+        ],
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://agrupec.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "makesOffer": {
+            "@type": "OfferCatalog",
+            "name": "Productos de Agrupec",
+            "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                "@type": "Product",
+                "name": "Nombre del Producto 1",
+                "image": "URL de la imagen del Producto 1",
+                "url": "URL del Producto 1",
+                "description": "Descripción del Producto 1",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Marca del Producto 1"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "Precio del Producto 1",
+                    "priceCurrency": "USD",
+                    "availability": "https://schema.org/InStock",
+                    "seller": {
+                    "@type": "Organization",
+                    "name": "Agrupec"
+                    }
+                }
+                }
+            },
+            // Repite el bloque anterior para cada producto
+            ]
+        }
+        }
+    </script>
 </head>
+
 <body>
     <div id="app">
-    <btn-high></btn-high>
-    <div class="boxContainerWhatapp btn-whatsapp- boxEfectBtnHome iconWhatpDod">
-        {{-- <a href="https://api.whatsapp.com/send?phone={{ config('constants.numContactWhats') }}&text=Buenas tardes, quisiera informe sobre los producto" target="_blank">Enviar mensaje de WhatsApp</a> --}}
-        <a href="https://api.whatsapp.com/send?phone={{ config('constants.numContactWhats') }}&text=Buenas tardes, quisiera informe sobre los producto"
-            class="rounded-circle btn  iconWhatp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-    </div>
-    {{-- @include('User.modalRegistro')
+        <btn-high></btn-high>
+        <div class="boxContainerWhatapp btn-whatsapp- boxEfectBtnHome iconWhatpDod">
+            {{-- <a href="https://api.whatsapp.com/send?phone={{ config('constants.numContactWhats') }}&text=Buenas tardes, quisiera informe sobre los producto" target="_blank">Enviar mensaje de WhatsApp</a> --}}
+            <a href="https://api.whatsapp.com/send?phone={{ config('constants.numContactWhats') }}&text=Buenas tardes, quisiera informe sobre los producto"
+                class="rounded-circle btn  iconWhatp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+        </div>
+        {{-- @include('User.modalRegistro')
 @include('User.moldalRecuperarCuenta') --}}
         <login-user></login-user>
         <login-admin></login-admin>
@@ -120,7 +179,7 @@
         @yield('header')
     </div>
     <script>
-        window.Laravel = @json(["data"=>session("data")]);
+        window.Laravel = @json(['data' => session('data')]);
     </script>
     {{-- <div id="modalAddProductoCart"></div> --}}
     <footer class="pt-4   footer--body">
