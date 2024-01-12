@@ -51,7 +51,7 @@
         "logo": "https://agrupec.com/storage/img/ProductoPromocion/5.png",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+51927974275",  // Ajusta el número de teléfono aquí
+            "telephone": "+51927974275",
             "contactType": "customer support"
         },
         "sameAs": [
@@ -92,7 +92,6 @@
                 }
                 }
             },
-            // Repite el bloque anterior para cada producto
             ]
         }
         }
