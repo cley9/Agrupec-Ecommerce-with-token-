@@ -83,13 +83,13 @@ export function upHighBtn() {
   });
   // });
 }
-export function payment() {
+export function payment(precioTotal) {
   // console.log("payment vue3");
   Culqi.publicKey = 'pk_test_fa086d35aa8c50d6';
   Culqi.settings({
     title: 'Agrupec',
     currency: 'PEN', 
-    amount: 1000,
+    amount: `${precioTotal}00`,
     order: 'ord_live_0CjjdWhFpEAZlxlz',
   });
   Culqi.options({
@@ -123,7 +123,7 @@ export function payment() {
     e.preventDefault();
   })
   function culqi() {
-    console.log("testing del function culqui ");
+    // console.log("testing del function culqui ");
     if (Culqi.token) { 
       const token = Culqi.token.id;
       const email = Culqi.token.email;

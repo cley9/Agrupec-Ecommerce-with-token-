@@ -138,7 +138,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <button type="button"
                                         class="col-9 col-sm-9 col-md-12 col-lg-9 mb-3 btn btnEfectClick btnPaymetView "
-                                       v-if="objUser" data-bs-toggle="modal" data-bs-target="#Mpayment">
+                                       v-if="objUser" data-bs-toggle="modal" data-bs-target="#Mpayment"> 
                                        Comprar ahora</button>
                                         <a id="addProductoId"
                                             class="col-9 col-sm-9 col-md-12 col-lg-9 btnEfectClick btnAddProView" v-if="objUser" 

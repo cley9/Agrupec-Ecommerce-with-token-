@@ -160,7 +160,6 @@ export default {
     },
     mounted() {
         this.listProductCart();
-        payment();
     },
     methods: {
         async listProductCart() {
@@ -195,6 +194,8 @@ export default {
                 // this.total = montoFormateado;
                 // // console.log(montoFormateado); // Salida: 46,545.00
             }
+        // console.log("precio total ", this.precioTotal);
+            payment(this.precioTotal);
         },
         deleteItemProduct(idProduct) {
             deleteItemProduct(idProduct);
