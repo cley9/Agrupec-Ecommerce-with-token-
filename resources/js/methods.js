@@ -85,7 +85,6 @@ export function upHighBtn() {
 }
 export function payment(precioTotal) {
   // console.log("payment vue3");
-  console.log("pre",precioTotal, "total ",precioTotal+0.01);
   let monto=precioTotal*100;
   Culqi.publicKey = 'pk_test_fa086d35aa8c50d6';
   Culqi.settings({
