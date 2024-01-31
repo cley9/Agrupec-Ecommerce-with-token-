@@ -39,6 +39,9 @@
         gtag('js', new Date());
         gtag('config', 'G-K2MJEP5HDR');
     </script>
+    {{-- pasarela de pago culqui --}}
+    <script src="https://checkout.culqi.com/js/v4"></script>
+    {{--  --}}
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js', 'public/css/mystyle.css']) --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ config('constants.nameProyect') }}</title>
@@ -277,6 +280,7 @@
         </div>
     </footer>
     @include('User.previewProductoCartModal')
+    @include('User.prePaymentModal')
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -285,7 +289,85 @@
 
     {{-- <script src="{{ asset('js/agru.js') }}"></script> --}}
 
+    <script>
+        // Culqi.publicKey = 'pk_test_fa086d35aa8c50d6';
+        // // personalizar del codigo el monto del pago 
+        // Culqi.settings({
+        //     title: 'Agrupec',
+        //     currency: 'PEN', // Este parámetro es requerido para realizar pagos yape
+        //     amount: 1000, // Este parámetro es requerido para realizar pagos yape
+        //     order: 'ord_live_0CjjdWhFpEAZlxlz', // Este parámetro es requerido para realizar pagos con pagoEfectivo, billeteras y Cuotéalo
+        //     // xculqirsaid: 'Inserta aquí el id de tu llave pública RSA',
+        //     // rsapublickey: 'Inserta aquí tu llave pública RSA',
+        // });
+        // // personalizar 
+        // Culqi.options({
+        //     lang: "auto",
+        //     installments: false, // Habilitar o deshabilitar el campo de cuotas
+        //     paymentMethods: {
+        //         tarjeta: true,
+        //         yape: true,
+        //         bancaMovil: true,
+        //         agente: true,
+        //         billetera: true,
+        //         cuotealo: true,
+        //     },
+        // });
+        // //   personalizar el ui
+        // Culqi.options({
+        //     style: {
+        //         logo: 'https://agrupec.com/storage/img/icons/logo_ferreteria.svg',
+        //         bannerColor: '', // hexadecimal
+        //         buttonBackground: '', // hexadecimal
+        //         menuColor: '', // hexadecimal
+        //         linksColor: '', // hexadecimal
+        //         buttonText: '', // texto que tomará el botón
+        //         buttonTextColor: '', // hexadecimal
+        //         priceColor: '' // hexadecimal
+        //     }
+        // });
+        // //   pagar boton
+        // const btn_pagar = document.getElementById('btnPaymentAgrupecVenta');
 
+        // btn_pagar.addEventListener('click', function(e) {
+        //     // Abre el formulario con la configuración en Culqi.settings y CulqiOptions
+        //     Culqi.open();
+        //     e.preventDefault();
+        // })
+        // // token 
+        // function culqi() {
+        //     console.log("testing del function culqui ");
+        //     if (Culqi.token) { // ¡Objeto Token creado exitosamente!
+        //         const token = Culqi.token.id;
+        //         const email = Culqi.token.email;
+        //         console.log('Se ha creado un Token: ', token, "email", email);
+        //         //En esta linea de codigo debemos enviar el "Culqi.token.id"
+        //         //hacia tu servidor con Ajax [procesamieto de pago ]
+        //         $.ajax({
+        //             url: "/payment",
+        //             type: "POST",
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'X-CSRF-TOKEN': 'EeTlI5Wpw2L2UXemom6cWEBIanlmS3fyh6dXco5X',
+        //             },
+        //             data: JSON.stringify({
+        //                 token: token,
+        //                 email: email
+        //             })
+        //         }).done(function(resp) {
+        //             alert(resp);
+        //         });
+
+        //     } else if (Culqi.order) { // ¡Objeto Order creado exitosamente!
+        //         const order = Culqi.order;
+        //         console.log('Se ha creado el objeto Order: ', order);
+
+        //     } else {
+        //         // Mostramos JSON de objeto error en consola
+        //         console.log('Error : ', Culqi.error);
+        //     }
+        // };
+    </script>
 </body>
 
 </html>

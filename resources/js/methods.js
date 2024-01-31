@@ -83,83 +83,152 @@ export function upHighBtn() {
   });
   // });
 }
-// --------------------------- btn-msj
-const correo=document.getElementById('btnEnvioRecu');
-if (correo) {
-btnEnvioRecu.addEventListener('click', () => {
-  // console.log(formulario.formEmail.email);
-  const gmailValidate = emailRecupe.value;
-  if (gmailValidate === "") {
-    msjCamposVacio();
-  } else {
-    fetch("/envioGmail?email=" + emailRecupe.value + "").then(data => data.text()
-    ).then((data) => {
-      // console.log("se envio");
-      msjRegistroUsuarioCliente();
-      emailData.innerHTML = `${gmailValidate}`;
-      document.querySelector(`#formEmail p`).classList.add("form__input__email__correcto");
-      document.querySelector(`#formEmail p`).classList.remove("form__input__vacio");
-      document.querySelector(`#formEmail input`).classList.add("form__input__vacio");
-      document.querySelector(`#formEmail input`).classList.remove("form-control");
-      document.querySelector(`#formEmail input`).classList.remove("input--frm--userLog");
-      document.querySelector(`#formTitleRecupera h2`).classList.add("form__text__vacio");
-      document.querySelector(`#formTitleVeri h2`).classList.remove("form__text__vacio");
-      document.querySelector(`#formBtnEnvio a`).classList.add("form__btn__vacio");
-      document.querySelector(`#formBtnClose a`).classList.remove("form__btn__vacio");
-      document.querySelector(`#formOpcion h6`).classList.add("form__text__vacio");
-      document.querySelector(`#formDiv`).classList.add("form__text__vacio");
+export function payment() {
+  // console.log("payment vue3");
+  Culqi.publicKey = 'pk_test_fa086d35aa8c50d6';
+  Culqi.settings({
+    title: 'Agrupec',
+    currency: 'PEN', 
+    amount: 1000,
+    order: 'ord_live_0CjjdWhFpEAZlxlz',
+  });
+  Culqi.options({
+    lang: "auto",
+    installments: false,
+    paymentMethods: {
+      tarjeta: true,
+      yape: true,
+      bancaMovil: true,
+      agente: true,
+      billetera: true,
+      cuotealo: true,
+    },
+  });
+  Culqi.options({
+    style: {
+      logo: 'https://agrupec.com/storage/img/icons/logo_ferreteria.svg',
+      bannerColor: '', 
+      buttonBackground: '', 
+      menuColor: '', 
+      linksColor: '', 
+      buttonText: '',
+      buttonTextColor: '', 
+      priceColor: '' 
+    }
+  });
 
-    });
-  }
-});
+  const btn_pagar = document.getElementById('paymentAgrupec');
+  btn_pagar.addEventListener('click', function (e) {
+    Culqi.open();
+    e.preventDefault();
+  })
+  function culqi() {
+    console.log("testing del function culqui ");
+    if (Culqi.token) { 
+      const token = Culqi.token.id;
+      const email = Culqi.token.email;
+      console.log('Se ha creado un Token: ', token, "email", email);
+      $.ajax({
+        url: "/payment",
+        type: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': 'EeTlI5Wpw2L2UXemom6cWEBIanlmS3fyh6dXco5X',
+        },
+        data: JSON.stringify({
+          token: token,
+          email: email
+        })
+      }).done(function (resp) {
+        alert("data",resp);
+      });
+
+    } else if (Culqi.order) { 
+      const order = Culqi.order;
+      console.log('Se ha creado el objeto Order: ', order);
+    } else {
+      console.log('Error : ', Culqi.error);
+    }
+  };
+}
+
+// --------------------------- btn-msj
+const correo = document.getElementById('btnEnvioRecu');
+if (correo) {
+  btnEnvioRecu.addEventListener('click', () => {
+    // console.log(formulario.formEmail.email);
+    const gmailValidate = emailRecupe.value;
+    if (gmailValidate === "") {
+      msjCamposVacio();
+    } else {
+      fetch("/envioGmail?email=" + emailRecupe.value + "").then(data => data.text()
+      ).then((data) => {
+        // console.log("se envio");
+        msjRegistroUsuarioCliente();
+        emailData.innerHTML = `${gmailValidate}`;
+        document.querySelector(`#formEmail p`).classList.add("form__input__email__correcto");
+        document.querySelector(`#formEmail p`).classList.remove("form__input__vacio");
+        document.querySelector(`#formEmail input`).classList.add("form__input__vacio");
+        document.querySelector(`#formEmail input`).classList.remove("form-control");
+        document.querySelector(`#formEmail input`).classList.remove("input--frm--userLog");
+        document.querySelector(`#formTitleRecupera h2`).classList.add("form__text__vacio");
+        document.querySelector(`#formTitleVeri h2`).classList.remove("form__text__vacio");
+        document.querySelector(`#formBtnEnvio a`).classList.add("form__btn__vacio");
+        document.querySelector(`#formBtnClose a`).classList.remove("form__btn__vacio");
+        document.querySelector(`#formOpcion h6`).classList.add("form__text__vacio");
+        document.querySelector(`#formDiv`).classList.add("form__text__vacio");
+
+      });
+    }
+  });
 }
 // user Verification correo
-const validadorCorreo=document.getElementById('validarEmail');
-if(validadorCorreo){
-validarEmail.addEventListener('click', () => {
-  const getInputName = document.querySelector('.inputName').value;
-  const getInputEmail = document.querySelector('.inputEmail').value;
-  const getInputPass1 = document.querySelector('.inputPass1').value;
-  const getInputPass2 = document.querySelector('.inputPass2').value;
-  if (getInputEmail === '') {
-    // console.log('esta vacio');
-    msjCamposVacio();
-  } else {
-    // console.log('esta lleno');
-    fetch('/validarUser/' + getInputEmail + '', {
-      method: 'GET'
-      // body:DataTransfer(id,cantidad)
-    }).then(data => data.text()).then(function (data) {
-      // console.log(data);
-      if (data) {
-        // console.log('si exite el user');
-        document.querySelector(`.groud--email input`).classList.add("input--frm--errorValidacion");
-        document.querySelector(`.groud--email span`).classList.add("text--frm--msgError");
-        document.querySelector(`.groud--email span`).classList.remove("text--frm--msgVacio");
-        document.querySelector(`.groud--email input`).classList.remove("input--frm--bienValidacion");
-        document.querySelector(`.groud--email i`).classList.remove("icon--frm--bienValidacion");
-        document.querySelector(`.groud--email i`).classList.add("icon--frm--vacio");
-      } else {
-        // console.log('no  exite el user');
-        if (getInputName === '' || getInputPass1 === '' || getInputPass2 === '' || getInputPass1 !== getInputPass2) {
-          // console.log('esta vacio los demas campos');
-          msjCamposVacio();
+const validadorCorreo = document.getElementById('validarEmail');
+if (validadorCorreo) {
+  validarEmail.addEventListener('click', () => {
+    const getInputName = document.querySelector('.inputName').value;
+    const getInputEmail = document.querySelector('.inputEmail').value;
+    const getInputPass1 = document.querySelector('.inputPass1').value;
+    const getInputPass2 = document.querySelector('.inputPass2').value;
+    if (getInputEmail === '') {
+      // console.log('esta vacio');
+      msjCamposVacio();
+    } else {
+      // console.log('esta lleno');
+      fetch('/validarUser/' + getInputEmail + '', {
+        method: 'GET'
+        // body:DataTransfer(id,cantidad)
+      }).then(data => data.text()).then(function (data) {
+        // console.log(data);
+        if (data) {
+          // console.log('si exite el user');
+          document.querySelector(`.groud--email input`).classList.add("input--frm--errorValidacion");
+          document.querySelector(`.groud--email span`).classList.add("text--frm--msgError");
+          document.querySelector(`.groud--email span`).classList.remove("text--frm--msgVacio");
+          document.querySelector(`.groud--email input`).classList.remove("input--frm--bienValidacion");
+          document.querySelector(`.groud--email i`).classList.remove("icon--frm--bienValidacion");
+          document.querySelector(`.groud--email i`).classList.add("icon--frm--vacio");
         } else {
-          location.href = '/createUser?nombre=' + getInputName + '&&email=' + getInputEmail + '&&pass1=' + getInputPass1 + '&&pass2=' + getInputPass2 + '';
-          // console.log('envia');
-          msjRegistroUsuarioCliente();
+          // console.log('no  exite el user');
+          if (getInputName === '' || getInputPass1 === '' || getInputPass2 === '' || getInputPass1 !== getInputPass2) {
+            // console.log('esta vacio los demas campos');
+            msjCamposVacio();
+          } else {
+            location.href = '/createUser?nombre=' + getInputName + '&&email=' + getInputEmail + '&&pass1=' + getInputPass1 + '&&pass2=' + getInputPass2 + '';
+            // console.log('envia');
+            msjRegistroUsuarioCliente();
+          }
+          document.querySelector(`.groud--email input`).classList.remove("input--frm--errorValidacion");
+          document.querySelector(`.groud--email span`).classList.remove("text--frm--msgError");
+          document.querySelector(`.groud--email span`).classList.add("text--frm--msgVacio");
+          document.querySelector(`.groud--email input`).classList.add("input--frm--bienValidacion");
+          document.querySelector(`.groud--email i`).classList.remove("icon--frm--vacio");
+          document.querySelector(`.groud--email i`).classList.add("icon--frm--bienValidacion");
         }
-        document.querySelector(`.groud--email input`).classList.remove("input--frm--errorValidacion");
-        document.querySelector(`.groud--email span`).classList.remove("text--frm--msgError");
-        document.querySelector(`.groud--email span`).classList.add("text--frm--msgVacio");
-        document.querySelector(`.groud--email input`).classList.add("input--frm--bienValidacion");
-        document.querySelector(`.groud--email i`).classList.remove("icon--frm--vacio");
-        document.querySelector(`.groud--email i`).classList.add("icon--frm--bienValidacion");
       }
+      );
     }
-    );
-  }
-});
+  });
 }
 
 const precioEnvioDestinoN = document.getElementById('precioDestino');

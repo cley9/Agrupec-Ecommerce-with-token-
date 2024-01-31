@@ -73,7 +73,6 @@ export default {
         return {
             userObj: false,
             userName: '',
-            // userToken:'',
             countProductPreview: 0,
             previewData: '',
             avatar: '',
@@ -83,18 +82,16 @@ export default {
     },
     mounted() {
         this.userObj = JSON.parse(localStorage.getItem('userObj'));
-        if (this.userObj) {
-            this.avatar = this.userObj.user[0].avatar;
-        }
         this.adminObj = JSON.parse(localStorage.getItem('adminObj'));
-        if (this.userObj || this.adminObj) {
-            // console.log("new ",this.userObj, this.adminObj);
-            this.validationUser = true;
+        if (this.adminObj) {
             this.avatar = this.adminObj.user[0].avatar;
+            this.validationUser = true;
+        }else if(this.userObj){
+            this.avatar = this.userObj.user[0].avatar;
+            this.userName = this.userObj.user[0].email
+            this.validationUser = true;
+            this.countPreviewProduct() 
         }
-        this.userObj ? this.userName = this.userObj.user[0].email : false;
-        // this.userObj ? this.userToken = this.userObj : false;
-        this.userObj ? this.countPreviewProduct() : false;
     },
     methods: {
         logout() {

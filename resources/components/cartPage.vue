@@ -105,7 +105,7 @@
                                     class="col-md-12 col-12 mb-md-3 btn btn--paymet--ver mb-3 btnEfectClick"><i
                                         class="bi bi-arrow-90deg-left me-2"></i>Ver más productos</a>
                                 <a href="" class="col-md-12 col-12 btn btn--paymet--ir mb-3 btnEfectClick"
-                                    data-bs-toggle="modal" data-bs-target="#Mpayment"><i
+                                    data-bs-toggle="modal" data-bs-target="#prePayment"><i
                                         class="bi bi-paypal me-2"></i>Pagar</a>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
 
 <script>
 import { deleteItemProduct, deleteAllProduct } from '../js/addProductCart.js';
-import { validateUser } from '../js/methods.js';
+import { validateUser, payment } from '../js/methods.js';
 export default {
     props: {
         // listProduct: {
@@ -160,6 +160,7 @@ export default {
     },
     mounted() {
         this.listProductCart();
+        payment();
     },
     methods: {
         async listProductCart() {

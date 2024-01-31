@@ -139,7 +139,7 @@
                                     <button type="button"
                                         class="col-9 col-sm-9 col-md-12 col-lg-9 mb-3 btn btnEfectClick btnPaymetView "
                                        v-if="objUser" data-bs-toggle="modal" data-bs-target="#Mpayment">
-                                        Comprar ahora</button>
+                                       Comprar ahora</button>
                                         <a id="addProductoId"
                                             class="col-9 col-sm-9 col-md-12 col-lg-9 btnEfectClick btnAddProView" v-if="objUser" 
                                             @click="addProductCart(producto[0].id, 1, producto[0].nombre, producto[0].newPrecio, producto[0].imagen)">Agregar
@@ -262,7 +262,7 @@
 
 <script>
 import {msjInicieSesion} from '../js/msj.js';
-import {validateUser} from '../js/methods.js';
+import {validateUser, payment} from '../js/methods.js';
 import addProductCartModal from './addProductCartModal.vue';
 import {addProductCart} from '../js/addProductCart.js';
 export default {
@@ -283,6 +283,7 @@ export default {
     },
     mounted(){
      this.objUser= validateUser(); // se valida el dato que retorna de la funcion que a sido exportado por el moduclo js {}
+     payment();
     },
     methods:{
         msjInicieSesion(){

@@ -68,3 +68,4 @@ Route::middleware('VerificationUser')->group(function () {
   Route::get('/User-pdfDownload/{idUser}', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
 });
 Route::get('/admin', [ViewController::class, 'admin'])->name('admin.master');
+Route::get('/payment', [ViewController::class, 'payment'])->name('payment.user.master');
