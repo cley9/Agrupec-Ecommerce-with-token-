@@ -25,6 +25,7 @@ import btnHigh from '../components/btnHigh.vue';
 import perfilPage from '../components/perfilPage.vue';
 import registroUser from '../components/registroUserModal.vue';
 import recuperacionCuenta from '../components/recuperacionCuentaModal.vue';
+import search from '../components/search.vue';
 // const app=createApp(App);
 const app=createApp();
 app.component('btnHigh',btnHigh);
@@ -50,4 +51,5 @@ app.component('cartPage', cartPage);
 app.component('perfilPage', perfilPage);
 app.component('registroUser',registroUser);
 app.component('recuperacionCuenta',recuperacionCuenta);
+app.component('search',search);
 app.mount('#app'); // elemento especifico 

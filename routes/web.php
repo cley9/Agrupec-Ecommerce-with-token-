@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\mailController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\user\PdfTickedController;
 use App\Mail\ContactoEmail;
 use App\Mail\ContactoMail;
@@ -68,4 +69,4 @@ Route::middleware('VerificationUser')->group(function () {
   Route::get('/User-pdfDownload/{idUser}', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
 });
 Route::get('/admin', [ViewController::class, 'admin'])->name('admin.master');
-Route::get('/payment', [ViewController::class, 'payment'])->name('payment.user.master');
+Route::get('/payment', [PaymentController::class, 'payCulqui'])->name('payment.user.master');
