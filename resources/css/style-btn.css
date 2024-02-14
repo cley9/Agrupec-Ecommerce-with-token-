@@ -327,3 +327,9 @@ box-shadow: 0 0 2px #6ABEA5;
 }
 
 /* efecto de raya in link modal login user */
+
+/* new  modal preview icon card list product */
+.btnDelete {
+  background: none;
+  border: none;
+}

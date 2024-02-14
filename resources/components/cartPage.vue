@@ -64,14 +64,17 @@
                                                         <h6 class="pt-2">Subtotal</h6>
                                                     </div>
                                                     <div class="d-flex justify-content-center aling-items-center ">
-                                                        <h6>S/ {{ itemProduct.newPrecio * itemProduct.pivot.cantidad }}</h6>
+                                                        <!-- <h6>S/ {{ itemProduct.newPrecio * itemProduct.pivot.cantidad }}</h6> -->
+                                                        <h6>S/ {{ itemProduct.itemSubtotal }}</h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-end">
-                                            <a href="" class="text-danger icons--delete--cart"
-                                                @click="deleteItemProduct(itemProduct.id)"> <i class="bi bi-trash"></i></a>
+
+                                            <button class="text-danger icons--delete--cart btnDelete"
+                                                @click="deleteItemProduct(itemProduct.id)"> <i
+                                                    class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +100,7 @@
                     <div class="col">
                         <div class="mb-3 d-flex justify-content-between aling-items-center ">
                             <span class="text-dark h5 fw-normal">Total</span>
-                            <small class="text-dark h5 fw-normal">S/ {{ precioTotal }}</small>
+                            <small class="text-dark h5 fw-normal">S/ {{ precioSubAll }}</small>
                         </div>
                         <div class="container">
                             <div class="row d-flex justify-content-center">
@@ -122,9 +125,9 @@
                                 <a :href="`/User-pdfDownload/${idUser}`"
                                     class="col-md-12 col-12 btn btnPaymetGenerar mb-3 btnEfectClick" target="_blank"><i
                                         class="bi bi-ticket-detailed-fill me-2"></i>Generar tikect de compra </a>
-                                <a href="" @click="deleteAllProduct()"
+                                <button @click="deleteAllProduct()"
                                     class="col-md-12 col-12 btn btn--paymet--vaciar  mb-3 btnEfectClick"><i
-                                        class="bi bi-trash-fill me-2"></i> vaciar carrito </a>
+                                        class="bi bi-trash-fill me-2"></i> vaciar carrito </button>
                             </div>
                         </div>
                     </div>
@@ -152,10 +155,12 @@ export default {
             existProduct: '',
             val: true,
             cantidad: 0,
-            precioTotal: 0,
+            precioTotal: 0.0,
             total: 0,
             idUser: 0,
             listCartData: [],
+            listProduct: {},
+            precioSubAll: 0.0,
         }
     },
     mounted() {
@@ -164,7 +169,6 @@ export default {
     methods: {
         async listProductCart() {
             const listData = JSON.parse(localStorage.getItem('userObj'));
-            // console.log("--",this.idUser,"--", listData.user[0], 'token ',listData.token);
             const dataCart = await fetch(`/api/user/${listData.user[0].id}/getCart/`, {
                 method: "Get",
                 headers: {
@@ -179,35 +183,30 @@ export default {
                 this.listProduct.forEach(itemProduct => {
                     this.cantidad += itemProduct.pivot.cantidad;
                     this.precioTotal += itemProduct.newPrecio * itemProduct.pivot.cantidad;
+                    itemProduct.itemSubtotal = this.precioTotal.toFixed(2);
                 });
-                // console.log('data json == ', dataCart);
-                // console.log(cartJsonData.existProduct, "--", cartJsonData.listProduct);
-                // console.log("iss",cartJsonData.listProduct.productos);
-                //  this.listProduct.length > 0 ? this.existProduct = true : this.existProduct = false;
-                // 1023, 43683
-                // this.userObj = validateUser();
-                // // var numero = 46545;
-                // // Formatear como monto en soles
-                // var montoFormateado = this.precioTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                // // montoFormateado = montoFormateado.slice(0, -3) + '.00'; // Agregar '.00'
-                // montoFormateado = montoFormateado.slice(0, -3) + '.00'; // Eliminar los ceros decimales si no hay centavos
-                // this.total = montoFormateado;
-                // // console.log(montoFormateado); // Salida: 46,545.00
+                this.precioSubAll = this.precioTotal.toFixed(2);
             }
-        // console.log("precio total ", this.precioTotal);
             payment(this.precioTotal);
         },
         deleteItemProduct(idProduct) {
             deleteItemProduct(idProduct);
+            this.listProductCart();
         },
         deleteAllProduct() {
             deleteAllProduct();
+            this.listProductCart();
         },
     },
 }
 </script>
 
 <style scoped>
+.btnDelete {
+    background: none;
+    border: none;
+}
+
 .imgItemPage {
     /* width:90px;
     height: 120px; */

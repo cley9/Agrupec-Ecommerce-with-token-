@@ -30,3 +30,12 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```php
 php artisan make:mail EnvioInformacionNewProducto
 ```
+# Laravel 10 
+```php
+php artisan serve 
+```
+# Vue 3
+```npm
+npm run dev
+npm run build
+```

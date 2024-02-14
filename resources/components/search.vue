@@ -22,7 +22,8 @@
                     </span>
                 </div>
                 <hr class="hrProductSearch ">
-                <a @click="addProduct(itemSearch.id,1,itemSearch.nombre,itemSearch.newPrecio,itemSearch.imagen)" class="btn btn--view-add btn-sm btnAddProduct">Agregar </a>
+                <a :href="`/View-page/${itemSearch.id}`" v-if="!user" class="btn btn--view-add- btnViewPageClick btn-sm btnAddProduct">Ver producto</a>
+                <button v-if="user" @click="addProduct(itemSearch.id,1,itemSearch.nombre,itemSearch.newPrecio,itemSearch.imagen)" class="btn btn--view-add btn-sm btnAddProduct">Agregar </button>
             </div>
         </div>
     </div>
@@ -30,26 +31,28 @@
 </template>
 
 <script>
+import { validateUser } from '../js/methods.js';
 import addProductCartModal from './addProductCartModal.vue';
 import {addProductCart,viewModalProductAddCart} from '../js/addProductCart.js';
 export default {
     props: {
-        // search-main
         searchMain: {
             type: Object,
             required: true,
-
         }
     },
     data() {
-        return {}
-
+        return {
+            user:{},
+        }
     },
     components:{
         addProductCartModal,
     },
     mounted() {
         // console.log("h1111", this.searchMain);
+        this.user=validateUser();
+        // console.log("data", validateUser() );
     },
     methods: {
         addProduct(id,cantidad,nombre,newprecio,img){
