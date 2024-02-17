@@ -4,7 +4,8 @@ use App\Http\Controllers\user\PdfTickedController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('VerificationUser')->group(function () {
+// Route::middleware('VerificationUser')->group(function () {
+  Route::middleware(['jwt.apiRest.agrupec', 'jwt.user.user'])->group(function () {
     Route::get('/User-pdfDownload', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
     Route::get('/{id}/getCart/', [UserController::class, 'viewListCartUser'])->name('viewCartUser.user.main');
     Route::get('/{idUser}/delete/{idProducto}', [UserController::class, 'deleteCart'])->name('deleteCart.user.main');
@@ -14,4 +15,9 @@ Route::middleware('VerificationUser')->group(function () {
     Route::get('/addCart_', function () {
       return  view('User.addCart');
     });
+    Route::get('/mark', function () {
+        return "hi";
+    });
+      
   });
+  

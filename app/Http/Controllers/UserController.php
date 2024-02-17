@@ -20,6 +20,8 @@ class UserController extends Controller
     function userPerfil()
     {
         return view('User.perfil');
+
+        // return "ho";
     }
     function cartUser()
     {

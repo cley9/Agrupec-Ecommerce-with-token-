@@ -73,5 +73,11 @@ class Kernel extends HttpKernel
          // ---- my middleweer
          'VerificationUser' => \App\Http\Middleware\VerificationUser::class,
          'VerificationAdmin'=> \App\Http\Middleware\VerificationAdmin::class,
+         'jwt.apiRest.agrupec'=> \App\Http\Middleware\JwtApiRestAgrupec::class, 
+         'jwt.user.admin'=> \App\Http\Middleware\JwtAdmin::class, 
+         'jwt.user.user'=> \App\Http\Middleware\JwtUser::class, 
+         'jwt.addToken.user'=> \App\Http\Middleware\JwtAddTokenUser::class, 
+         'session.addInterfaz.user'=> \App\Http\Middleware\SessionAddInterfazUser::class, 
+         'session.addInterfaz.admin'=> \App\Http\Middleware\SessionAddInterfazAdmin::class, 
     ];
 }

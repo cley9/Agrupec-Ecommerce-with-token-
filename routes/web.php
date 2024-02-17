@@ -3,6 +3,7 @@
 // use App\Http\Controllers\user\PdfProductoController;
 
 use App\Http\Controllers\admin\ApiController;
+use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\ApiController as ControllersApiController;
 use Illuminate\Support\Facades\Route;
 // --------------
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\mailController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\user\LoginController as UserLoginController;
 use App\Http\Controllers\user\PdfTickedController;
 use App\Mail\ContactoEmail;
 use App\Mail\ContactoMail;
@@ -23,6 +25,8 @@ use Illuminate\Support\Facades\Mail;
 // use App\Http\Controllers\UserController;
 
 use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,25 +52,40 @@ Route::get('/Ayuda', [ViewController::class, 'viewHelp'])->name('help.home.index
 Route::get('/view/productoView', [ControllersApiController::class, 'productoView'])->name('productoView.api.producto');
 Route::get('/envioGmail', [mailController::class, 'recuperarPassword'])->name('restablecer.user.password');
 Route::get('/restablecerGmailView', [mailController::class, 'restablecerPasswordView'])->name('restablecerPasswordView.user.Gmail');
-Route::get('login/google', [LoginController::class, 'loginGoogle'])->name('login.user.index');
-Route::get('login/google/callback', [LoginController::class, 'callback']);
-Route::post('/createUserAdmin', [LoginController::class, 'createUserAdmin'])->name('create.admin.main');
-Route::post('/loginAdmin', [LoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
+Route::get('login/google', [UserLoginController::class, 'loginGoogle'])->name('login.user.index');
+Route::get('login/google/callback', [UserLoginController::class, 'callback']);
+Route::post('/createUserAdmin', [AdminLoginController::class, 'createUserAdmin'])->name('create.admin.main');
+Route::post('/loginAdmin', [AdminLoginController::class, 'loginAdmin'])->name('loginAdmin.admin.main');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.user.index');
-Route::post('/createUser', [LoginController::class, 'createUser'])->name('create.user.index');
+Route::post('/createUser', [UserLoginController::class, 'createUser'])->name('create.user.index');
 Route::get('/validarUser/{email}', [LoginController::class, 'validarUser'])->name('validar.user.index');
-Route::post('/loginLocalUser', [LoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
-Route::get('user', [LoginController::class, 'indexHome'])->name('loginUser.proceso.index');
+Route::post('/loginLocalUser', [UserLoginController::class, 'loginLocalUser'])->name('loginLocalUser.user.index');
+// Route::get('user', [LoginController::class, 'indexHome'])->name('loginUser.proceso.index');
 Route::get('/Nosotros', [ViewController::class, 'viewNosotros'])->name('nosotros.home.index');
 Route::get('/Contactenos', [ViewController::class, 'viewContacto'])->name('contactenos.home.index');
 Route::get('/View-page/{id}', [ViewController::class, 'viewProductoId'])->name('View.home.index');
 Route::get('/api/contactoAgrupec', [MailController::class, 'contactoAgrupec'])->name('api.mail.contactoAgrupec');
 // recuperacion de cuenta
 Route::get('/restablecerGmail', [mailController::class, 'restablecerPasswordUser'])->name('restablecerPassword.user.gmail');
-Route::middleware('VerificationUser')->group(function () {
-  Route::get('/User-Perfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
+// Route::middleware('VerificationUser')->group(function () {
+Route::middleware(['jwt.apiRest.agrupec', 'jwt.user.user'])->group(function () {
+});
+Route::middleware(['session.addInterfaz.user'])->group(function () {
   Route::get('/Cart', [UserController::class, 'cartUser'])->name('cart.user.main');
   Route::get('/User-pdfDownload/{idUser}', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
+  Route::get('/userPerfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
 });
+// Route::middleware(['jwt.apiRest.agrupec', 'jwt.user.user','jwt.addToken.user'])->group(function () {
+// Route::middleware(['jwt.addToken.user'])->group(function () {
+
+// });
+// Route::middleware(['jwt.addToken.user'])->group(function () {
 Route::get('/admin', [ViewController::class, 'admin'])->name('admin.master');
 Route::get('/payment', [PaymentController::class, 'payCulqui'])->name('payment.user.master');
+Route::get('/test', function () {
+  $user = auth()->user(); // Obtén el usuario autenticado
+  return session()->get('user');
+  // $tokenUserConsumer = JWTAuth::parseToken()->authenticate();
+
+  // return $user;
+});

@@ -10,7 +10,8 @@ use App\Http\Controllers\admin\FacturaController;
 use App\Http\Controllers\admin\InfocorpController;
 use App\Http\Controllers\admin\CrudController;
 
-Route::middleware('VerificationAdmin')->group(function () {
+// Route::middleware('VerificationAdmin')->group(function () {
+  Route::middleware(['jwt.apiRest.agrupec', 'jwt.user.admin'])->group(function () {
   Route::get('/Admin', function () {
     return view('Admin.home');
   });

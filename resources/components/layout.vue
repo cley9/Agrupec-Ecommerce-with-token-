@@ -56,7 +56,7 @@
                     </li>
                     <img :src="`${avatar}`" alt="" class="textPerfil perfil--body--img">
                     <li class="nameText">{{ userName }}</li>
-                    <li class="miPerfilText textPerfil"> <a href="/User-Perfil" class="nameTitle">Mi Perfil</a></li>
+                    <li class="miPerfilText textPerfil"> <a href="/userPerfil" class="nameTitle">Mi Perfil</a></li>
                     <li class="logoutLinkText textPerfil"><a href="/logout" class="nameTitle" @click="logout()">Cerrar
                             Sesion </a></li>
                 </ul>
@@ -67,7 +67,11 @@
 </template>
 
 <script>
-import { previewProductCartModal } from '../js/methods.js';
+import { ref, computed } from 'vue';
+import { validateUser,previewProductCartModal } from '../js/methods.js';
+// const options = ref({
+// method: 'GET',
+// });
 export default {
     data() {
         return {
@@ -94,6 +98,79 @@ export default {
         }
     },
     methods: {
+        
+        
+
+// async  myPerfil() {
+//   const encodedToken = btoa(validateUser().token);
+//   const url = `/userPerfil?token=${encodedToken}`;
+
+//   const response = await fetch(url, options.value);
+
+//   // ... manejar la respuesta
+// },
+async myPerfil() {
+      const encodedToken = btoa(validateUser().token); // Encode token
+      const url = `/userPerfil?token=${encodedToken}`; // Append encoded token to URL
+
+      const response = await fetch(url, options.value); // Send request
+
+      if (response.ok) { // Handle successful response
+        const data = await response.json();
+
+        // Process data (e.g., redirect to URL)
+        if (data.url) {
+          location.href = data.url;
+        } else {
+          console.error("Missing url in response");
+        }
+      } else { // Handle error
+        console.error(response.statusText);
+      }
+    },
+        async myPerfild(){
+            // console.log("user, ", validateUser().token);
+            // const redi= await fetch('userPerfil',{
+            //     method:'GET',
+            //     headers:{
+            //         Authorization: `Bearer ${validateUser().token}`
+            //     }
+            // });
+            // console.log("request",redi);
+            // location.href=redi.url;
+
+//             const token = validateUser().token;
+//   const url = new URL('userPerfil', window.location.origin);
+//   url.searchParams.append('token', token);
+
+//   location.href = url.toString();
+
+
+
+// const config = {
+//     method: 'GET',
+//     url: '/userPerfil',
+//     headers: {
+//       Authorization: `Bearer ${validateUser().token}`,
+//     },
+//   };
+
+//   const response = await fetch(config.url, config);
+//   console.log("data",response);
+  // Procesar la respuesta
+//   if (response.ok) {
+//     // Redirigir a la URL proporcionada en la respuesta
+//     location.href = response.data.url;
+//   } else {
+//     // Manejar el error
+//     console.error(response.statusText);
+//   }
+
+            // window.open(redi.url, '_blank');
+            // const request=await redi;
+            
+            // href="/User-Perfil" 
+        },
         logout() {
             const localStorage = window.localStorage;
             localStorage.removeItem('userObj');
