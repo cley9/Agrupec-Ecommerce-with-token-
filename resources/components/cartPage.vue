@@ -65,7 +65,7 @@
                                                     </div>
                                                     <div class="d-flex justify-content-center aling-items-center ">
                                                         <!-- <h6>S/ {{ itemProduct.newPrecio * itemProduct.pivot.cantidad }}</h6> -->
-                                                        <h6>S/ {{ itemProduct.itemSubtotal }}</h6>
+                                                        <h6>S/ {{ itemProduct.precioSubProduct }}</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,6 +161,7 @@ export default {
             listCartData: [],
             listProduct: {},
             precioSubAll: 0.0,
+            // itemPrecioSub:0.0
         }
     },
     mounted() {
@@ -180,12 +181,15 @@ export default {
                 this.listProduct = cartJsonData.listProduct.productos;
                 this.existProduct = cartJsonData.existProduct;
                 this.idUser = listData.user[0].id;
+                let subtotal=0;
+                let catidadAll=0;
                 this.listProduct.forEach(itemProduct => {
-                    this.cantidad += itemProduct.pivot.cantidad;
-                    this.precioTotal += itemProduct.newPrecio * itemProduct.pivot.cantidad;
-                    itemProduct.itemSubtotal = this.precioTotal.toFixed(2);
+                    catidadAll += itemProduct.pivot.cantidad;
+                    itemProduct.precioSubProduct=(itemProduct.newPrecio * itemProduct.pivot.cantidad).toFixed(2);
+                    subtotal += parseInt(itemProduct.precioSubProduct);
                 });
-                this.precioSubAll = this.precioTotal.toFixed(2);
+                this.cantidad=catidadAll;
+                this.precioSubAll=subtotal.toFixed(2);
             }
             payment(this.precioTotal);
         },
