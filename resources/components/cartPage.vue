@@ -27,7 +27,7 @@
                                                 class="mb-1 d-flex justify-content-end d-md-none d-sm-block d-block me-2">
                                                 <small class="me-2 d-flex align-items-center">Eliminar</small>
                                                 <a href="" class="text-danger icons--delete--cart"
-                                                    @click="deleteItemProduct(itemProduct.id)"> <i
+                                                    @click="deleteProduct(itemProduct.id)"> <i
                                                         class="bi bi-trash"></i></a>
                                             </small>
                                             <div
@@ -73,7 +73,7 @@
                                         <div class="d-flex justify-content-end">
 
                                             <button class="text-danger icons--delete--cart btnDelete"
-                                                @click="deleteItemProduct(itemProduct.id)"> <i
+                                                @click="deleteProduct(itemProduct.id)"> <i
                                                     class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
@@ -193,12 +193,13 @@ export default {
             }
             payment(this.precioTotal);
         },
-        deleteItemProduct(idProduct) {
-            deleteItemProduct(idProduct);
+         async deleteProduct(idProduct) {
+            console.log("i ", idProduct);
+            await deleteItemProduct(idProduct);
             this.listProductCart();
         },
-        deleteAllProduct() {
-            deleteAllProduct();
+        async deleteAllProduct() {
+            await deleteAllProduct();
             this.listProductCart();
         },
     },
