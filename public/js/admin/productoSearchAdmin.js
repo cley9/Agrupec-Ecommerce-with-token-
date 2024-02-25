@@ -1,5 +1,3 @@
-// import {getStorage} from './methodsReview.js';
-// console.log("win--",getStorage());
 function getStorage() {
     const get = JSON.parse(localStorage.getItem("adminObj"));
     return get.token;
@@ -10,25 +8,29 @@ if (searchProductoPA) {
         e.preventDefault();
         const fProductoLista = document.getElementById('fProductoLista').value;
         if (fProductoLista.length >= 1) {
-            console.log("new ------- ", getStorage());
-            fetch('/api/admin/Admin-search/' + fProductoLista + '').then(search => search.json()).
+            fetch('/api/admin/adminSearch/' + fProductoLista + '',{
+                method:'GET',
+                headers:{
+                    Authorization: `Bearer ${getStorage()}`
+                }
+            }).then(search => search.json()).
                 then(function (search) {
                     let content = document.getElementById("dataProducto");
                     content.innerHTML = ``;
                     search.forEach(item => {
-                        content.innerHTML +=
-                            `<tr>` +
-                            `<td>${item.id}</td>` +
-                            `<td>${item.nombre}</td>` +
-                            `<td>${item.precio}</td>` +
-                            `<td>${item.newPrecio}</td>` +
-                            `<td>` +
-                            `<img src="/storage/img/Productos/${item.imagen}"  width="80px"  alt="">` +
-                            `<td>` +
-                            `<a onclick="msgUpdate(${item.id})"  class="mb-md-0 mb-2 btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-pencil"></i></a>` +
-                            `<a onclick="productDelete(${item.id},'${item.nombre}','${item.imagen}')" class="btn btn-danger "> <i class="bi bi-trash"></i></a>` +
-                            `</td>` +
-                            `</tr>`;
+                        content.innerHTML +=`
+                            <tr>
+                            <td>${item.id}</td>
+                            <td>${item.nombre}</td>
+                            <td>${item.precio}</td>
+                            <td>${item.newPrecio}</td>
+                            <td>
+                            <img src="/storage/img/Productos/${item.imagen}"  width="80px"  alt="">
+                            <td>
+                            <a onclick="msgUpdate(${item.id})"  class="mb-md-0 mb-2 btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-pencil"></i></a>
+                            <a onclick="productDelete(${item.id},'${item.nombre}','${item.imagen}')" class="btn btn-danger "> <i class="bi bi-trash"></i></a>
+                            </td>
+                            </tr>`;
                     });
                 });
         }

@@ -26,6 +26,10 @@ import perfilPage from '../components/perfilPage.vue';
 import registroUser from '../components/registroUserModal.vue';
 import recuperacionCuenta from '../components/recuperacionCuentaModal.vue';
 import search from '../components/search.vue';
+
+// UI and UX for admin
+import listProductAdmin from '../components/admin/listProduct.vue'; 
+// import updateProductAdmin from '../components/admin/modal/updateProduct.vue'; 
 // const app=createApp(App);
 const app=createApp();
 app.component('btnHigh',btnHigh);
@@ -52,4 +56,7 @@ app.component('perfilPage', perfilPage);
 app.component('registroUser',registroUser);
 app.component('recuperacionCuenta',recuperacionCuenta);
 app.component('search',search);
+// admin component 
+app.component('listProductAdmin',listProductAdmin);
+// app.component('listProductAdmin',listProductAdmin);
 app.mount('#app'); // elemento especifico 

@@ -28,7 +28,7 @@ class LoginController extends Controller
              $user->external_auth = 'local';
              $user->save();
               $token=JWTAuth::fromUser($user);
-              session(['user'=> '0']);
+              session(['user'=> 0]);
               return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario creado","token"=>$token,"user"=>$user],Response::HTTP_OK);
      }
 
@@ -47,7 +47,7 @@ class LoginController extends Controller
             if (($token=JWTAuth::attempt($credencials))&& $validate) {
                 $userId = User::where('email', $request->email)->get();
                 // $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
-                session(['user'=> '0']);
+                session(['user'=> 0]);
                return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);
             } else {
                 return response()->json(["status"=>Response::HTTP_UNAUTHORIZED,'message' => 'Usuario invalido o contraseña no valida'],Response::HTTP_UNAUTHORIZED);
@@ -71,7 +71,7 @@ class LoginController extends Controller
                     'password' => $google_user->email
                 ];
                 $token=JWTAuth::attempt($credencials);
-                session(['user'=> '0']);
+                session(['user'=> 0]);
                 // $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
                 // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
                 // return response()->route('vista.index')->withoutCookie($cookie)->with(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK);
@@ -87,7 +87,7 @@ class LoginController extends Controller
                 $new_user->save();
                  $token=JWTAuth::fromUser($new_user);
                 $userId = User::where('email', $google_user->email)->where('email', $google_user->email)->get();
-                session(['user'=> '0']);
+                session(['user'=> 0]);
                 // $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
                 // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario valido","token"=>$token,"user"=>$userId],Response::HTTP_OK)->withoutCookie($cookie);
                 return redirect()->route('vista.index')->with(["data"=>["status" => Response::HTTP_OK, "message" => "Usuario valido", "token" => $token, "user" => $userId]]);

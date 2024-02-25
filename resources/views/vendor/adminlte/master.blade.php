@@ -75,6 +75,7 @@
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
+   
     {{-- Body Content --}}
     @yield('body')
     {{-- Base Scripts --}}
@@ -98,6 +99,7 @@
             <livewire:scripts />
         @endif
     @endif
+    <h3>cley</h3>
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

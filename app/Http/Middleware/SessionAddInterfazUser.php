@@ -16,7 +16,7 @@ class SessionAddInterfazUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->get('user') === '0') {
+        if (session()->get('user') == 0) {
             return $next($request);
         } else {
             return abort(401);

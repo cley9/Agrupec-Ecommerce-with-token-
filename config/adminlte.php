@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/api/admin/Admin', // la ruda de nuestra web de admin
+    'dashboard_url' => '/admin', // la ruda de nuestra web de admin
     // 'dashboard_url' => 'Admin-list', // la ruda de nuestra web de admin
     'logout_url' => 'Admin-logout',
     'login_url' => 'login',
@@ -237,11 +237,6 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -252,105 +247,32 @@ return [
         ['header' => 'Productos y mas'],
         [
             'text' => 'Productos',
-            'url'  => '/api/admin/Admin-list',
+            'url'  => '/adminList',
             'icon' => 'bi bi-images',
         ],
         [
             'text' => 'Catalogo',
-            'url'  => '/api/admin/Admin-Catalogo',
+            'url'  => '/Admin-Catalogo',
             'icon' => 'bi bi-file-medical-fill',
         ],
         [
             'text' => 'Ventas',
-            'url'  => '/api/admin/Admin-Ventas',
+            'url'  => '/Admin-Ventas',
             'icon' => 'bi bi-file-medical-fill',
         ],
         // --- nav items de generar factura
         [
             'text' => 'Generar factura',
-            'url'  => '/api/admin/Admin-factura',
+            'url'  => '/Admin-factura',
             // 'icon' => 'fas fa-fw fa-lock',
             'icon' => 'bi bi-file-earmark-pdf-fill',
         ],
         [
             'text' => 'Infocorp',
-            'url'  => '/api/admin/Admin-infocorp',
+            'url'  => '/Admin-infocorp',
             'icon' => 'bi bi-person-rolodex',
         ],
-        // --
-        // [
-        //     'text'        => 'Informe',
-        //     // 'url'         => 'admin/pages',
-        //     'url'         => 'Admin-list',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
-        // ['header' => 'account_settings'],
-        // [
-        //     'text' => 'profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
+       
     ],
 
     /*

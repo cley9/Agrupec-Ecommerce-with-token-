@@ -26,7 +26,7 @@ class LoginController extends Controller
           $userAdmin->external_auth = 'local';
           $userAdmin->save();
            $token=JWTAuth::fromUser($userAdmin);
-           session(['user'=> '4']);
+           session(['user'=> 4]);
            return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario Admin creado","token"=>$token,"userAdmin"=>$userAdmin],Response::HTTP_OK);
       }
     function loginAdmin(Request $request)
@@ -44,7 +44,7 @@ class LoginController extends Controller
         if (($token=JWTAuth::attempt($credencials)) && $validate) {
             $userAdmin=User::where('email',$email)->where('rol','4')->get();
             // $cookie= cookie('cookie_token_agru',$token,(60*24)*7);
-           session(['user'=> '4']);
+           session(['user'=> 4]);
             return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario administrador valido","token"=>$token,"user"=>$userAdmin],Response::HTTP_OK);
             // return response()->json(["status"=>Response::HTTP_OK, "message"=>"Usuario administrador valido","token"=>$token,"user"=>$userAdmin],Response::HTTP_OK)->withoutCookie($cookie);
         } else {

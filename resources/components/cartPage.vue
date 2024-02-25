@@ -194,7 +194,7 @@ export default {
             payment(this.precioTotal);
         },
          async deleteProduct(idProduct) {
-            console.log("i ", idProduct);
+            // console.log("i ", idProduct);
             await deleteItemProduct(idProduct);
             this.listProductCart();
         },

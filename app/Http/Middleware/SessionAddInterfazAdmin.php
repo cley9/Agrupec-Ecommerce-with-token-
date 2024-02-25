@@ -16,7 +16,7 @@ class SessionAddInterfazAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->get('user') === '4') {
+        if (session()->get('user') == 4) {
             return $next($request);
         } else {
             return abort(401);

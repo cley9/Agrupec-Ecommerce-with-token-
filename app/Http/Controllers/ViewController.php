@@ -121,7 +121,5 @@ class ViewController extends Controller
     {
         return view('local');
     }
-    function admin(){
-        return view('Admin.home');
-    }
+   
 }

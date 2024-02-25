@@ -184,6 +184,7 @@
         window.Laravel = @json(['data' => session('data')]);
     </script>
     {{-- <div id="modalAddProductoCart"></div> --}}
+    {{-- <h3> this  == {{ session()->get('user') }}</h3> --}}
     <footer class="pt-4   footer--body">
         <div class="container text-muted mb-4">
             <div class="row ">

@@ -35,6 +35,7 @@
                         <h5>Administrador</h5>
                     </li>
                     <img :src="`${avatar}`" alt="" class="textPerfil perfil--body--img">
+                    <li class="nameText nameTitle"><a href="/admin">Panel Administrativo</a></li>
                     <li class="nameText">{{ userName }}</li>
                     <li class="logoutLinkText textPerfil"><a href="/logout" class="nameTitle" @click="logout()">Cerrar
                             Sesion </a></li>

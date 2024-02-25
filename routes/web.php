@@ -2,8 +2,13 @@
 
 // use App\Http\Controllers\user\PdfProductoController;
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\ApiController;
+use App\Http\Controllers\admin\CrudController as AdminCrudController;
+use App\Http\Controllers\admin\FacturaController;
+use App\Http\Controllers\admin\InfocorpController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
+use App\Http\Controllers\admin\PdfProductoController;
 use App\Http\Controllers\ApiController as ControllersApiController;
 use Illuminate\Support\Facades\Route;
 // --------------
@@ -67,7 +72,6 @@ Route::get('/View-page/{id}', [ViewController::class, 'viewProductoId'])->name('
 Route::get('/api/contactoAgrupec', [MailController::class, 'contactoAgrupec'])->name('api.mail.contactoAgrupec');
 // recuperacion de cuenta
 Route::get('/restablecerGmail', [mailController::class, 'restablecerPasswordUser'])->name('restablecerPassword.user.gmail');
-// Route::middleware('VerificationUser')->group(function () {
 Route::middleware(['jwt.apiRest.agrupec', 'jwt.user.user'])->group(function () {
 });
 Route::middleware(['session.addInterfaz.user'])->group(function () {
@@ -75,17 +79,17 @@ Route::middleware(['session.addInterfaz.user'])->group(function () {
   Route::get('/User-pdfDownload/{idUser}', [PdfTickedController::class, 'downloadPdf'])->name('download.user.pdf');
   Route::get('/userPerfil', [UserController::class, 'userPerfil'])->name('perfil.user.main');
 });
-// Route::middleware(['jwt.apiRest.agrupec', 'jwt.user.user','jwt.addToken.user'])->group(function () {
-// Route::middleware(['jwt.addToken.user'])->group(function () {
-
-// });
-// Route::middleware(['jwt.addToken.user'])->group(function () {
-Route::get('/admin', [ViewController::class, 'admin'])->name('admin.master');
 Route::get('/payment', [PaymentController::class, 'payCulqui'])->name('payment.user.master');
-Route::get('/test', function () {
-  $user = auth()->user(); // Obtén el usuario autenticado
-  return session()->get('user');
-  // $tokenUserConsumer = JWTAuth::parseToken()->authenticate();
-
-  // return $user;
+Route::middleware(['session.addInterfaz.admin'])->group(function () {
+  Route::get('/admin', function () {
+    return view('Admin.home');
+  });
+  Route::get('/adminList', [AdminCrudController::class, 'list'])->name('list.admin.list');
+  Route::get('/Admin-Catalogo', [AdminCrudController::class, 'viewSlayderMain'])->name('list.admin.catalogo');
+  Route::get('/Admin-Ventas', [AdminController::class, 'ventas'])->name('venta.admin.index');
+  Route::get('/Admin-factura', [FacturaController::class, 'view'])->name('view.admin.factura');
+  Route::get('/Admin-infocorp', [InfocorpController::class, 'main'])->name('main.admin.infocorp');
+   // --pdf
+   Route::get('/adminPdfDownload', [PdfProductoController::class, 'downloadPdf'])->name('download.admin.pdf');
+   Route::get('/Admin-pdfProducto', [PdfProductoController::class, 'viewPdf'])->name('view.admin.pdf');
 });
